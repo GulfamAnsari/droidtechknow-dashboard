@@ -15,19 +15,22 @@ app.use(express.static(path.join(__dirname, 'public')));
   
 app.get('/', (req, res)=>{
     getAllArticleList().then((data)=>{
-        res.send(data);
+        var html = "<h1>Article are</h1><br>";
+        for(var i=0; i< data.length; i++) {
+            var articleTitle = data[i]['articleTitle'];
+            html = html.concat("<p>"+articleTitle+"</p>")
+        }
+        res.send(html);
     });
 })
 
 function getAllArticleList() {
     var promise = new Promise((resolve, reject)=>{
-        connection.connect();
         connection.query('SELECT * from article', (error, results, fields)=> {
             if (error) reject(error);
             resolve(results);
         });
     });
-    connection.end();
     return promise;
 }
 
