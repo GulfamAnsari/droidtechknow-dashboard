@@ -1,3 +1,4 @@
+const PORT = 8080;
 var http = require("http");  
 http.createServer(function (request, response) {  
  // Send the HTTP header   
@@ -6,6 +7,6 @@ http.createServer(function (request, response) {
    response.writeHead(200, {'Content-Type': 'text/plain'});  
    // Send the response body as "Hello World"  
    response.end('Hello World\n');  
-}).listen(8081);  
+}).listen(PORT);  
 // Console will print the message  
-console.log('Server running at http://127.0.0.1:4000/');  
+console.log(`Listening on ${ PORT }`);
