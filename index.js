@@ -1,33 +1,18 @@
+// all requires and objects
 var express = require('express');
-var mysql = require('mysql');
-
 var app = express();
+var router = require('./src/routes/appRoutes');
+
+// constant variables
 const path = require('path')
 const PORT = process.env.PORT || 5000;
-var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : '',
-    database: 'DroidTechKnow'
-});
 
+// middle ware
 app.use(express.static(path.join(__dirname, 'public')));
-  
-app.get('/', (req, res)=>{
-    getAllArticleList().then((data)=>{
-        res.send(data);
-    });
-    // res.sendFile(path.join(__dirname + '/public/static/index.html'));
-})
+app.use('/', router);
 
-function getAllArticleList() {
-    var promise = new Promise((resolve, reject)=>{
-        connection.query('SELECT * from article', (error, results, fields)=> {
-            if (error) reject(error);
-            resolve(results);
-        });
-    });
-    return promise;
-}
+// settting the app
+app.set('views', './src/views');
+app.set('view engine', 'jade');
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
