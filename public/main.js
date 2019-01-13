@@ -516,7 +516,8 @@ var DataService = /** @class */ (function () {
     DataService.prototype.getArticleList = function () {
         var _this = this;
         return new rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"](function (observer) {
-            _this.backendService.get(_this.getUrl() + '/article-list')
+            console.log(_this.getUrl());
+            _this.backendService.get(_this.getUrl() + 'article-list')
                 .subscribe(function (result) {
                 observer.next(result);
                 observer.complete();
@@ -528,10 +529,10 @@ var DataService = /** @class */ (function () {
     };
     DataService.prototype.getUrl = function () {
         if (window.location.hostname == "localhost") {
-            return "http://localhost:5000";
+            return "http://localhost:5000/";
         }
         else {
-            return;
+            return '/';
         }
     };
     DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
