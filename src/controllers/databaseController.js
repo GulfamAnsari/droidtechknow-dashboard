@@ -1,14 +1,4 @@
 var mysql = require('mysql');
-const aws = require('aws-sdk');
-console.log('user naem ')
-console.log(process.env.USERNAME)
-let s3 = new aws.S3({
-  username: process.env.USERNAME,
-  host: process.env.HOST,
-  database: process.env.DATABASE,
-  password: process.env.PASSWORD
-});
-console.log(s3);
 var connection = mysql.createConnection({
     host     : process.env.HOST,
     user     : process.env.USERNAME,
