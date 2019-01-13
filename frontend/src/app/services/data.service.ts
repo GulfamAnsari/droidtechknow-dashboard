@@ -12,7 +12,7 @@ export class DataService {
 
   public getArticleList() {
     return new Observable((observer)=>{
-      this.backendService.get('http://localhost:5000/article-list')
+      this.backendService.get( this.getUrl() + '/article-list')
       .subscribe((result) => {
         observer.next(result);
         observer.complete();
@@ -21,5 +21,13 @@ export class DataService {
         observer.error(error);
       })
     });
+  }
+
+  public getUrl() {
+    if(window.location.hostname == "localhost") {
+      return "http://localhost:5000"
+    } else {
+      return;
+    }
   }
 }
