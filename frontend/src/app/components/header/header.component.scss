@@ -1,0 +1,140 @@
+
+/*header*/
+.droidtechknow-hedaer {
+    margin: 10px 0;
+}
+header .logo {
+    max-width: 180px;
+    max-height: 180px;
+    padding: 15px 0px;
+    margin: 0 16px;
+}
+
+@media screen and (max-width: 767px){
+    header .logo{
+        margin: auto;
+        max-width: 160px;
+        max-height: 160px;
+    }
+}
+
+/*Navigation bar*/
+.navbar {
+  margin-bottom: 0;
+  background-color: #f09548;
+  border: none;
+  border-radius: 0;
+}
+/* This is predefiend navigation bar padding */
+.navbar-collapse{
+    /* padding: 0px; */
+}
+.navbar .navbar-header .navbar-toggle {
+  border: none;
+  color: white;
+}
+
+.navbar .navbar-header .navbar-toggle:hover,
+.navbar .navbar-header .navbar-toggle:visited {
+  background-color: #f09548;
+}
+
+
+nav #myNavbar ul li a {
+  color: white;
+  font-family: "Noto Sans";
+  font-size: 14px;
+  font-weight: 700;
+text-transform: uppercase;
+  box-sizing: border-box;
+
+}
+@media (max-width: 1018px) and (min-width: 768px){
+    nav #myNavbar ul li a{
+        font-size: 11px;
+    }
+}
+
+nav #myNavbar ul li button {
+  color: white;
+  background-color: #f09548;
+  border: none;
+  outline: none;
+  padding-top: 15px;
+}
+
+
+nav #myNavbar ul li a:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  bottom: 1px;
+  width: 0;
+  border-bottom: 3px solid black;
+  transition: .4s;
+}
+
+nav #myNavbar ul li a:hover:after {
+  width: 100%;
+
+}
+nav #myNavbar ul li .active {
+  background: #ca6b1a;
+}
+
+
+/* Dropdown*/
+.dropdown {
+    position: absolute;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    left: -30px;
+    border: none;
+    background-color: #f09548;
+    min-width: 200px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 9999;
+  }
+  
+  .dropdown-content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px 5px;
+  }
+  
+  nav #myNavbar ul li .dropdown-content a:hover:after {
+    width: 0;
+  
+  }
+  
+  .dropdown-content a:hover {
+    background-color: black;
+  
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  @media screen and (max-width:780px ) {
+    .dropdown-content {
+      position: relative;
+      display: none;
+      left: 0;
+      background-color: #f09548;
+      min-width: 100%;
+      box-shadow: 0 0 0 0 rgba(0,0,0,0);
+      outline: none;
+      border: none;
+  
+    }
+  
+    .dropdown-content a {
+      padding: 10px 5px 10px 35px;
+    }
+  }

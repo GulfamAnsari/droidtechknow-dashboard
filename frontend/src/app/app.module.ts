@@ -12,11 +12,16 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
+
+// ng2 smart table
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { HeaderComponent } from './components/header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    TableComponent
+    TableComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,8 @@ import { CdkTreeModule } from '@angular/cdk/tree';
     DragDropModule,
     ScrollingModule,
     CdkTableModule,
-    CdkTreeModule
+    CdkTreeModule,
+    Ng2SmartTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

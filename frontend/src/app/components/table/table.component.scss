@@ -1,0 +1,27 @@
+/deep/ ng2-smart-table thead > tr > th  { 
+    background-color: #ec9636;  
+    color: white ;
+}
+/deep/ ng2-smart-table .ng2-smart-sort-link { 
+    color: white !important;
+}
+/deep/ ng2-smart-table input-filter {
+    color: black;
+}
+
+/deep/ ng2-smart-table  .ng2-smart-action {
+    display: inline-block;
+    background: #e99712;
+    color: white !important;
+    text-decoration: none !important;
+    padding: 5px 8px;
+    margin: 1px 0px;
+}
+
+/deep/ ng2-smart-table  .ng2-smart-action-delete-delete:hover {
+    background: #92261e;
+}
+/deep/ ng2-smart-table  .ng2-smart-action-edit-edit:hover {
+    background: #20612e;
+}
+
