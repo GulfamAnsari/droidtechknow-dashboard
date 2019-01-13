@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/GulfamAnsari/droidtechknow-dashboard#readme",
   "dependencies": {
-    "aws-sdk": "^2.387.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "jade": "^1.11.0",
