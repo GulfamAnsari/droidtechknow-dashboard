@@ -1,4 +1,4 @@
 <div *ngIf="loading" style="margin: 0 8px">
   <h2>List of DroidTechKnow Articles</h2>
-  <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+  <ng2-smart-table [settings]="settings" [source]="data" (edit)="editRow($event)" (delete)="deleteRow($event)"></ng2-smart-table>
 </div>
