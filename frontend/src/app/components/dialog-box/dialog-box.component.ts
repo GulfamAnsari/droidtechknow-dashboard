@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ControllerService } from 'src/app/services/controller.service';
+import { HelperService } from 'src/app/services/helper.service';
 @Component({
   selector: 'app-dialog-box',
   templateUrl: './dialog-box.component.html',
@@ -9,7 +10,10 @@ import { ControllerService } from 'src/app/services/controller.service';
 export class DialogBoxComponent implements OnInit {
 
   dialogRef: any;
-  constructor(public dialog: MatDialog, private controller: ControllerService) {
+  username: any;
+  password: any;
+  constructor(public dialog: MatDialog, private controller: ControllerService, 
+    private helper: HelperService) {
     
   }
 
@@ -28,11 +32,16 @@ export class DialogBoxComponent implements OnInit {
   }
 
   public deleteSelectedArticle() {
-    this.controller.deleteSelectedArticle().subscribe(()=>{
+    const data = {
+      username: this.username,
+      password: this.password
+    }
+    const url = this.helper.getUrl() + 'article-delete';
+    this.controller.deleteSelectedArticle(data, url).subscribe(()=>{
       console.log('Sucessfully deleted');
       this.dialog.closeAll()
     }, (err)=>{
-      console.log('there is error while deleting the current article');
+      console.log(err);
     });
   }
 }

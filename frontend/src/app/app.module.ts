@@ -8,7 +8,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
-
+import { FormsModule } from '@angular/forms';
 // Angular materials
 import {MatDialogModule} from '@angular/material/dialog';
 
@@ -39,7 +39,8 @@ import { TableComponent } from './components/table/table.component';
     CdkTableModule,
     CdkTreeModule,
     Ng2SmartTableModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
   ],
   providers: [],
   entryComponents: [DialogBoxComponent],

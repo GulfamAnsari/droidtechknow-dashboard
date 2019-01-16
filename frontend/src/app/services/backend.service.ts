@@ -22,4 +22,8 @@ export class BackendService {
   public patch(url: string, data: any, config?:any) {
     return this.http.patch(url, data, config);
   }
+
+  public delete(url: string, config?:any) {
+    return this.http.delete(url, config);
+  }
 }
