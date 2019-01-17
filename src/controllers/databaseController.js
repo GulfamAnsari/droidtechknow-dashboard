@@ -6,14 +6,24 @@ var connection = mysql.createConnection({
     database: process.env.DATABASE
 });
 
-var getData = function getAllArticleList() {
-    var promise = new Promise((resolve, reject)=>{
-        connection.query('SELECT * from article', (error, results, fields)=> {
-            if (error) reject(error);
-            resolve(results);
+var databaseController = {
+    getAllArticle: function getAllArticleList() {
+        var promise = new Promise((resolve, reject)=>{
+            connection.query('SELECT * from article', (error, results, fields)=> {
+                if (error) reject(error);
+                resolve(results);
+            });
         });
-    });
-    return promise;
+        return promise;
+    },
+    deleteArticle: function deleteArticle(post) {
+        return new Promise((resolve, reject)=>{
+            connection.query('DELETE FROM article WHERE post=' + post, (error, results, fields)=> {
+                if (error) reject(error);
+                resolve(`Post ${post} has been successfully deleted`);
+            });
+        });
+    }
 }
 
-module.exports = getData;
+module.exports = databaseController;

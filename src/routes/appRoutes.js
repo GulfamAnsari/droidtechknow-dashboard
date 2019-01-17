@@ -1,6 +1,6 @@
 var express = require('express');
 var appRoutes = express.Router();
-var articles = require('../controllers/databaseController');
+var databaseController = require('../controllers/databaseController');
 const path = require('path')
 
 appRoutes.route('/').get((req, res)=>{
@@ -8,9 +8,21 @@ appRoutes.route('/').get((req, res)=>{
 })
 
 appRoutes.route('/article-list').get((req, res)=>{
-    articles().then((data)=>{
+    databaseController.getAllArticle().then((data)=>{
         res.send(data);
     });
+})
+
+appRoutes.route('/article-delete').post((req, res)=>{
+    if(process.env.USERNAME === req.body.username && process.env.PASSWORD === req.body.password) {
+        databaseController.deleteArticle(req.body.id).then((success)=>{
+            res.send(success);
+        }, (err)=>{
+            res.status(400).send(err);
+        });
+    } else {
+        res.status(200).send('You does not enough permission to delete the article');
+    }
 })
 
 appRoutes.route('/admin').get((req, res)=>{
