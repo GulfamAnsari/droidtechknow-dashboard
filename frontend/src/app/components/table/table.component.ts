@@ -26,8 +26,7 @@ export class TableComponent implements OnInit {
   }
 
   public deleteRow($event) {
-    console.log('delete');
-    console.log($event);
+    this.dataService.selectedRowData = $event.data;
     this.dialogBox.openDialog();
   }
 

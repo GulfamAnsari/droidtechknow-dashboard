@@ -7,7 +7,7 @@ import { HelperService } from './helper.service';
 })
 export class DataService {
 
-  private articles: any = [];
+  public selectedRowData: any;
   constructor(private backendService: BackendService, private helper: HelperService) {
    }
 

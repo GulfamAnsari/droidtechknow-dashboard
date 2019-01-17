@@ -11,12 +11,11 @@ export class ControllerService {
 
   public deleteSelectedArticle(data, url): Observable<any> {
     return new Observable((observer)=>{
-      console.log(data, url);
-      this.backendService.post(url, data).subscribe((success)=>{
-        observer.next(true);
+      this.backendService.post(url, data, {responseType: 'text'}).subscribe((success)=>{
+        observer.next(success);
         observer.complete();
       }, (err)=>{
-        observer.error('Error while deleting the article');
+        observer.error(err);
       });
     });
   }

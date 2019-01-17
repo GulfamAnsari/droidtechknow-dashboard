@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ControllerService } from 'src/app/services/controller.service';
 import { HelperService } from 'src/app/services/helper.service';
+import { DataService } from 'src/app/services/data.service';
 @Component({
   selector: 'app-dialog-box',
   templateUrl: './dialog-box.component.html',
@@ -9,39 +10,39 @@ import { HelperService } from 'src/app/services/helper.service';
 })
 export class DialogBoxComponent implements OnInit {
 
-  dialogRef: any;
-  username: any;
-  password: any;
+  username: string = '';
+  password: string = '';
   constructor(public dialog: MatDialog, private controller: ControllerService, 
-    private helper: HelperService) {
+    private helper: HelperService, private dataService: DataService) {
     
   }
 
   ngOnInit() {
   }
 
-  public openDialog(): void {
-    this.dialogRef = this.dialog.open(DialogBoxComponent, {
+  public openDialog() {
+    const dialogRef = this.dialog.open(DialogBoxComponent, {
       width: '250px',
-      data: "data"
+      data: this.dataService.selectedRowData
     });
-
-    this.dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    
+    dialogRef.afterClosed().subscribe(result => {
     });
   }
 
   public deleteSelectedArticle() {
     const data = {
+      id: this.dataService.selectedRowData.post,
       username: this.username,
       password: this.password
     }
     const url = this.helper.getUrl() + 'article-delete';
-    this.controller.deleteSelectedArticle(data, url).subscribe(()=>{
-      console.log('Sucessfully deleted');
-      this.dialog.closeAll()
+    this.controller.deleteSelectedArticle(data, url).subscribe((success)=>{
+      console.log(success);
+      this.dialog.closeAll();
     }, (err)=>{
-      console.log(err);
+      console.log(JSON.parse(err.error));
+      this.dialog.closeAll();
     });
   }
 }
