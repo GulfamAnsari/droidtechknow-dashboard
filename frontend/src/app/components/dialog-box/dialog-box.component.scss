@@ -1,0 +1,10 @@
+.delete-button {
+    border: 2px solid #e03e28 !important;
+    box-shadow: inset 0px 55px 0px 0px #e03e28;
+    color: #fff;
+    padding: 8px 24px;
+}
+
+:host mat-form-field {
+    width: 100%;
+}

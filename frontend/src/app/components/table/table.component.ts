@@ -8,7 +8,7 @@ import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-  @Input() data: Array<Object> = [];
+  @Input() source: Array<Object> = [];
   @ViewChild(DialogBoxComponent) dialogBox: DialogBoxComponent;
   settings = {};
   

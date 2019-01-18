@@ -21,7 +21,7 @@ appRoutes.route('/article-delete').post((req, res)=>{
             res.status(400).send(err);
         });
     } else {
-        res.status(200).send('You does not enough permission to delete the article');
+        res.status(401).send('You does not enough permission to delete the article');
     }
 })
 

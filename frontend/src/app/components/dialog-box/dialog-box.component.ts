@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ControllerService } from 'src/app/services/controller.service';
 import { HelperService } from 'src/app/services/helper.service';
@@ -22,7 +22,7 @@ export class DialogBoxComponent implements OnInit {
 
   public openDialog() {
     const dialogRef = this.dialog.open(DialogBoxComponent, {
-      width: '250px',
+      width: '340px',
       data: this.dataService.selectedRowData
     });
     
@@ -38,10 +38,12 @@ export class DialogBoxComponent implements OnInit {
     }
     const url = this.helper.getUrl() + 'article-delete';
     this.controller.deleteSelectedArticle(data, url).subscribe((success)=>{
-      console.log(success);
-      this.dialog.closeAll();
+      this.dataService.source.remove(this.dataService.selectedRowData).then(()=>{
+        this.dialog.closeAll();
+        console.log(success);
+      });
     }, (err)=>{
-      console.log(JSON.parse(err.error));
+      console.log(err.error);
       this.dialog.closeAll();
     });
   }

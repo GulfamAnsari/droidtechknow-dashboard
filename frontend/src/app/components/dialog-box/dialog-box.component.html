@@ -1,3 +1,9 @@
-<p>Username: <input type="text" [(ngModel)]="username"></p>
-<p>Password: <input type="password" [(ngModel)]="password"></p>
-<button type="submit" (click)="deleteSelectedArticle()">Delete</button>
+<form class="example-form">
+  <mat-form-field class="example-full-width" >
+    <input matInput placeholder="Username" value="" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Password" value="" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+  </mat-form-field>
+  <button type="submit" (click)="deleteSelectedArticle()" class="delete-button btn btn-danger">Delete</button>
+</form>

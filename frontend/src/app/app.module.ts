@@ -20,6 +20,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DialogBoxComponent } from './components/dialog-box/dialog-box.component';
 import { TableComponent } from './components/table/table.component';
+import { MatInputModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { TableComponent } from './components/table/table.component';
     CdkTreeModule,
     Ng2SmartTableModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatInputModule
   ],
   providers: [],
   entryComponents: [DialogBoxComponent],
