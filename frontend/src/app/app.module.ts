@@ -18,7 +18,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 // components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { DialogBoxComponent } from './components/dialog-box/dialog-box.component';
+import { DeleteDialogBoxComponent } from './components/delete-dialog-box/delete-dialog-box.component';
 import { TableComponent } from './components/table/table.component';
 import { MatInputModule } from '@angular/material';
 
@@ -28,7 +28,7 @@ import { MatInputModule } from '@angular/material';
     DashboardComponent,
     TableComponent,
     HeaderComponent,
-    DialogBoxComponent
+    DeleteDialogBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +45,7 @@ import { MatInputModule } from '@angular/material';
     MatInputModule
   ],
   providers: [],
-  entryComponents: [DialogBoxComponent],
+  entryComponents: [DeleteDialogBoxComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

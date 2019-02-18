@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { TableConstants } from '../../constants';
-import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
+import { DeleteDialogBoxComponent } from '../delete-dialog-box/delete-dialog-box.component';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -9,9 +9,9 @@ import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 })
 export class TableComponent implements OnInit {
   @Input() source: Array<Object> = [];
-  @ViewChild(DialogBoxComponent) dialogBox: DialogBoxComponent;
+  @ViewChild(DeleteDialogBoxComponent) dialogBox: DeleteDialogBoxComponent;
   settings = {};
-  
+
   constructor(private dataService: DataService) {
     this.settings = TableConstants.SETTING;
    }
@@ -19,9 +19,8 @@ export class TableComponent implements OnInit {
   ngOnInit() {
   }
 
-
   public editRow($event) {
-    console.log('edit')
+    console.log('edit');
     console.log($event);
   }
 

@@ -1,20 +1,22 @@
+
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogBoxComponent } from './dialog-box.component';
+import { DeleteDialogBoxComponent } from './delete-dialog-box.component';
 
-describe('DialogBoxComponent', () => {
-  let component: DialogBoxComponent;
-  let fixture: ComponentFixture<DialogBoxComponent>;
+describe('DeleteDialogBoxComponent', () => {
+  let component: DeleteDialogBoxComponent;
+  let fixture: ComponentFixture<DeleteDialogBoxComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogBoxComponent ]
+      declarations: [ DeleteDialogBoxComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DialogBoxComponent);
+    fixture = TestBed.createComponent(DeleteDialogBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
