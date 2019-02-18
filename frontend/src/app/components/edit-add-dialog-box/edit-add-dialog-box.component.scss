@@ -1,0 +1,8 @@
+:host .example-container > mat-form-field {
+    width: 50%;
+    padding: 0 16px;
+  }
+
+::ng-deep .cdk-overlay-pane {
+    overflow: auto;
+}

@@ -12,14 +12,17 @@ export class DeleteDialogBoxComponent implements OnInit {
 
   private username = '';
   private password = '';
-  constructor(public dialog: MatDialog, private controller: ControllerService,
-    private helper: HelperService, private dataService: DataService) {
-  }
 
-  ngOnInit() {
-  }
+  constructor(public dialog: MatDialog,
+    private controller: ControllerService,
+    private helper: HelperService,
+    private dataService: DataService,
+    private dialogRef: MatDialogRef<DeleteDialogBoxComponent>
+  ) { }
 
-  public openDialog() {
+  ngOnInit() { }
+
+  public openDeleteDialog() {
     const dialogRef = this.dialog.open(DeleteDialogBoxComponent, {
       width: '340px',
       data: this.dataService.selectedRowData
@@ -45,5 +48,9 @@ export class DeleteDialogBoxComponent implements OnInit {
       console.log(err.error);
       this.dialog.closeAll();
     });
+  }
+
+  closeDialog() {
+    this.dialogRef.close('bye!');
   }
 }

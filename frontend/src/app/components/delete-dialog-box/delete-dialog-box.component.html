@@ -1,9 +1,10 @@
 <form class="example-form">
-  <mat-form-field class="example-full-width" >
+  <mat-form-field class="example-full-width">
     <input matInput placeholder="Username" value="" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Password" value="" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
   </mat-form-field>
+  <button (click)="closeDialog()" class="cancel-button btn btn-primary">Cancel</button>
   <button type="submit" (click)="deleteSelectedArticle()" class="delete-button btn btn-danger">Delete</button>
 </form>

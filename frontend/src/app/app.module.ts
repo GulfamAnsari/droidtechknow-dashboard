@@ -10,7 +10,7 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { FormsModule } from '@angular/forms';
 // Angular materials
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule, MatFormFieldModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 // ng2 smart table
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -21,6 +21,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { DeleteDialogBoxComponent } from './components/delete-dialog-box/delete-dialog-box.component';
 import { TableComponent } from './components/table/table.component';
 import { MatInputModule } from '@angular/material';
+import { EditAddDialogBoxComponent } from './components/edit-add-dialog-box/edit-add-dialog-box.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MatInputModule } from '@angular/material';
     DashboardComponent,
     TableComponent,
     HeaderComponent,
-    DeleteDialogBoxComponent
+    DeleteDialogBoxComponent,
+    EditAddDialogBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -42,10 +44,14 @@ import { MatInputModule } from '@angular/material';
     Ng2SmartTableModule,
     MatDialogModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    MatFormFieldModule
   ],
-  providers: [],
-  entryComponents: [DeleteDialogBoxComponent],
+  providers: [
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] }
+  ],
+  entryComponents: [DeleteDialogBoxComponent, EditAddDialogBoxComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,13 @@
+<div class="example-container">
+  <mat-form-field *ngFor="let column of headerColumns"
+    [ngStyle]="{'width': column=='articleDescription' ? '100%' : '50%' }">
+    <div *ngIf="textAraeColumns.indexOf(column)!=-1; else textArea">
+      <textarea matInput [placeholder]="column" [value]="data[column]"></textarea>
+    </div>
+    <ng-template #textArea>
+      <input matInput [placeholder]="column" [value]="data[column]">
+    </ng-template>
+  </mat-form-field>
+  <button (click)="closeDialog()" class="cancel-button btn btn-primary">cancel</button>
+  <button type="submit" (click)="updateSelectedArticle()" class="update-button btn btn-success">Update</button>
+</div>
