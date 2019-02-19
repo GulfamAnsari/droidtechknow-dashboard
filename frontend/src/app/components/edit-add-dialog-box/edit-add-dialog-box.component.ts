@@ -12,12 +12,19 @@ export class EditAddDialogBoxComponent implements OnInit {
 
   public headerColumns = TableConstants.COLUMN_HEADERS;
   public textAraeColumns = ['articleDescription', 'keywords', 'articleLink', 'imageLink', 'imageLink2'];
+  public updateEdit: string;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog,
     private dataService: DataService,
     private dialogRef: MatDialogRef<EditAddDialogBoxComponent>
-  ) { }
+  ) {
+    if (Object.keys(data).length === 0) {
+      this.updateEdit = 'Add';
+    } else {
+      this.updateEdit = 'Update';
+    }
+  }
 
   ngOnInit() {
   }
@@ -29,6 +36,7 @@ export class EditAddDialogBoxComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.dataService.selectedRowData = {};
     });
   }
 

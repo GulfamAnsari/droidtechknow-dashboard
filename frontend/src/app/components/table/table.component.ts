@@ -25,13 +25,15 @@ export class TableComponent implements OnInit {
   public editRow($event) {
     this.dataService.selectedRowData = $event.data;
     this.editAddDialogBoxComponent.openEditAddDialog();
-    console.log('edit');
-    console.log($event.data);
   }
 
   public deleteRow($event) {
     this.dataService.selectedRowData = $event.data;
     this.deleteDialogBoxComponent.openDeleteDialog();
+  }
+
+  public create($event) {
+    this.editAddDialogBoxComponent.openEditAddDialog();
   }
 
 }

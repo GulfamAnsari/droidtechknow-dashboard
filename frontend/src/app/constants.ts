@@ -12,7 +12,8 @@ export class TableConstants {
         title: 'Description'
       },
       articleDate: {
-        title: 'Date'
+        title: 'Date',
+        width: '60px'
       },
       catagory: {
         title: 'Catagory',

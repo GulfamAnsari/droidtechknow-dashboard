@@ -29,12 +29,13 @@ export class DeleteDialogBoxComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.dataService.selectedRowData = {};
     });
   }
 
   public deleteSelectedArticle() {
     const data = {
-      id: this.dataService.selectedRowData.post,
+      id: this.dataService.selectedRowData['post'],
       username: this.username,
       password: this.password
     };
