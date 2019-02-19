@@ -8,16 +8,15 @@ import { LocalDataSource } from 'ng2-smart-table';
 })
 export class DashboardComponent implements OnInit {
 
-  loading: boolean = false;
-  source: LocalDataSource;
+  public loading = false;
+  public source: LocalDataSource;
 
-  constructor(private dataService: DataService) { 
+  constructor(private dataService: DataService) {
     this.setTableData();
-    
   }
-  
-  ngOnInit() {
-  }
+
+  ngOnInit(): void { }
+
   public setTableData() {
     this.dataService.getArticleList().subscribe((res: any) => {
       console.log(res);

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ControllerService } from 'src/app/services/controller.service';
 import { HelperService } from 'src/app/services/helper.service';
@@ -20,7 +20,7 @@ export class DeleteDialogBoxComponent implements OnInit {
     private dialogRef: MatDialogRef<DeleteDialogBoxComponent>
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   public openDeleteDialog() {
     const dialogRef = this.dialog.open(DeleteDialogBoxComponent, {

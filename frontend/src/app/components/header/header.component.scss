@@ -1,7 +1,12 @@
 
 /*header*/
 .droidtechknow-hedaer {
-    margin: 10px 0;
+    // margin: 10px 0;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
 }
 header .logo {
     max-width: 180px;
@@ -21,7 +26,7 @@ header .logo {
 /*Navigation bar*/
 .navbar {
   margin-bottom: 0;
-  background-color: #f09548;
+  background-color: #3f51b5;
   border: none;
   border-radius: 0;
 }
@@ -29,15 +34,15 @@ header .logo {
 .navbar-collapse{
     /* padding: 0px; */
 }
-.navbar .navbar-header .navbar-toggle {
-  border: none;
-  color: white;
-}
+// .navbar .navbar-header .navbar-toggle {
+//   border: none;
+//   color: white;
+// }
 
-.navbar .navbar-header .navbar-toggle:hover,
-.navbar .navbar-header .navbar-toggle:visited {
-  background-color: #f09548;
-}
+// .navbar .navbar-header .navbar-toggle:hover,
+// .navbar .navbar-header .navbar-toggle:visited {
+//   background-color: #3f51b5;
+// }
 
 
 nav #myNavbar ul li a {
@@ -57,7 +62,7 @@ text-transform: uppercase;
 
 nav #myNavbar ul li button {
   color: white;
-  background-color: #f09548;
+  background-color: #3f51b5;
   border: none;
   outline: none;
   padding-top: 15px;
@@ -95,7 +100,7 @@ nav #myNavbar ul li .active {
     position: absolute;
     left: -30px;
     border: none;
-    background-color: #f09548;
+    background-color: #3f51b5;
     min-width: 200px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     z-index: 9999;
@@ -126,7 +131,7 @@ nav #myNavbar ul li .active {
       position: relative;
       display: none;
       left: 0;
-      background-color: #f09548;
+      background-color: #3f51b5;
       min-width: 100%;
       box-shadow: 0 0 0 0 rgba(0,0,0,0);
       outline: none;
@@ -137,4 +142,8 @@ nav #myNavbar ul li .active {
     .dropdown-content a {
       padding: 10px 5px 10px 35px;
     }
+  }
+
+  :host ::ng-deep mat-card {
+    padding: 0;
   }

@@ -10,7 +10,7 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { FormsModule } from '@angular/forms';
 // Angular materials
-import { MatDialogModule, MatFormFieldModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogModule, MatFormFieldModule, MatCardModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 // ng2 smart table
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -45,7 +45,8 @@ import { EditAddDialogBoxComponent } from './components/edit-add-dialog-box/edit
     MatDialogModule,
     FormsModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCardModule
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
