@@ -1,24 +1,24 @@
 /deep/ ng2-smart-table thead > tr > th  { 
-    background-color: #3f51b5;  
-    color: white ;
+    background-color: rgba(5, 4, 4, 0.05);  
+    color: rgb(58, 58, 56);
 }
 /deep/ ng2-smart-table .ng2-smart-sort-link { 
-    color: white !important;
+    color: #50504C !important;
 }
 /deep/ ng2-smart-table input-filter {
-    color: black;
+    color: #50504C;
 }
 
 /deep/ ng2-smart-table  .ng2-smart-action {
     display: inline-block;
-    background: #3f51b5;
-    color: white !important;
+    border: solid 1px #D1D1B5;
+    color: #50504C !important;
     text-decoration: none !important;
     padding: 5px 8px;
     margin: 1px 0px;
 }
 
 /deep/ ng2-smart-table  .ng2-smart-action-edit-edit:hover, /deep/ ng2-smart-table  .ng2-smart-action-delete-delete:hover {
-    background: #e49008;
+    border: solid 1px #89897B;
 }
 

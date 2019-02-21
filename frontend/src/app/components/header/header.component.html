@@ -1,34 +1,67 @@
 <!--Header-->
 <div class="droidtechknow-hedaer">
-	<!--Navigation bar-->
-	<mat-card>
-		<nav class="navbar navbar-inverse">
-			<div class="container">
-				<div class="navbar-header text-center">
-					<button type="button" class="navbar-toggle" id="searchButton">
-						<span class="fa fa-search"></span>
-					</button>
-					<button style="float:left" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div>
-				<div>
-					<div class="collapse navbar-collapse" id="myNavbar">
-						<ul class="nav navbar-nav">
-							<li>
-								<a href="/" title="Anroid Root, Tutorials, Reviews and Trick">
-									<!-- <img class="img img-responsive"
-										alt="DroidTechKnow" title="DroidTechKnow" width="50px" src="//droidtechknow.com/images/logo.png"> -->
-										<i class="fa fa-home"></i>
-									</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</nav>
-	</mat-card>
+  <!--Navigation bar-->
+  <mat-card>
+    <nav class="navbar navbar-inverse theme-change" #themeChange>
+      <div class="container-fluid">
+        <div class="navbar-header text-center">
+          <button type="button" class="navbar-toggle" id="searchButton">
+            <span class="fa fa-search"></span>
+          </button>
+          <button style="float:left" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="/" title="Anroid Root, Tutorials, Reviews and Trick">
+                  <!-- <img class="img img-responsive"
+                    alt="DroidTechKnow" title="DroidTechKnow" width="50px" src="//droidtechknow.com/images/logo.png"> -->
+                  <i class="fa fa-home droidtechknow-header-icon"></i>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav" style="float: right;padding: 6px 0 0 8px">
+              <li>
+                <button mat-icon-button [matMenuTriggerFor]="theme">
+                  <mat-icon><i class="fas fa-palette droidtechknow-header-icon"></i></mat-icon>
+                </button>
+                <mat-menu #theme="matMenu" class="droidtechknow-theme text-center">
+                  <div>
+                    <button (click)="changeTheme('rgb(103, 58, 183)', false)" mat-menu-item class="droidtechknow-theme-picker" style="background-color: rgb(103, 58, 183)">
+                    </button>
+                    <button (click)="changeTheme('rgb(63, 81, 181)', false)" mat-menu-item class="droidtechknow-theme-picker" style="background-color: rgb(63, 81, 181)">
+                    </button>
+                  </div>
+                  <div>
+                    <button (click)="changeTheme('rgb(233, 30, 99)', true)" mat-menu-item class="droidtechknow-theme-picker" style="background-color: rgb(233, 30, 99)">
+                    </button>
+                    <button (click)="changeTheme('rgb(156, 39, 176)', true)" mat-menu-item class="droidtechknow-theme-picker" style="background-color: rgb(156, 39, 176)">
+                    </button>
+                  </div>
+                </mat-menu>
+              </li>
+              <li>
+                <button mat-icon-button [matMenuTriggerFor]="user">
+                  <mat-icon><i class="fas fa-user-circle droidtechknow-header-icon"></i></mat-icon>
+                </button>
+                <mat-menu #user="matMenu" class="droidtechknow-theme text-center">
+                  <button mat-menu-item class="droidtechknow-user">Admin Panel</button>
+                  <button mat-menu-item class="droidtechknow-user">Log out</button>
+                </mat-menu>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </mat-card>
+</div>
+<div class="droidtechknow-sub-header theme-change" #themeChange>
+  <h1>DroidTechKnow</h1>
 </div>
