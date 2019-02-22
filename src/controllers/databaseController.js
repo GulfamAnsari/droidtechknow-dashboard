@@ -26,7 +26,7 @@ var databaseController = {
   },
   editArticle: function editArticle(data) {
     return new Promise((resolve, reject) => {
-      connection.query(`UPDATE article SET (
+      connection.query(`UPDATE article SET
                             post=${data['post']}, 
                             articleTitle="${data['articleTitle']}", 
                             articleDescription="${data['articleDescription']}", 
@@ -43,7 +43,7 @@ var databaseController = {
                             comment=${data['comment']}, 
                             likes=${data['likes']}, 
                             dislikes=${data['dislikes']}
-                            ) WHERE post=${data['post']}`,
+                            WHERE post=${data['post']}`,
         (error, results, fields) => {
           if (error) reject(error);
           resolve(`Post ${data.post} has been successfully Updated`);
