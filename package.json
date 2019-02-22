@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "publish": "cd frontend && npm install && npm install -g @angular/cli && npm run build && cd .. && node index.js"
+    "publish": "npm install -g @angular/cli && cd frontend && npm install && npm run build && cd .. && node index.js"
   },
   "repository": {
     "type": "git",
