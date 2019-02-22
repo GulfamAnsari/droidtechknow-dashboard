@@ -1,1 +1,1 @@
-web: npm run publish
+web: node index.js
