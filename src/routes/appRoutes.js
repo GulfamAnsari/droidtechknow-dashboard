@@ -25,6 +25,32 @@ appRoutes.route('/article-delete').post((req, res)=>{
     }
 })
 
+appRoutes.route('/article-edit').post((req, res)=>{
+    console.log(req.body.username);
+    if(process.env.USERNAME === req.body.username && process.env.PASSWORD === req.body.password) {
+        databaseController.editArticle(req.body.article).then((success)=>{
+            res.send(success);
+        }, (err)=>{
+            res.status(400).send(err);
+        });
+    } else {
+        res.status(401).send('You does not enough permission to delete the article');
+    }
+})
+
+appRoutes.route('/article-add').post((req, res)=>{
+    console.log(req.body.username);
+    if(process.env.USERNAME === req.body.username && process.env.PASSWORD === req.body.password) {
+        databaseController.addArticle(req.body.article).then((success)=>{
+            res.send(success);
+        }, (err)=>{
+            res.status(400).send(err);
+        });
+    } else {
+        res.status(401).send('You does not enough permission to delete the article');
+    }
+})
+
 appRoutes.route('/admin').get((req, res)=>{
     res.render('index', {"user": ["u2","u5","u3"]});
 })
