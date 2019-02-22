@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "git": "git add public/static && git commit -m 'update bundle file' && git push origin build && git checkout master",
-    "publish": "git checkout build && npm run build --prefix frontend/ && npm run git"
+    "publish": "git checkout build && npm run build --deployUrl='static/' --prefix frontend/ && npm run git"
   },
   "repository": {
     "type": "git",
