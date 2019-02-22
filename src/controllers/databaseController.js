@@ -6,8 +6,11 @@ var connection = mysql.createConnection({
   database: process.env.DATABASE
 });
 
-var databaseController = {
-  getAllArticle: function getAllArticleList() {
+class DatabaseController {
+
+  constructor() {}
+
+  getAllArticleList() {
     var promise = new Promise((resolve, reject) => {
       connection.query('SELECT * from article', (error, results, fields) => {
         if (error) reject(error);
@@ -15,16 +18,18 @@ var databaseController = {
       });
     });
     return promise;
-  },
-  deleteArticle: function deleteArticle(post) {
+  }
+
+  deleteArticle(post) {
     return new Promise((resolve, reject) => {
       connection.query('DELETE FROM article WHERE post=' + post, (error, results, fields) => {
         if (error) reject(error);
         resolve(`Post ${post} has been successfully deleted`);
       });
     });
-  },
-  editArticle: function editArticle(data) {
+  }
+
+  editArticle(data) {
     return new Promise((resolve, reject) => {
       connection.query(`UPDATE article SET
                             post=${data['post']}, 
@@ -49,8 +54,9 @@ var databaseController = {
           resolve(`Post ${data.post} has been successfully Updated`);
         });
     });
-  },
-  addArticle: function addArticle(data) {
+  }
+  
+  addArticle(data) {
     return new Promise((resolve, reject) => {
       connection.query(`INSERT INTO article (post, articleTitle, articleDescription, articleDate,catagory, subCatagory, 
                         author, views, keywords, articleLink, imageLink,imageLink2, imageAlt, comment, likes, dislikes) 
@@ -63,10 +69,10 @@ var databaseController = {
           resolve(`Post ${data.post} has been successfully added`);
         });
     });
-  },
+  }
 
 }
 
-module.exports = databaseController;
+module.exports = DatabaseController;
 
 

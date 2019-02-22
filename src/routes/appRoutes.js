@@ -1,14 +1,15 @@
 var express = require('express');
-var appRoutes = express.Router();
-var databaseController = require('../controllers/databaseController');
 const path = require('path')
+var appRoutes = express.Router();
+var DatabaseController = require('../controllers/databaseController');
+var databaseController = new DatabaseController();
 
 appRoutes.route('/').get((req, res) => {
   res.sendFile(path.join(__dirname + '../../../public/static/index.html'));
 })
 
 appRoutes.route('/article-list').get((req, res) => {
-  databaseController.getAllArticle().then((data) => {
+  databaseController.getAllArticleList().then((data) => {
     res.send(data);
   });
 })
