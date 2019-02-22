@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
+    "deleteBundle": "git checkout build && git rebase master && rm -rf public/static && git add public/static && git commit -m 'delete bundle file' && git push origin build -f",
     "git": "git add public/static && git commit -m 'update bundle file' && git push origin build && git checkout master",
-    "publish": "git checkout build && git rebase master && git push origin build -f && npm run build --prefix frontend/ && npm run git"
+    "publish": "npm run deleteBundle && npm run build --prefix frontend/ && npm run git"
   },
   "repository": {
     "type": "git",
