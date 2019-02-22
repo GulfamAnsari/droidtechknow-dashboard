@@ -6,5 +6,5 @@
     <input matInput placeholder="Password" value="" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
   </mat-form-field>
   <button (click)="closeDialog()" class="cancel-button btn btn-primary">Cancel</button>
-  <button type="submit" (click)="deleteSelectedArticle()" class="delete-button btn btn-danger">Delete</button>
+  <button type="submit" (click)="confirm(dataService.dialogConfirmationText ? dataService.dialogConfirmationText : 'Delete')" class="delete-button btn btn-danger">{{dataService.dialogConfirmationText ? dataService.dialogConfirmationText : 'Delete'}}</button>
 </form>

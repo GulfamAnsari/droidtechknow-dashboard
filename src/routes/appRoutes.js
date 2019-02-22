@@ -16,7 +16,7 @@ appRoutes.route('/article-list').get((req, res) => {
 
 appRoutes.route('/article-delete').post((req, res) => {
   if (process.env.USERNAME === req.body.username && process.env.PASSWORD === req.body.password) {
-    databaseController.deleteArticle(req.body.id).then((success) => {
+    databaseController.deleteArticle(req.body.article).then((success) => {
       res.send(success);
     }, (err) => {
       res.status(400).send(err.sqlMessage);

@@ -20,11 +20,11 @@ class DatabaseController {
     return promise;
   }
 
-  deleteArticle(post) {
+  deleteArticle(data) {
     return new Promise((resolve, reject) => {
-      connection.query('DELETE FROM article WHERE post=' + post, (error, results, fields) => {
+      connection.query('DELETE FROM article WHERE post=' + data.post, (error, results, fields) => {
         if (error) reject(error);
-        resolve(`Post ${post} has been successfully deleted`);
+        resolve(`Post ${data.post} has been successfully deleted`);
       });
     });
   }

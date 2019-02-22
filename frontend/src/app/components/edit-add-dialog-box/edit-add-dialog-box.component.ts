@@ -15,6 +15,7 @@ export class EditAddDialogBoxComponent implements OnInit {
   public headerColumns = TableConstants.COLUMN_HEADERS;
   public textAraeColumns = ['articleDescription', 'keywords', 'articleLink', 'imageLink', 'imageLink2'];
   public updateEdit: string;
+  public articleData;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog,
@@ -45,8 +46,8 @@ export class EditAddDialogBoxComponent implements OnInit {
     });
   }
 
-  public updateSelectedArticle() {
-
+  public updateAddArticle() {
+    this.dataService.setConfirmationDialogBox(this.updateEdit);
   }
 
   closeDialog() {
