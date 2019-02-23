@@ -20,17 +20,6 @@ export class DeleteDialogBoxComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.openDialog();
-  }
-
-  public openDeleteDialog() {
-    this.dataService.setConfirmationDialogBox('Delete');
-  }
-
-  public openDialog() {
-    this.dataService.getConfirmationDialogBox().subscribe((data) => {
-      this.openConfirmationDialog();
-    });
   }
 
   public openConfirmationDialog() {

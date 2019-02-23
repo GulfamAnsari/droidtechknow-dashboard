@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BackendService } from './backend.service';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { HelperService } from './helper.service';
 import { LocalDataSource } from 'ng2-smart-table';
 @Injectable({
@@ -11,7 +11,7 @@ export class DataService {
   public selectedRowData: any;
   public dialogConfirmationText: string;
   public source: LocalDataSource;
-  private dialogConfirmation = new Subject<any>();
+  private dialogConfirmation = new Subject();
 
   constructor(private backendService: BackendService, private helper: HelperService) {
   }
@@ -36,7 +36,7 @@ export class DataService {
   }
 
   public getConfirmationDialogBox() {
-    return this.dialogConfirmation.asObservable();
+    return this.dialogConfirmation;
   }
 
 }

@@ -28,12 +28,19 @@ export class TableComponent implements OnInit, OnChanges, DoCheck,
 
   public deleteRow($event) {
     this.dataService.selectedRowData = $event.data;
-    this.deleteDialogBoxComponent.openDeleteDialog();
+    this.dataService.setConfirmationDialogBox('Delete');
   }
 
   public create($event) {
     this.editAddDialogBoxComponent.openEditAddDialog();
   }
+
+  public openDialog() {
+    this.dataService.getConfirmationDialogBox().subscribe((data) => {
+      this.deleteDialogBoxComponent.openConfirmationDialog();
+    });
+  }
+
 
   ngOnChanges(changes: SimpleChanges): void {
     // Called before any other lifecycle hook. Use it to inject dependencies,
@@ -44,6 +51,7 @@ export class TableComponent implements OnInit, OnChanges, DoCheck,
   }
 
   ngOnInit(): void {
+    this.openDialog();
     // console.log('ng on init');
     // called when the component is first initilized
     // Add 'implements OnInit' to the class.
