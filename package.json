@@ -9,7 +9,7 @@
     "deleteBundle": "git checkout build && git rebase master && rm -rf public/static && git add public/static && git commit -m 'delete bundle file' && git push origin build -f",
     "git": "git add public/static && git commit -m 'update bundle file' && git push origin build && git checkout master",
     "publish": "npm run deleteBundle && npm run build --prefix frontend/ && npm run git && npm run logs",
-    "logs": "heroku logs --app droidtechknow-dashboard"
+    "logs": "heroku logs --tail --app droidtechknow-dashboard"
   },
   "repository": {
     "type": "git",
