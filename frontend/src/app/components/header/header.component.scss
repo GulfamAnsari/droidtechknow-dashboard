@@ -160,8 +160,11 @@ nav #myNavbar ul li .active {
   overflow: hidden;
 }
 
-.mat-menu-item {
+::ng-deep .mat-menu-item {
   display: inline-block !important;
+  line-height: 0 !important;
+  padding: 0 !important;
+  text-align: center !important;
 }
 
 .droidtechknow-header-icon {

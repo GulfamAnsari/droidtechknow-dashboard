@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BackendService } from './backend.service';
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HelperService } from './helper.service';
 import { LocalDataSource } from 'ng2-smart-table';
 @Injectable({
@@ -12,6 +12,7 @@ export class DataService {
   public dialogConfirmationText: string;
   public source: LocalDataSource;
   private dialogConfirmation = new Subject();
+  private themecolorChange = new Subject();
 
   constructor(private backendService: BackendService, private helper: HelperService) {
   }
@@ -37,6 +38,14 @@ export class DataService {
 
   public getConfirmationDialogBox() {
     return this.dialogConfirmation;
+  }
+
+  public setThemecolor(color) {
+    this.themecolorChange.next(color);
+  }
+
+  public getThemecolor() {
+    return this.themecolorChange;
   }
 
 }

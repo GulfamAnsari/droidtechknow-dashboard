@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-header',
@@ -7,34 +8,21 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataService:  DataService) { }
 
-  @ViewChild('themeChange') theme: ElementRef;
+  public themeColor: string;
+  public themecolors = ['rgb(63, 81, 181)', 'rgb(103, 58, 183)', 'rgb(233, 30, 99)', 'rgb(156, 39, 176)'];
 
   ngOnInit() {
+    this.changeTheme(this.themecolors[0], true);
   }
 
   public changeTheme(color, nightMode) {
-    const elements: any = document.getElementsByClassName('theme-change');
-    for (const ele of elements) {
-      ele.style.background = color;
-    }
-    // this.changeThemeForTable(color);
+    this.themeColor = color;
+    this.dataService.setThemecolor(color);
     if (nightMode) {
       // @todo
     }
   }
 
-  public changeThemeForTable(color) {
-    const smartAction: any = document.getElementsByClassName('ng2-smart-action');
-    const table: any = document.getElementsByClassName('ng2-smart-th');
-    const pageLink: any = document.getElementsByClassName('page-link');
-    for (const ele of table) {
-      ele.style.background = color;
-    }
-    for (const ele of smartAction) {
-      ele.style.background = color;
-    }
-    pageLink[0].style.background = color;
-  }
 }

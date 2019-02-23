@@ -9,9 +9,11 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { FormsModule } from '@angular/forms';
+
 // Angular materials
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MaterialModule } from './metarial.module';
+
 // ng2 smart table
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
@@ -22,6 +24,7 @@ import { DeleteDialogBoxComponent } from './components/delete-dialog-box/delete-
 import { TableComponent } from './components/table/table.component';
 import { MatInputModule } from '@angular/material';
 import { EditAddDialogBoxComponent } from './components/edit-add-dialog-box/edit-add-dialog-box.component';
+import { ChangeThemeDirective } from './directives/change-theme.directive';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { EditAddDialogBoxComponent } from './components/edit-add-dialog-box/edit
     TableComponent,
     HeaderComponent,
     DeleteDialogBoxComponent,
-    EditAddDialogBoxComponent
+    EditAddDialogBoxComponent,
+    ChangeThemeDirective
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@
 <div class="droidtechknow-hedaer">
   <!--Navigation bar-->
   <mat-card>
-    <nav class="navbar navbar-inverse theme-change" #themeChange>
+    <nav class="navbar navbar-inverse" [appChangeTheme]="themeColor">
       <div class="container-fluid">
         <div class="navbar-header text-center">
           <button type="button" class="navbar-toggle" id="searchButton">
@@ -32,18 +32,10 @@
                   <mat-icon><i class="fas fa-palette droidtechknow-header-icon"></i></mat-icon>
                 </button>
                 <mat-menu #theme="matMenu" class="droidtechknow-theme text-center">
-                  <div>
-                    <button (click)="changeTheme('rgb(103, 58, 183)', false)" mat-menu-item class="droidtechknow-theme-picker" style="background-color: rgb(103, 58, 183)">
-                    </button>
-                    <button (click)="changeTheme('rgb(63, 81, 181)', false)" mat-menu-item class="droidtechknow-theme-picker" style="background-color: rgb(63, 81, 181)">
-                    </button>
-                  </div>
-                  <div>
-                    <button (click)="changeTheme('rgb(233, 30, 99)', true)" mat-menu-item class="droidtechknow-theme-picker" style="background-color: rgb(233, 30, 99)">
-                    </button>
-                    <button (click)="changeTheme('rgb(156, 39, 176)', true)" mat-menu-item class="droidtechknow-theme-picker" style="background-color: rgb(156, 39, 176)">
-                    </button>
-                  </div>
+                  <button *ngFor="let color of themecolors" (click)="changeTheme(color, false)" mat-menu-item
+                    class="droidtechknow-theme-picker" [ngStyle]="{'background': color}">
+                    <i [ngStyle]="{'color': themeColor==color ? 'white' : color}" class="fas fa-check"></i>
+                  </button>
                 </mat-menu>
               </li>
               <li>
@@ -62,6 +54,6 @@
     </nav>
   </mat-card>
 </div>
-<div class="droidtechknow-sub-header theme-change" #themeChange>
+<div class="droidtechknow-sub-header" [appChangeTheme]="themeColor">
   <h1>DroidTechKnow</h1>
 </div>
