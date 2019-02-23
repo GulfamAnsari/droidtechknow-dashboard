@@ -28,7 +28,7 @@ export class TableComponent implements OnInit, OnChanges, DoCheck,
 
   public deleteRow($event) {
     this.dataService.selectedRowData = $event.data;
-    this.deleteDialogBoxComponent.openConfirmationDialog();
+    this.deleteDialogBoxComponent.openDeleteDialog();
   }
 
   public create($event) {

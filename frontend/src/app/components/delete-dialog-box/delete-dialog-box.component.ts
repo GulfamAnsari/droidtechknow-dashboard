@@ -23,6 +23,10 @@ export class DeleteDialogBoxComponent implements OnInit {
     this.openDialog();
   }
 
+  public openDeleteDialog() {
+    this.dataService.setConfirmationDialogBox('Delete');
+  }
+
   public openDialog() {
     this.dataService.getConfirmationDialogBox().subscribe((data) => {
       this.openConfirmationDialog();
