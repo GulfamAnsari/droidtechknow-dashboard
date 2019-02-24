@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit {
 
   public changeTheme(color, nightMode) {
     this.themeColor = color;
-    this.dataService.setThemecolor(color);
     if (nightMode) {
       // @todo
     }

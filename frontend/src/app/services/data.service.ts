@@ -40,12 +40,4 @@ export class DataService {
     return this.dialogConfirmation;
   }
 
-  public setThemecolor(color) {
-    this.themecolorChange.next(color);
-  }
-
-  public getThemecolor() {
-    return this.themecolorChange;
-  }
-
 }

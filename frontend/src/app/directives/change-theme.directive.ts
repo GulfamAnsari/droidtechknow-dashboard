@@ -11,13 +11,12 @@ export class ChangeThemeDirective implements OnInit, DoCheck {
   ) { }
 
   @HostBinding('style.backgroundColor') background: string;
-  @Input('appChangeTheme') change: any;
+  @Input('appChangeTheme') set themeChange(value) {
+    this.background = value;
+  }
 
   ngOnInit() {
     // this.renderer.setStyle(this.eleRef.nativeElement, 'background-color', this.change);
-    this.dataService.getThemecolor().subscribe((data: string) => {
-      this.background = data;
-    });
   }
 
   ngDoCheck(): void { }
