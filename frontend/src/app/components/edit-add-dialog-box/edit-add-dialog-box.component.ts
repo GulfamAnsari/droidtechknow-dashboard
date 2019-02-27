@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Inject } from '@angular/core';
 import { TableConstants } from 'src/app/constants';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DataService } from 'src/app/services/data.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-add-dialog-box',
@@ -16,6 +17,8 @@ export class EditAddDialogBoxComponent implements OnInit {
   public textAraeColumns = ['articleDescription', 'keywords', 'articleLink', 'imageLink', 'imageLink2'];
   public updateEdit: string;
   public articleData;
+
+  @ViewChild('form') formData: NgForm;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog,
@@ -46,8 +49,14 @@ export class EditAddDialogBoxComponent implements OnInit {
     });
   }
 
-  public updateAddArticle() {
+  public ngSubmit() {
+    console.log(this.formData.value);
+    this.dataService.selectedRowData = this.formData.value;
     this.dataService.setConfirmationDialogBox(this.updateEdit);
+  }
+
+  public updateAddArticle() {
+    // this.dataService.setConfirmationDialogBox(this.updateEdit);
   }
 
   closeDialog() {

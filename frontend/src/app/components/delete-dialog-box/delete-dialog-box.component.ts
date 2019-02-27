@@ -61,7 +61,6 @@ export class DeleteDialogBoxComponent implements OnInit {
   }
 
   public addArticle(data, url) {
-    data['article'] = { "post": 161, "articleTitle": "Find My Device - Find, Lock, Erase an Android Device", "articleDescription": "Using find my device, you can remotely locate, lock and erase all data on your phone. Find my Device Automatically turn on. You can use your Gmail account t", "keywords": "Lock, Erase, Android, FIND MY DEVICE, FIND MY PHONE, HOW TO FIND LOCATION OF PHONE, HOW TO USE FIND MY DEVICE, LOCK PHONE", "catagory": "how-to", "subCatagory": "", "imageLink": "http://droidtechknow.com/how-to/find-my-device/images/find-my-device-300x169.jpg", "imageLink2": "http://droidtechknow.com/how-to/find-my-device/images/find-my-device-178x100.jpg", "imageAlt": "find my device", "articleLink": "http://droidtechknow.com/how-to/find-my-device/", "articleDate": "Nov 21, 2017", "author": "Simran", "views": 3839, "likes": 5, "dislikes": 1, "comment": 1 };
     this.controller.doPost(data, url).subscribe((success) => {
       this.dataService.source.prepend(data['article']).then(() => {
         this.dialog.closeAll();
@@ -74,7 +73,6 @@ export class DeleteDialogBoxComponent implements OnInit {
   }
 
   public updateArticle(data, url) {
-    data['article'] = { "post": 161, "articleTitle": "Find My Device - Find, Lock, Erase an Android Device", "articleDescription": "Using find my device, you can remotely locate, lock and erase all data on your phone. Find my Device Automatically turn on. You can use your Gmail account t", "keywords": "Lock, Erase, Android, FIND MY DEVICE, FIND MY PHONE, HOW TO FIND LOCATION OF PHONE, HOW TO USE FIND MY DEVICE, LOCK PHONE", "catagory": "how-to", "subCatagory": "", "imageLink": "http://droidtechknow.com/how-to/find-my-device/images/find-my-device-300x169.jpg", "imageLink2": "http://droidtechknow.com/how-to/find-my-device/images/find-my-device-178x100.jpg", "imageAlt": "find my device", "articleLink": "http://droidtechknow.com/how-to/find-my-device/", "articleDate": "Nov 21, 2017", "author": "Simran", "views": 3839, "likes": 5, "dislikes": 1, "comment": 1 };
     this.controller.doPatch(data, url).subscribe((success) => {
       this.dataService.source.update(this.dataService.selectedRowData, data['article']).then(() => {
         this.dialog.closeAll();
