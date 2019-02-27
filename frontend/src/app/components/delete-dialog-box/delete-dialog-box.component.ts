@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ControllerService } from 'src/app/services/controller.service';
 import { HelperService } from 'src/app/services/helper.service';
 import { DataService } from 'src/app/services/data.service';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-delete-dialog-box',
   templateUrl: './delete-dialog-box.component.html',
@@ -10,8 +11,8 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class DeleteDialogBoxComponent implements OnInit {
 
-  private username = '';
-  private password = '';
+  @ViewChild('form') formData: NgForm;
+
   constructor(public dialog: MatDialog,
     private controller: ControllerService,
     private helper: HelperService,
@@ -33,21 +34,17 @@ export class DeleteDialogBoxComponent implements OnInit {
     });
   }
 
-  public confirm(operationType) {
-    const data = {
-      article: this.dataService.selectedRowData,
-      username: this.username,
-      password: this.password
-    };
+  public ngSubmit(operationType) {
+    this.formData.value['article'] = this.dataService.selectedRowData;
     if (operationType === 'Add') {
       const url = this.helper.getUrl() + 'article-add';
-      this.addArticle(data, url);
+      this.addArticle(this.formData.value, url);
     } else if (operationType === 'Update') {
       const url = this.helper.getUrl() + 'article-edit';
-      this.updateArticle(data, url);
+      this.updateArticle(this.formData.value, url);
     } else if (operationType === 'Delete') {
       const url = this.helper.getUrl() + 'article-delete';
-      this.deleteArticle(data, url);
+      this.deleteArticle(this.formData.value, url);
     }
   }
 
