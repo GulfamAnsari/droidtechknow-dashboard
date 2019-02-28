@@ -5,8 +5,8 @@
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Password" value="" name="password" id="password" ngModel>
   </mat-form-field>
-  <button (click)="closeDialog()" class="cancel-button btn btn-primary">Cancel</button>
   <button type="submit" class="delete-button btn btn-danger">
     {{dataService.dialogConfirmationText}}
   </button>
+  <button (click)="closeDialog()" class="cancel-button btn btn-primary">Cancel</button>
 </form>

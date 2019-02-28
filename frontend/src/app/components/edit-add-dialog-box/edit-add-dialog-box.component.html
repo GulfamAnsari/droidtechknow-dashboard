@@ -3,13 +3,13 @@
     <mat-form-field *ngFor="let column of headerColumns"
       [ngStyle]="{'width': column=='articleDescription' ? '100%' : '50%' }">
       <div *ngIf="textAraeColumns.indexOf(column)!=-1; else textArea">
-        <textarea matInput required [placeholder]="column" [name]="column" [ngModel]="data[column]" (ngModelChange)="data[column] ? data[column] : ''" [value]="data[column] ? data[column] : ''"></textarea>
+        <textarea matInput [placeholder]="column" [name]="column" [ngModel]="data[column] ? data[column] : ''" [value]="data[column] ? data[column] : ''"></textarea>
       </div>
       <ng-template #textArea>
-        <input matInput required [placeholder]="column" [name]="column"  [ngModel]="data[column]" (ngModelChange)="data[column] ? data[column] : ''" [value]="data[column] ? data[column] : ''">
+        <input matInput [placeholder]="column" [name]="column"  [ngModel]="data[column] ? data[column] : ''" [value]="data[column] ? data[column] : ''">
       </ng-template>
     </mat-form-field>
+    <button type="submit" class="update-button btn btn-success">{{ updateEdit }}</button>
     <button (click)="closeDialog()" class="cancel-button btn btn-primary">cancel</button>
-    <button type="submit" (click)="updateAddArticle()" class="update-button btn btn-success">{{ updateEdit }}</button>
   </form>
 </div>
