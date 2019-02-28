@@ -36,15 +36,25 @@ export class DeleteDialogBoxComponent implements OnInit {
 
   public ngSubmit(operationType) {
     this.formData.value['article'] = this.dataService.selectedRowData;
-    if (operationType === 'Add') {
-      const url = this.helper.getUrl() + 'article-add';
-      this.addArticle(this.formData.value, url);
-    } else if (operationType === 'Update') {
-      const url = this.helper.getUrl() + 'article-edit';
-      this.updateArticle(this.formData.value, url);
-    } else if (operationType === 'Delete') {
-      const url = this.helper.getUrl() + 'article-delete';
-      this.deleteArticle(this.formData.value, url);
+    const urlAppend = {
+      'Add': 'article-add',
+      'Update': 'article-edit',
+      'Delete': 'article-delete'
+    };
+    const url = this.helper.getUrl() + urlAppend[operationType];
+    switch (operationType) {
+      case 'Add':
+        this.addArticle(this.formData.value, url);
+        break;
+      case 'Update':
+        this.updateArticle(this.formData.value, url);
+        break;
+      case 'Delete':
+        this.deleteArticle(this.formData.value, url);
+        break;
+      default:
+        console.log('wrong button selected');
+        break;
     }
   }
 
