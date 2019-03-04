@@ -11,6 +11,8 @@ appRoutes.route('/').get((req, res) => {
 appRoutes.route('/article-list').get((req, res) => {
   databaseController.getAllArticleList().then((data) => {
     res.send(data);
+  }, (err) => {
+    res.status(400).send(err.sqlMessage);
   });
 })
 
