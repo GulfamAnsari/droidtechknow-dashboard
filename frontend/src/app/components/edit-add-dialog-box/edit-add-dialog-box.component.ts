@@ -50,13 +50,8 @@ export class EditAddDialogBoxComponent implements OnInit {
   }
 
   public ngSubmit() {
-    console.log(this.formData.value);
-    this.dataService.selectedRowData = this.formData.value;
+    this.dataService.updatedRowData = this.formData.value;
     this.dataService.setConfirmationDialogBox(this.updateEdit);
-  }
-
-  public updateAddArticle() {
-    // this.dataService.setConfirmationDialogBox(this.updateEdit);
   }
 
   closeDialog() {

@@ -35,7 +35,7 @@ export class DeleteDialogBoxComponent implements OnInit {
   }
 
   public ngSubmit(operationType) {
-    this.formData.value['article'] = this.dataService.selectedRowData;
+    this.formData.value['article'] = JSON.parse(JSON.stringify(this.dataService.updatedRowData));
     const urlAppend = {
       'Add': 'article-add',
       'Update': 'article-edit',
@@ -84,9 +84,12 @@ export class DeleteDialogBoxComponent implements OnInit {
 
   public updateArticle(data, url) {
     this.controller.doPatch(data, url).subscribe((success) => {
-      this.dataService.source.update(this.dataService.selectedRowData, data['article']).then(() => {
-        this.dialog.closeAll();
+      this.dataService.source.update(this.dataService.selectedRowData, this.dataService.updatedRowData).then(() => {
         console.log(success);
+        this.dialog.closeAll();
+      }, (err) => {
+        console.log(err);
+        this.dialog.closeAll();
       });
     }, (err) => {
       console.log(err.error);

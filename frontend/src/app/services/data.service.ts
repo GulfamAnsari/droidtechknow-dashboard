@@ -9,10 +9,11 @@ import { LocalDataSource } from 'ng2-smart-table';
 export class DataService {
 
   public selectedRowData: any;
+  public updatedRowData: any;
   public dialogConfirmationText: string;
   public source: LocalDataSource;
+  public allArticles: any;
   private dialogConfirmation = new Subject();
-  private themecolorChange = new Subject();
 
   constructor(private backendService: BackendService, private helper: HelperService) {
   }
@@ -22,6 +23,7 @@ export class DataService {
       console.log(this.helper.getUrl());
       this.backendService.get(this.helper.getUrl() + 'article-list')
         .subscribe((result) => {
+          this.allArticles = result;
           observer.next(result);
           observer.complete();
         }, (error) => {
