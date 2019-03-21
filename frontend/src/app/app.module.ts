@@ -24,6 +24,9 @@ import { DeleteDialogBoxComponent } from './components/delete-dialog-box/delete-
 import { TableComponent } from './components/table/table.component';
 import { MatInputModule } from '@angular/material';
 import { EditAddDialogBoxComponent } from './components/edit-add-dialog-box/edit-add-dialog-box.component';
+import { PreDashboardComponent } from './components/pre-dashboard/pre-dashboard.component';
+
+// directives
 import { ChangeThemeDirective } from './directives/change-theme.directive';
 
 @NgModule({
@@ -34,6 +37,7 @@ import { ChangeThemeDirective } from './directives/change-theme.directive';
     HeaderComponent,
     DeleteDialogBoxComponent,
     EditAddDialogBoxComponent,
+    PreDashboardComponent,
     ChangeThemeDirective
   ],
   imports: [

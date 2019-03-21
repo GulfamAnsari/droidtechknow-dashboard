@@ -1,0 +1,175 @@
+<!-- header -->
+<!--Header-->
+<div class="droidtechknow-hedaer">
+  <!--Navigation bar-->
+  <mat-card>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header text-center">
+          <button type="button" class="navbar-toggle" id="searchButton">
+            <span class="fa fa-search"></span>
+          </button>
+          <button style="float:left" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="/" title="Dashboard">
+                  <i class="fa fa-home droidtechknow-header-icon"></i>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav" style="float: right;padding: 6px 0 0 8px">
+              <li>
+                <button mat-icon-button [matMenuTriggerFor]="theme">
+                  <mat-icon><i [routerLink]="[ '/dashboard' ]" routerLinkActive="active"
+                      class="fas fa-arrow-circle-right droidtechknow-header-icon"></i></mat-icon>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </mat-card>
+</div>
+<div class="droidtechknow-sub-header">
+  <h1>DroidTechKnow</h1>
+</div>
+<!-- home banner -->
+<section class="home_banner_area">
+  <div class="banner_inner">
+    <div class="container">
+      <div class="row banner-box">
+        <div class="col-lg-5">
+          <div class="banner_content">
+            <h2>DroidTechKnow <br />Analytic Dashboard</h2>
+            <p>A single dashboard from which you can track your all website trafic and update your website content.</p>
+            <a class="banner_btn" [routerLink]="[ '/dashboard' ]">Get Started</a>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="home_left_img">
+            <img class="img-fluid" src="../../../assets/img/home-left-1.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--blog-->
+<section id="blog">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="title-box text-center">
+          <h3 class="title-a">
+            Blog
+          </h3>
+          <div class="line-mf"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <ng-container *ngIf="showPreDashboard">
+        <ng-container *ngFor="let number of [14, 47, 45]">
+          <div class="col-md-4">
+            <div class="card card-blog">
+              <div class="card-img">
+                <a class="card-a" href="{{articles[number]['articleLink']}}"><img [src]="articles[number]['imageLink']"
+                    alt="" class="img-fluid"></a>
+              </div>
+              <div class="card-body">
+                <div class="card-category-box">
+                  <div class="card-category">
+                    <h6 class="category">{{articles[number]['catagory']}}</h6>
+                  </div>
+                </div>
+                <h3 class="card-title"><a
+                    href="{{articles[number]['articleLink']}}">{{articles[number]['articleTitle']}}</a>
+                </h3>
+                <p class="card-description">{{articles[number]['articleDescription']}}</p>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</section>
+<!--end-->
+
+<!-- contatct form -->
+<div id="f">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8 text-center">
+        <p style="font-size: 24px">You Can Contact Us</p>
+        <p class="mt">
+          <a href="https://twitter.com/droidtechknow"><i class="fab fa-twitter"></i></a>
+          <a href="https://youtube.com/droidtechknow"><i class="fab fa-youtube"></i></a>
+          <a href="https://instagram.com/droidtechknow"><i class="fab fa-instagram"></i></a>
+          <a href="https://facebook.com/droidtechknow"><i class="fab fa-facebook"></i></a>
+          <a href="https://pinterest.com/droidtechknow"><i class="fab fa-pinterest"></i></a>
+          <a href="https://droidtechknow.tumblr.com/"><i class="fab fa-tumblr"></i></a>
+        </p>
+        <!-- form -->
+        <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
+          <div class="form-group">
+            <input type="name" name="name" class="form-control" id="contact-name" placeholder="Your Name"
+              data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+            <div class="validate"></div>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" class="form-control" id="contact-email" placeholder="Your Email"
+              data-rule="email" data-msg="Please enter a valid email">
+            <div class="validate"></div>
+          </div>
+          <div class="form-group">
+            <input type="text" name="subject" class="form-control" id="contact-subject" placeholder="Subject"
+              data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+            <div class="validate"></div>
+          </div>
+
+          <div class="form-group">
+            <textarea class="form-control" name="message" id="contact-message" placeholder="Your Message" rows="5"
+              data-rule="required" data-msg="Please write something for us"></textarea>
+            <div class="validate"></div>
+          </div>
+
+          <div class="loading"></div>
+          <div class="error-message"></div>
+          <div class="sent-message">Your message has been sent. Thank you!</div>
+
+          <div class="form-send">
+            <button type="submit" class="btn btn-large">Send Message</button>
+          </div>
+
+        </form>
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+    <!--/row-->
+  </div>
+  <!--/container-->
+</div>
+<!-- end contact form -->
+
+<!-- copyroght -->
+<div id="copyrights">
+  <div class="container">
+    <p>
+      &copy; Copyrights <strong>DroidTechKnow</strong>. All Rights Reserved
+    </p>
+  </div>
+</div>
