@@ -27,7 +27,7 @@
             </ul>
             <ul class="nav navbar-nav" style="float: right;padding: 6px 0 0 8px">
               <li>
-                <button mat-icon-button [matMenuTriggerFor]="theme">
+                <button mat-icon-button>
                   <mat-icon><i [routerLink]="[ '/dashboard' ]" routerLinkActive="active"
                       class="fas fa-arrow-circle-right droidtechknow-header-icon"></i></mat-icon>
                 </button>
@@ -123,35 +123,42 @@
           <a href="https://droidtechknow.tumblr.com/"><i class="fab fa-tumblr"></i></a>
         </p>
         <!-- form -->
-        <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
+        <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <input type="name" name="name" class="form-control" id="contact-name" placeholder="Your Name"
-              data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-            <div class="validate"></div>
+            <input type="name" name="name" class="form-control" id="contact-name" placeholder="Your Name *"
+              data-rule="minlen:4" data-msg="Please enter at least 4 chars"
+              formControlName="name">
+            <div class="validate" *ngIf="!contactForm.get('name').valid && contactForm.get('name').touched">Name should not be empty.</div>
           </div>
           <div class="form-group">
-            <input type="email" name="email" class="form-control" id="contact-email" placeholder="Your Email"
-              data-rule="email" data-msg="Please enter a valid email">
-            <div class="validate"></div>
+            <input type="email" name="email" class="form-control" id="contact-email" placeholder="Your Email *"
+              data-rule="email" data-msg="Please enter a valid email"
+              formControlName="email">
+            <div class="validate" *ngIf="!contactForm.get('email').valid && contactForm.get('email').touched">Email is invalid</div>
           </div>
           <div class="form-group">
-            <input type="text" name="subject" class="form-control" id="contact-subject" placeholder="Subject"
-              data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
-            <div class="validate"></div>
+            <input type="text" name="subject" class="form-control" id="contact-subject" placeholder="Subject *"
+              data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject"
+              formControlName="subject">
+            <div class="validate" *ngIf="!contactForm.get('subject').valid && contactForm.get('subject').touched">
+              Subject sould not be empty.
+            </div>
           </div>
 
           <div class="form-group">
-            <textarea class="form-control" name="message" id="contact-message" placeholder="Your Message" rows="5"
-              data-rule="required" data-msg="Please write something for us"></textarea>
-            <div class="validate"></div>
+            <textarea class="form-control" name="message" id="contact-message" placeholder="Your Message *" rows="5"
+              data-rule="required" data-msg="Please write something for us"
+              formControlName="message">
+            </textarea>
+            <div class="validate" *ngIf="!contactForm.get('message').valid && contactForm.get('message').touched">
+              Please should be minimum of 20 charactars.
+            </div>
           </div>
 
-          <div class="loading"></div>
-          <div class="error-message"></div>
-          <div class="sent-message">Your message has been sent. Thank you!</div>
-
+          <div class="loading" *ngIf="showLoader"></div>
+          <div class="sent-message" *ngIf="emailResponseMessage" [ngStyle]="{'background-color': errorInEmailSending ? '#ed3c0d': '#18d26e'}">{{emailResponseMessage}}</div>
           <div class="form-send">
-            <button type="submit" class="btn btn-large">Send Message</button>
+            <button type="submit" class="btn btn-large" [disabled]="!contactForm.valid">Send Message</button>
           </div>
 
         </form>

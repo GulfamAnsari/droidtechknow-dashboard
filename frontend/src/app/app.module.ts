@@ -8,7 +8,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Angular materials
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -51,6 +51,7 @@ import { ChangeThemeDirective } from './directives/change-theme.directive';
     CdkTreeModule,
     Ng2SmartTableModule,
     FormsModule,
+    ReactiveFormsModule,
     MatInputModule,
     MaterialModule
   ],

@@ -361,17 +361,14 @@
 }
 
 .contact-form .validate {
-  display: none;
   color: red;
-  margin: 0 0 15px 0;
+  margin: 8px 0 16px 0;
   font-weight: 400;
   font-size: 13px;
 }
 
 .contact-form .loading {
-  display: none;
   color: #555;
-  background: #fff;
   text-align: center;
   padding: 15px;
   margin: 15px 0;
@@ -414,7 +411,6 @@
 }
 
 .contact-form .error-message {
-  display: none;
   color: #fff;
   background: #ed3c0d;
   text-align: center;
@@ -424,7 +420,6 @@
 }
 
 .contact-form .sent-message {
-  display: none;
   color: #fff;
   background: #18d26e;
   text-align: center;
