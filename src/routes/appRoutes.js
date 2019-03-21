@@ -79,7 +79,7 @@ appRoutes.route('/send-query').post((req, res) => {
       });
     } else {
       res.send({
-        message: 'Successfully sent the email'
+        message: 'Successfully sent the email.'
       });
     }
   });

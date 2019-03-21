@@ -56,7 +56,7 @@ export class PreDashboardComponent implements OnInit {
     this.showLoader = true;
     this.emailResponseMessage = '';
     this.backendService.post(this.helper.getUrl() + 'send-query', this.contactForm.value).subscribe((response) => {
-      this.emailResponseMessage = response['message'] + 'Please check your inbox for copy of your response';
+      this.emailResponseMessage = response['message'] + ' Please check your inbox for copy of your response';
       this.showLoader = false;
       console.log(response);
     }, (error) => {
