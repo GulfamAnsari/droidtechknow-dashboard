@@ -78,6 +78,7 @@
       </div>
     </div>
     <div class="row">
+      <div class="loading" *ngIf="!showPreDashboard"></div>
       <ng-container *ngIf="showPreDashboard">
         <ng-container *ngFor="let number of [14, 47, 45]">
           <div class="col-md-4">
