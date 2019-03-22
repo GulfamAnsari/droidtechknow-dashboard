@@ -6,7 +6,7 @@ var DatabaseController = require('../controllers/databaseController');
 var databaseController = new DatabaseController();
 
 appRoutes.route('/').get((req, res) => {
-  res.sendFile(path.join(__dirname + '../../../public/static/index.html'));
+  res.sendFile(path.join(__dirname + '../../../public/index.html'));
 })
 
 appRoutes.route('/article-list').get((req, res) => {
