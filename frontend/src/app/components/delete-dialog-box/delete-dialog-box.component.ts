@@ -16,7 +16,7 @@ export class DeleteDialogBoxComponent implements OnInit {
   constructor(public dialog: MatDialog,
     private controller: ControllerService,
     private helper: HelperService,
-    private dataService: DataService,
+    public dataService: DataService,
     private dialogRef: MatDialogRef<DeleteDialogBoxComponent>
   ) { }
 
