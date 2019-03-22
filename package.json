@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "deleteBundle": "git checkout build && git rebase master && rm -rf public/ && git add public/ && git commit -m 'delete bundle file' && git push origin build -f",
-    "git": "git add public/static && git commit -m 'update bundle file' && git push origin build && git checkout master",
+    "git": "git add public/ && git commit -m 'update bundle file' && git push origin build && git checkout master",
     "publish": "npm run deleteBundle && npm run build --prefix frontend/ && npm run git && npm run logs",
     "logs": "heroku logs --tail --app droidtechknow-dashboard"
   },
