@@ -1,7 +1,7 @@
 var mysql = require('mysql');
-var DATABASE_DROID_CRED_OBJECT = require('../../../cred');
+var DATABASE_CRED_OBJECT = require('../../../cred');
 
-var connection = mysql.createConnection(DATABASE_DROID_CRED_OBJECT);
+var connection = mysql.createConnection(DATABASE_CRED_OBJECT);
 
 connection.connect();
 
@@ -14,9 +14,9 @@ class DatabaseController {
     // }, 5000);
   }
 
-  getAllArticleList() {
+  getTodo() {
     var promise = new Promise((resolve, reject) => {
-      connection.query('SELECT * from article', (error, results, fields) => {
+      connection.query('SELECT * from todos', (error, results, fields) => {
         if (error) reject(error);
         resolve(results);
       });
@@ -24,7 +24,7 @@ class DatabaseController {
     return promise;
   }
 
-  deleteArticle(data) {
+  deleteTodo(data) {
     return new Promise((resolve, reject) => {
       connection.query('DELETE FROM article WHERE post=' + data.post, (error, results, fields) => {
         if (error) reject(error);
@@ -33,7 +33,7 @@ class DatabaseController {
     });
   }
 
-  editArticle(data) {
+  editTodo(data) {
     return new Promise((resolve, reject) => {
       connection.query(`UPDATE article SET
                             post=${data['post']}, 
@@ -60,7 +60,7 @@ class DatabaseController {
     });
   }
 
-  addArticle(data) {
+  addTodo(data) {
     return new Promise((resolve, reject) => {
       connection.query(`INSERT INTO article (post, articleTitle, articleDescription, articleDate,catagory, subCatagory, 
                         author, views, keywords, articleLink, imageLink,imageLink2, imageAlt, comment, likes, dislikes) 
