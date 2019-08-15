@@ -1,14 +1,32 @@
 var mysql = require('mysql');
+// var connection = mysql.createConnection({
+//   host: process.env.DROID_HOST,
+//   user: process.env.DROID_USERNAME,
+//   password: process.env.DROID_PASSWORD,
+//   database: process.env.DROID_DATABASE
+// });
+
 var connection = mysql.createConnection({
-  host: process.env.HOST,
-  user: process.env.USERNAME,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE
+  host: "sql199.main-hosting.eu.",
+  user: "u165654297_tech",
+  password: "Gulfam@45683968",
+  database: "u165654297_droid"
 });
+
+connection.on('error', function (err) {
+  console.log(err);
+});
+
+connection.connect();
 
 class DatabaseController {
 
-  constructor() {}
+  constructor() {
+    // setInterval(function () {
+    //   console.log('recareting connection');
+    //   connection.query('SELECT 1');
+    // }, 5000);
+  }
 
   getAllArticleList() {
     var promise = new Promise((resolve, reject) => {
@@ -55,7 +73,7 @@ class DatabaseController {
         });
     });
   }
-  
+
   addArticle(data) {
     return new Promise((resolve, reject) => {
       connection.query(`INSERT INTO article (post, articleTitle, articleDescription, articleDate,catagory, subCatagory, 
