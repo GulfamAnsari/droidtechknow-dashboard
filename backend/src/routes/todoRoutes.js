@@ -1,19 +1,22 @@
 var express = require('express');
 const path = require('path');
 var todoRoutes = express.Router();
+var MongoDBConnectController = require('../controllers/mongoDBControllers/mongoDBConnectController')
 var DatabaseController = require('../controllers/todoDatabaseControllers/databaseController');
 var databaseController = new DatabaseController();
+var mongoDBConnectController = new MongoDBConnectController();
 
 todoRoutes.route('/').get((req, res) => {
   res.sendFile(path.join(__dirname + '../../../public/index.html'));
 })
 
 todoRoutes.route('/todo-list').get((req, res) => {
-  databaseController.getTodo().then((data) => {
-    res.send(data);
-  }, (err) => {
-    res.status(400).send(err.sqlMessage);
-  });
+  mongoDBConnectController.connectMongoDB(req, res);
+  // databaseController.getTodo().then((data) => {
+  //   res.send(data);
+  // }, (err) => {
+  //   res.status(400).send(err.sqlMessage);
+  // });
 });
 
 todoRoutes.route('/todo-delete').post((req, res) => {
