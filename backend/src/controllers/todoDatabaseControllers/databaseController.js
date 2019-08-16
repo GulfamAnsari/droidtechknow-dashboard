@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var DATABASE_CRED_OBJECT = require('../../../cred');
+var DATABASE_MONGOBD_CRED_OBJECT = require('../../../cred');
 
 var connection = mysql.createConnection(DATABASE_CRED_OBJECT);
 
@@ -14,11 +14,15 @@ class DatabaseController {
     // }, 5000);
   }
 
-  getTodo() {
+  getTodo(req, db) {
+    const email = 'gulfamansari1515@gmail.com';
+
     var promise = new Promise((resolve, reject) => {
-      connection.query('SELECT * from todos', (error, results, fields) => {
-        if (error) reject(error);
-        resolve(results);
+      var dbo = db.db(DATABASE_MONGOBD_CRED_OBJECT.database);
+      dbo.collection("todos").find({}).toArray(function (err, dbResult) {
+        if (err) reject(err);
+        resolve(dbResult);
+        db.close();
       });
     });
     return promise;
@@ -60,19 +64,20 @@ class DatabaseController {
     });
   }
 
-  addTodo(data) {
+  addTodo(req, db) {
+    const email = 'gulfamansari1515@gmail.com';
     return new Promise((resolve, reject) => {
-      connection.query(`INSERT INTO article (post, articleTitle, articleDescription, articleDate,catagory, subCatagory, 
-                        author, views, keywords, articleLink, imageLink,imageLink2, imageAlt, comment, likes, dislikes) 
-                        VALUES (${data['post']}, "${data['articleTitle']}", "${data['articleDescription']}", "${data['articleDate']}",
-                        "${data['catagory']}", "${data['subCatagory']}", "${data['author']}", ${data['views']}, "${data['keywords']}", 
-                        "${data['articleLink']}", "${data['imageLink']}","${data['imageLink2']}", "${data['imageAlt']}", ${data['comment']}, 
-                        ${data['likes']}, ${data['dislikes']})`,
-        (error, results, fields) => {
-          if (error) reject(error);
-          resolve(`Post ${data.post} has been successfully added`);
+      var dbo = db.db(DATABASE_MONGOBD_CRED_OBJECT.database);
+      dbo.collection("login").find({}).toArray((err, dbResult) => {
+        if (err) reject(err);
+        var myquery = { _id: dbResult[i]._id };
+        var newvalues = { $set: { tasks: req.body.tasks } };
+        dbo.collection("todos").update(myquery, newvalues, (err, result) => {
+          if (err) reject(err);
+          resolve(result);
         });
-    });
+      });
+    })
   }
 
 }

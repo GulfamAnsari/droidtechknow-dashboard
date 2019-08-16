@@ -4,20 +4,22 @@ var MongoClient = require('mongodb').MongoClient;
 class MongoDBConnectController {
   constructor() { }
 
-  connectMongoDB(req, res) {
+  connectMongoDB() {
+    var url = "mongodb://localhost:27017/droid";
     // need to double encode username and password
-    const password = encodeURIComponent(encodeURIComponent(DATABASE_MONGOBD_CRED_OBJECT.password));
-    url = 'mongodb+srv://' + DATABASE_MONGOBD_CRED_OBJECT.user + ':' + password + DATABASE_MONGOBD_CRED_OBJECT.host;
-    MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
-      if (err) {
-        console.log(err);
-        throw err;
-      }
+    // const password = encodeURIComponent(encodeURIComponent(DATABASE_MONGOBD_CRED_OBJECT.password));
+    // var url = 'mongodb+srv://' + DATABASE_MONGOBD_CRED_OBJECT.user + ':' + password + DATABASE_MONGOBD_CRED_OBJECT.host;
 
-      console.log('connected');
-      res.send('connected');
-    });
+    return new Promise((resolve, reject) => {
+      MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true },  (err, db)=> {
+        if (err) reject(err);
+        resolve(db);
+      });
+    })
   }
 }
 
 module.exports = MongoDBConnectController;
+
+// var a = new MongoDBConnectController();
+// a.connectMongoDB();
