@@ -1,7 +1,7 @@
 var mysql = require('mysql');
-var DATABASE_MYSQL_CRED_OBJECT = require('../../../cred');
+var CRED_OBJECTS = require('../../../cred');
 
-var connection = mysql.createConnection(DATABASE_MYSQL_CRED_OBJECT);
+var connection = mysql.createConnection(CRED_OBJECTS.MYSQL);
 
 connection.connect();
 

@@ -1,29 +1,36 @@
-var express = require('express');
-var app = express();
-var appRoutes = express.Router();
+var appRoutes = require('express').Router();
 var LoginLogoutController = require('../controllers/loginLogoutControllers/loginLogoutController')
+var MongoDBConnectController = require('../controllers/mongoDBControllers/mongoDBConnectController');
+var mongoDBConnectController = new MongoDBConnectController();
 var loginLogoutController = new LoginLogoutController();
 
-
 appRoutes.route('/login').post((req, res) => {
-    loginLogoutController.doLogin(req, res).then((data) => {
-        console.log(data)
-        res.send(data);
+    mongoDBConnectController.connectMongoDB().then((db) => {
+        loginLogoutController.doLogin(req, res, db).then((data) => {
+            if (data.length === 0) {
+                data.push({ message: 'User does not exist. Please check your email and password' })
+            }
+            db.close();
+            res.send(data);
+        }, (err) => {
+            console.log(err);
+        });
     }, (err) => {
-        res.status(400).send(err.sqlMessage);
+        console.log(err);
     });
 });
 
 appRoutes.route('/sign-up').post((req, res) => {
-    if (process.env.USERNAME === req.body.username && process.env.PASSWORD === req.body.password) {
-        databaseController.deleteArticle(req.body.article).then((success) => {
-            res.send(success);
+    mongoDBConnectController.connectMongoDB().then((db) => {
+        loginLogoutController.doSignUp(req, res, db).then((data) => {
+            db.close();
+            res.send(data);
         }, (err) => {
-            res.status(400).send(err.sqlMessage);
+            console.log(err);
         });
-    } else {
-        res.status(401).send('You does not enough permission to delete the article');
-    }
+    }, (err) => {
+        console.log(err);
+    });
 });
 
 module.exports = appRoutes;
