@@ -1,9 +1,4 @@
-var mysql = require('mysql');
 var DATABASE_MONGOBD_CRED_OBJECT = require('../../../cred');
-
-var connection = mysql.createConnection(DATABASE_CRED_OBJECT);
-
-connection.connect();
 
 class DatabaseController {
 
