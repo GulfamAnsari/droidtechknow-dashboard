@@ -8,10 +8,11 @@ connection.connect();
 class DatabaseController {
 
   constructor() {
-    // setInterval(function () {
-    //   console.log('recareting connection');
-    //   connection.query('SELECT 1');
-    // }, 5000);
+    // this is on some hack to connect the mysql server again and again
+    setInterval(function () {
+      console.log('recareting connection');
+      connection.query('SELECT 1');
+    }, 5000);
   }
 
   getAllArticleList() {
