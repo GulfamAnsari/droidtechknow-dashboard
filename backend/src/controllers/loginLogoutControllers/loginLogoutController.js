@@ -58,7 +58,8 @@ class LoginLogoutController {
       usertype: userData['usertype'],
       time: Date(),
       country: userData.country,
-      device: userData.device
+      device: userData.device,
+      emailVefiry: false
     }
     return userInfo;
   }

@@ -1,76 +1,50 @@
-var DATABASE_MONGOBD_CRED_OBJECT = require('../../../cred');
+var CRED_OBJECTS = require('../../../cred');
+var HelperController = require('../helperControllers/helperController');
+var MongoDBConnectController = require('../mongoDBControllers/mongoDBConnectController');
+var helperController = new HelperController();
+var mongoDBConnectController = new MongoDBConnectController();
 
 class DatabaseController {
 
   constructor() {
-    // setInterval(function () {
-    //   console.log('recareting connection');
-    //   connection.query('SELECT 1');
-    // }, 5000);
   }
 
-  getTodo(req, db) {
-    const email = 'gulfamansari1515@gmail.com';
-
-    var promise = new Promise((resolve, reject) => {
-      var dbo = db.db(DATABASE_MONGOBD_CRED_OBJECT.database);
-      dbo.collection("todos").find({}).toArray(function (err, dbResult) {
+  /**
+   * Function is used to fetch the list of all todos
+   */
+  getTodo(req, res, db) {
+    const email = helperController.decoreJWT(req.headers.token).email;
+    return new Promise((resolve, reject) => {
+      var dbo = db.db(CRED_OBJECTS.database);
+      dbo.collection("todos").find({ email }).toArray((err, dbResult) => {
         if (err) reject(err);
         resolve(dbResult);
-        db.close();
-      });
-    });
-    return promise;
-  }
-
-  deleteTodo(data) {
-    return new Promise((resolve, reject) => {
-      connection.query('DELETE FROM article WHERE post=' + data.post, (error, results, fields) => {
-        if (error) reject(error);
-        resolve(`Post ${data.post} has been successfully deleted`);
       });
     });
   }
 
-  editTodo(data) {
+  /**
+   * Function is used to add the todo list or update the existing todo list
+   */
+  addTodo(req, res, db) {
+    const email = helperController.decoreJWT(req.headers.token).email;
+    const { tasks } = req.body.payload;
     return new Promise((resolve, reject) => {
-      connection.query(`UPDATE article SET
-                            post=${data['post']}, 
-                            articleTitle="${data['articleTitle']}", 
-                            articleDescription="${data['articleDescription']}", 
-                            articleDate="${data['articleDate']}",
-                            catagory="${data['catagory']}", 
-                            subCatagory="${data['subCatagory']}", 
-                            author="${data['author']}", 
-                            views=${data['views']}, 
-                            keywords="${data['keywords']}", 
-                            articleLink="${data['articleLink']}", 
-                            imageLink="${data['imageLink']}",
-                            imageLink2="${data['imageLink2']}", 
-                            imageAlt="${data['imageAlt']}", 
-                            comment=${data['comment']}, 
-                            likes=${data['likes']}, 
-                            dislikes=${data['dislikes']}
-                            WHERE post=${data['post']}`,
-        (error, results, fields) => {
-          if (error) reject(error);
-          resolve(`Post ${data.post} has been successfully Updated`);
-        });
-    });
-  }
-
-  addTodo(req, db) {
-    const email = 'gulfamansari1515@gmail.com';
-    return new Promise((resolve, reject) => {
-      var dbo = db.db(DATABASE_MONGOBD_CRED_OBJECT.database);
-      dbo.collection("login").find({}).toArray((err, dbResult) => {
+      var dbo = db.db(CRED_OBJECTS.database);
+      dbo.collection('todos').find({ email }).toArray((err, dbResult) => {
         if (err) reject(err);
-        var myquery = { _id: dbResult[i]._id };
-        var newvalues = { $set: { tasks: req.body.tasks } };
-        dbo.collection("todos").update(myquery, newvalues, (err, result) => {
-          if (err) reject(err);
-          resolve(result);
-        });
+        if (dbResult.length === 0) {
+          dbo.collection('login').find({ email }).toArray((err, dbResult) => {
+            mongoDBConnectController.insertInto(db, 'todos', { email, tasks, _id: dbResult[0]._id }).then((res) => {
+              resolve(res);
+            }, err => reject(err));
+          });
+        } else {
+          var newvalues = { $set: { tasks } };
+          mongoDBConnectController.updateOne(db, 'todos', { email }, newvalues).then((res) => {
+            resolve(res);
+          }, err => reject(err));
+        }
       });
     })
   }
@@ -78,5 +52,3 @@ class DatabaseController {
 }
 
 module.exports = DatabaseController;
-
-

@@ -11,16 +11,33 @@ class MongoDBConnectController {
     // var url = 'mongodb+srv://' + CRED_OBJECTS.MONGO.user + ':' + password + CRED_OBJECTS.MONGO.host;
 
     return new Promise((resolve, reject) => {
-      MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true },  (err, db)=> {
+      MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
         if (err) reject(err);
         console.log('mongo db connected');
         resolve(db);
       });
     })
   }
+
+  insertInto(db, collection, data) {
+    return new Promise((resolve, reject) => {
+      var dbo = db.db(CRED_OBJECTS.database);
+      dbo.collection(collection).insertOne(data, (err, response) => {
+        if (err) reject(err);
+        resolve(response);
+      });
+    })
+  }
+
+  updateOne(db, collection, query, newValues) {
+    return new Promise((resolve, reject) => {
+      var dbo = db.db(CRED_OBJECTS.database);
+      dbo.collection(collection).updateOne(query, newValues, (err, result) => {
+        if (err) reject(err);
+        resolve(result);
+      });
+    });
+  }
 }
 
 module.exports = MongoDBConnectController;
-
-// var a = new MongoDBConnectController();
-// a.connectMongoDB();
