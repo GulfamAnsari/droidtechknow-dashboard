@@ -6,9 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "deleteBundle": "git checkout build && git rebase master && rm -rf public/ && git add public/ && git commit -m 'delete bundle file' && git push origin build -f",
+    "copyBackend": "cp -a /backend/. ./",
+    "delete": "rm -rf public/ /src cred.js index.js package.json package-lock.json",
+    "deleteBundle": "git checkout build && git rebase master && npm run delete && git add . && git commit -m 'delete bundle file' && git push origin build -f",
     "git": "git add public/ && git commit -m 'update bundle file' && git push origin build && git checkout master",
-    "publish": "npm run deleteBundle && npm run build --prefix frontend/ && npm run git && npm run logs",
+    "publish": "npm run deleteBundle && npm run build --prefix frontend/ && npm run copyBackend && npm run git && npm run logs",
     "logs": "heroku logs --tail --app droidtechknow-dashboard"
   },
   "repository": {
