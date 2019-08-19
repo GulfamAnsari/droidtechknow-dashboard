@@ -9,9 +9,9 @@ export class HelperService {
 
   public getUrl() {
     if(window.location.hostname == "localhost") {
-      return "http://localhost:5000/"
+      return "http://localhost:5000/droid/"
     } else {
-      return '/';
+      return '/droid/';
     }
   }
 }
