@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "copyBackend": "cp -a /backend/. ./",
+    "copyBackend": "cp -a backend/. ./",
     "delete": "rm -rf public/ /src cred.js index.js package.json package-lock.json",
     "deleteBundle": "git checkout build && git rebase master && npm run delete && git add . && git commit -m 'delete bundle file' && git push origin build -f",
     "git": "git add public/ && git commit -m 'update bundle file' && git push origin build && git checkout master",
