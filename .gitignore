@@ -1,5 +1,5 @@
 /frontend/dist
-*/node_modules
+*node_modules
 
 /material-dashboard-master
 /mybird-todo
