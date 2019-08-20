@@ -4,6 +4,10 @@ var MongoDBConnectController = require('../controllers/mongoDBControllers/mongoD
 var mongoDBConnectController = new MongoDBConnectController();
 var loginLogoutController = new LoginLogoutController();
 
+appRoutes.route('/').get((req, res) => {
+  res.send('login');
+})
+
 appRoutes.route('/login').post((req, res) => {
     mongoDBConnectController.connectMongoDB().then((db) => {
         loginLogoutController.doLogin(req, res, db).then((data) => {

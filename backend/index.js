@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+// app.use(express.static('/home/gulfamansari/Personal/droidtechknow-dashboard/public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Application Routes
