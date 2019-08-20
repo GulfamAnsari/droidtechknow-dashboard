@@ -19,8 +19,8 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Application Routes
-app.use('/', router);
 app.use('/droid', droidRoutes);
 app.use('/todo', todoRoutes);
+app.use('/', router);
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`))
