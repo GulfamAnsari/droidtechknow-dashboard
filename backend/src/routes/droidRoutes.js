@@ -6,7 +6,7 @@ var DatabaseController = require('../controllers/droidDatabaseControllers/databa
 var databaseController = new DatabaseController();
 
 droidRoutes.route('/').get((req, res) => {
-  res.sendFile(path.join(__dirname + '../../../../public/index.html'));
+  res.sendFile(path.join(__dirname + '../../../public/index.html'));
 })
 
 droidRoutes.route('/article-list').get((req, res) => {
