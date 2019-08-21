@@ -1,7 +1,7 @@
 // This will replace the href in the html file
 var fs = require('fs')
 var path = require('path');
-var file = path.join(__dirname + '../../public/react/index.html');
+var file = path.join(__dirname + '/public/react/index.html');
 fs.readFile(file, 'utf8', function (err,data) {
   if (err) {
     return console.log(err);
