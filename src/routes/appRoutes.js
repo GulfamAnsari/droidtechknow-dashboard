@@ -5,7 +5,7 @@ var mongoDBConnectController = new MongoDBConnectController();
 var loginLogoutController = new LoginLogoutController();
 
 appRoutes.route('/').get((req, res) => {
-  res.send('login');
+    res.sendFile(path.join(__dirname + '../../../public/react/index.html'));
 })
 
 appRoutes.route('/login').post((req, res) => {
