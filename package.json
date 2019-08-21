@@ -9,7 +9,7 @@
     "delete": "rm -rf public/",
     "deleteBundle": "git checkout build && git rebase master && npm run delete && git add . && git commit -m 'delete bundle file' && git push origin build -f",
     "git": "git add . && git commit -m 'update bundle file' && git push origin build && git checkout master",
-    "publish": "npm run deleteBundle && npm run build --prefix frontend/angular && npm run build --prefix frontend/react && node public/replace-href.js && npm run git && npm run logs",
+    "publish": "npm run deleteBundle && npm run build --prefix frontend/angular && npm run build --prefix frontend/react && node replace-href.js && npm run git && npm run logs",
     "logs": "heroku logs --tail --app droidtechknow-dashboard"
   },
   "repository": {
