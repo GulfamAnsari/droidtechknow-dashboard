@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import './App.css';
-import Scrol from './components/scrol/Scrol';
 import TextEditor from './components/text-editor/TextEditor';
 import Home from './pages/home/Home';
 import Todo from './pages/todo/Todo';
