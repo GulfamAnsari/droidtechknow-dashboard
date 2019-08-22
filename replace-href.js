@@ -3,7 +3,8 @@ var fs = require('fs')
 var path = require('path');
 
 const cssFiles = getFiles(path.join(__dirname + '/public/react/static/css'));
-const files = [...cssFiles];
+const htmlFiles = path.join(__dirname + '/public/react/index.html');
+const files = [...cssFiles, htmlFiles];
 
 for( file of files) {
   replaceFileContent(file);
