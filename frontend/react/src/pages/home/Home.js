@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import * as hlp from '../../helper/helper-functions';
 import './Home.scss';
-import bgImage from '../../assets/images/login-bg.jpg';
 
 class Home extends Component {
 
@@ -87,7 +86,7 @@ class Home extends Component {
     const { selectedForm, error } = this.state;
     return (
       <div className="login">
-        <div className="login-wrap" style={{background: bgImage}}>
+        <div className="login-wrap">
           <div className="login-html">
             <p style={{ color: '#8e0428f7' }}>{error}</p>
             <input id="tab-1" type="radio" name="tab" className="sign-in" name="sign-in" checked={selectedForm === 'sign-in' ? true : false} onChange={this.formSelectionHanndler.bind(this)} /><label htmlFor="tab-1" className="tab">Sign In</label>
