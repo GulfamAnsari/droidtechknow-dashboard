@@ -18,6 +18,10 @@
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0"
   },
+  "devDependencies": {
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.3.1"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && mv -T build/  ../../public/react",

@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import * as hlp from '../../helper/helper-functions';
-
+import './Home.scss';
 
 class Home extends Component {
 
