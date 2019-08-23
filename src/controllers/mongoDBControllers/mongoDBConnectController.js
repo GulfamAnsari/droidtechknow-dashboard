@@ -18,7 +18,7 @@ class MongoDBConnectController {
     // var url = 'mongodb+srv://' + CRED_OBJECTS.MONGO.user + ':' + password + CRED_OBJECTS.MONGO.host;
 
     return new Promise((resolve, reject) => {
-      MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
+      MongoClient.connect(url, (err, db) => {
         if (err) reject(err);
         console.log('mongo db connected');
         resolve(db);
