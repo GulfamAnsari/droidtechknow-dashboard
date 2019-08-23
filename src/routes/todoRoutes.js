@@ -28,7 +28,7 @@ todoRoutes.route('/todo-list').get((req, res) => {
 /**
  * Used to add, edit and delete the todos list by updating the existing one
  */
-todoRoutes.route('/todo-add').post((req, res, db) => {
+todoRoutes.route('/todo-update').post((req, res, db) => {
   mongoDBConnectController.connectMongoDB().then((db) => {
     databaseController.addTodo(req, res, db).then((data) => {
       res.send(data);

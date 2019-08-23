@@ -159,7 +159,7 @@ class Todo extends Component {
   }
 
   getUserData(email) {
-    Axios.post('https://mybird-todo.herokuapp.com/get-data', { email: email }, { 'Content-Type': 'application/json' }).then((result) => {
+    Axios.post('/todo-list', { email: email }, { 'Content-Type': 'application/json' }).then((result) => {
       const tasks = result.data.tasks;
       this.props.fetchTasks({ tasks: tasks, email: result.data.email });
     })

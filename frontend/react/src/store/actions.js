@@ -8,7 +8,7 @@ export const updateTask = (value) => {
       value: value
     }
     if (getState().authState.isAuthenticated) {
-      Axios.post('https://mybird-todo.herokuapp.com/send-data', { tasks: value, email: getState().authState.email }, { 'Content-Type': 'application/json' }).then((result) => {
+      Axios.post('/todo-update', { tasks: value, email: getState().authState.email }, { 'Content-Type': 'application/json' }).then((result) => {
         dispatch(tasks);
       });
     } else {
