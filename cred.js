@@ -11,5 +11,5 @@ module.exports = CRED_OBJECTS = {
     password: process.env.MONGO_PASSWORD,
     database: process.env.MONGO_DATABASE
   },
-  SECRET_KEY: 'pakhi'
+  SECRET_KEY: process.env.SECRET_KEY
 }

@@ -1,4 +1,5 @@
 var CRED_OBJECTS = require('../../../cred');
+var COLLECTIONS = require('../constants.controller').MONGO_DB.COLLECTIONS;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
@@ -29,7 +30,7 @@ class LoginLogoutController {
       this.checkUserExistence(email, db).then((dbResult) => {
         if (dbResult.length === 0) {
           var newUser = this.createNewUser(req.body.payload);
-          dbo.collection("login").insertOne(newUser, (err, response) => {
+          dbo.collection(COLLECTIONS.LOGIN).insertOne(newUser, (err, response) => {
             if (err) reject(err);
             resolve({ existence: false, data: this.saveSession(newUser, 1) });
           });
@@ -43,7 +44,7 @@ class LoginLogoutController {
   checkUserExistence(email, db) {
     return new Promise((resolve, reject) => {
       var dbo = db.db(CRED_OBJECTS.database);
-      dbo.collection("login").find({ email }).toArray((err, dbResult) => {
+      dbo.collection(COLLECTIONS.LOGIN).find({ email }).toArray((err, dbResult) => {
         if (err) reject(err);
         resolve(dbResult);
       });

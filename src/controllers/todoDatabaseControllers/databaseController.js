@@ -1,4 +1,5 @@
 var CRED_OBJECTS = require('../../../cred');
+var COLLECTIONS = require('../constants.controller').MONGO_DB.COLLECTIONS;
 var HelperController = require('../helperControllers/helperController');
 var MongoDBConnectController = require('../mongoDBControllers/mongoDBConnectController');
 var helperController = new HelperController();
@@ -16,7 +17,7 @@ class DatabaseController {
     const email = helperController.decoreJWT(req.headers.token).email;
     return new Promise((resolve, reject) => {
       var dbo = db.db(CRED_OBJECTS.database);
-      dbo.collection("todos").find({ email }).toArray((err, dbResult) => {
+      dbo.collection(COLLECTIONS.TODOS).find({ email }).toArray((err, dbResult) => {
         if (err) reject(err);
         resolve(dbResult);
       });
@@ -31,17 +32,17 @@ class DatabaseController {
     const { tasks } = req.body.payload;
     return new Promise((resolve, reject) => {
       var dbo = db.db(CRED_OBJECTS.database);
-      dbo.collection('todos').find({ email }).toArray((err, dbResult) => {
+      dbo.collection(COLLECTIONS.TODOS).find({ email }).toArray((err, dbResult) => {
         if (err) reject(err);
         if (dbResult.length === 0) {
-          dbo.collection('login').find({ email }).toArray((err, dbResult) => {
-            mongoDBConnectController.insertInto(db, 'todos', { email, tasks, _id: dbResult[0]._id }).then((res) => {
+          dbo.collection(COLLECTIONS.LOGIN).find({ email }).toArray((err, dbResult) => {
+            mongoDBConnectController.insertInto(db, COLLECTIONS.TODOS, { email, tasks, _id: dbResult[0]._id }).then((res) => {
               resolve(res);
             }, err => reject(err));
           });
         } else {
           var newvalues = { $set: { tasks } };
-          mongoDBConnectController.updateOne(db, 'todos', { email }, newvalues).then((res) => {
+          mongoDBConnectController.updateOne(db, COLLECTIONS.TODOS, { email }, newvalues).then((res) => {
             resolve(res);
           }, err => reject(err));
         }

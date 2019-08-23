@@ -1,5 +1,6 @@
 var mysql = require('mysql');
 var CRED_OBJECTS = require('../../../cred');
+var articleTableName = require('../constants.controller').MY_SQL.TABLES.ARTICLE;
 
 var connection = mysql.createConnection(CRED_OBJECTS.MYSQL);
 
@@ -17,7 +18,7 @@ class DatabaseController {
 
   getAllArticleList() {
     var promise = new Promise((resolve, reject) => {
-      connection.query('SELECT * from article', (error, results, fields) => {
+      connection.query(`SELECT * from ${articleTableName}`, (error, results, fields) => {
         if (error) reject(error);
         resolve(results);
       });
@@ -27,7 +28,7 @@ class DatabaseController {
 
   deleteArticle(data) {
     return new Promise((resolve, reject) => {
-      connection.query('DELETE FROM article WHERE post=' + data.post, (error, results, fields) => {
+      connection.query(`DELETE FROM ${articleTableName} WHERE post=` + data.post, (error, results, fields) => {
         if (error) reject(error);
         resolve(`Post ${data.post} has been successfully deleted`);
       });
@@ -36,7 +37,7 @@ class DatabaseController {
 
   editArticle(data) {
     return new Promise((resolve, reject) => {
-      connection.query(`UPDATE article SET
+      connection.query(`UPDATE ${articleTableName} SET
                             post=${data['post']}, 
                             articleTitle="${data['articleTitle']}", 
                             articleDescription="${data['articleDescription']}", 
@@ -63,7 +64,7 @@ class DatabaseController {
 
   addArticle(data) {
     return new Promise((resolve, reject) => {
-      connection.query(`INSERT INTO article (post, articleTitle, articleDescription, articleDate,catagory, subCatagory, 
+      connection.query(`INSERT INTO ${articleTableName} (post, articleTitle, articleDescription, articleDate,catagory, subCatagory, 
                         author, views, keywords, articleLink, imageLink,imageLink2, imageAlt, comment, likes, dislikes) 
                         VALUES (${data['post']}, "${data['articleTitle']}", "${data['articleDescription']}", "${data['articleDate']}",
                         "${data['catagory']}", "${data['subCatagory']}", "${data['author']}", ${data['views']}, "${data['keywords']}", 
