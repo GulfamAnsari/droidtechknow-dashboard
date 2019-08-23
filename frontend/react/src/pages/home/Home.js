@@ -65,7 +65,7 @@ class Home extends Component {
   }
 
   gotoDashboard(url, data) {
-    Axios.post('https://mybird-todo.herokuapp.com' + url, data, { 'Content-Type': 'application/json' }).then((result) => {
+    Axios.post(url, data, { 'Content-Type': 'application/json' }).then((result) => {
       if (result.data) {
         hlp.setCookie('token', result.data['access_token'], result.data['expires_in']);
         this.getUserData(result.data.user.email);
