@@ -1,5 +1,5 @@
 import localForage from 'localforage';
-import Backend from '../helper/backend';
+import * as Backend from '../helper/backend';
 
 export const updateTask = (value) => {
   return (dispatch, getState) => {
