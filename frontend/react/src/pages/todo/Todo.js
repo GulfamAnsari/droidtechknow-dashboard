@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import AddTask from '../../components/add-task/AddTask';
 import CompletedTask from '../../components/completed-task/CompletedTask';
 import Task from '../../components/tasks/Task';
-import Axios from 'axios';
 import jwt from 'jsonwebtoken';
 import { connect } from 'react-redux';
 import localForage from 'localforage';
 import * as actions from '../../store/actions';
 import * as hlp from '../../helper/helper-functions';
+import * as Backend from '../../helper/backend';
 
 class Todo extends Component {
 
@@ -132,7 +132,7 @@ class Todo extends Component {
         });
       }
     } else {
-      Axios.get('https://jsonplaceholder.typicode.com/posts').then((response) => {
+      Backend.get('https://jsonplaceholder.typicode.com/posts').then((response) => {
         localForage.getItem('tasks').then((data) => {
           if (data) {
             this.props.updateTasks(data.value);
@@ -159,7 +159,7 @@ class Todo extends Component {
   }
 
   getUserData(email) {
-    Axios.post('/todo-list', { email: email }, { 'Content-Type': 'application/json' }).then((result) => {
+    Backend.post('/todo-list', { email: email }).then((result) => {
       const tasks = result.data.tasks;
       this.props.fetchTasks({ tasks: tasks, email: result.data.email });
     })

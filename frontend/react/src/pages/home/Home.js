@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Login from '../../components/log-in/Login';
 import Signup from '../../components/sign-up/Signup';
-import Axios from 'axios';
 import jwt from 'jsonwebtoken';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import * as hlp from '../../helper/helper-functions';
+import * as Backend from '../../helper/backend';
 import './Home.scss';
 
 class Home extends Component {
@@ -21,7 +21,7 @@ class Home extends Component {
   componentDidMount = () => {
     const token = hlp.getCookie('token');
     if (token) {
-      jwt.verify(token, 'secretkey23456', (err, decoded) => {
+      jwt.verify(token, 'pakhi', (err, decoded) => {
         if (decoded) {
           this.getUserData(decoded.email);
         }
@@ -30,7 +30,7 @@ class Home extends Component {
   };
 
   getUserData(email) {
-    Axios.post('https://mybird-todo.herokuapp.com/get-data', { email: email }, { 'Content-Type': 'application/json' }).then((result) => {
+    Backend.post('/todo-list', { email: email }).then((result) => {
       const tasks = result.data.tasks;
       this.props.fetchTasks({ tasks: tasks, email: result.data.email });
       setTimeout(() => {
@@ -65,7 +65,7 @@ class Home extends Component {
   }
 
   gotoDashboard(url, data) {
-    Axios.post(url, data, { 'Content-Type': 'application/json' }).then((result) => {
+    Backend.post(url, data).then((result) => {
       if (result.data) {
         hlp.setCookie('token', result.data['access_token'], result.data['expires_in']);
         this.getUserData(result.data.user.email);
