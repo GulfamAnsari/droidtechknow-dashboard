@@ -1,5 +1,5 @@
 import localForage from 'localforage';
-import Axios from 'axios';
+import Backend from '../helper/backend';
 
 export const updateTask = (value) => {
   return (dispatch, getState) => {
@@ -8,7 +8,7 @@ export const updateTask = (value) => {
       value: value
     }
     if (getState().authState.isAuthenticated) {
-      Axios.post('/todo-update', { tasks: value, email: getState().authState.email }, { 'Content-Type': 'application/json' }).then((result) => {
+      Backend.post('/todo-update', { tasks: value, email: getState().authState.email }, { 'Content-Type': 'application/json' }).then((result) => {
         dispatch(tasks);
       });
     } else {

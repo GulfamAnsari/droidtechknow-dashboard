@@ -45,22 +45,23 @@ class Home extends Component {
     })
   }
 
-  onSubmitHandler(event, payload) {
+  onSubmitHandler(event, data) {
     event.preventDefault();
-    if (payload.name === 'sign-in') {
-      const data = {
-        email: payload.signIn.username,
-        password: payload.signIn.password,
+    if (data.name === 'sign-in') {
+      const payload = {
+        email: data.signIn.username,
+        password: data.signIn.password,
+        remember: data.signIn.remember
       }
       this.gotoDashboard('/login', data);
-    } else if (payload.name === 'sign-up') {
-      const data = {
-        email: payload.signUp.email,
-        username: payload.signUp.username,
-        password: payload.signUp.password,
+    } else if (data.name === 'sign-up') {
+      const payload = {
+        email: data.signUp.email,
+        username: data.signUp.username,
+        password: data.signUp.password,
         usertype: 'admin'
       }
-      this.gotoDashboard('/signup', data);
+      this.gotoDashboard('/signup', { payload });
     }
   }
 
