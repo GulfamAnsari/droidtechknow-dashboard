@@ -16,6 +16,7 @@ todoRoutes.route('/').get((req, res) => {
 todoRoutes.route('/todo-list').get((req, res) => {
   mongoDBConnectController.connectMongoDB().then((db) => {
     databaseController.getTodo(req, res, db).then((data) => {
+      console.log(data)
       res.send(data);
     }, (err) => {
       console.log(err);

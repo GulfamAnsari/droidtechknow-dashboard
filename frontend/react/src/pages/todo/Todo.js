@@ -125,11 +125,7 @@ class Todo extends Component {
     if (this.props.authState.isAuthenticated || hlp.getCookie('token')) {
       const token = hlp.getCookie('token');
       if (token) {
-        jwt.verify(token, 'secretkey23456', (err, decoded) => {
-          if (decoded) {
-            this.getUserData(decoded.email);
-          }
-        });
+        this.getUserData();
       }
     } else {
       Backend.get('https://jsonplaceholder.typicode.com/posts').then((response) => {
@@ -158,10 +154,10 @@ class Todo extends Component {
     };
   }
 
-  getUserData(email) {
-    Backend.post('/todo-list', { email: email }).then((result) => {
-      const tasks = result.data.tasks;
-      this.props.fetchTasks({ tasks: tasks, email: result.data.email });
+  getUserData() {
+    Backend.get('todo/todo-list').then((result) => {
+      const tasks = result.data;
+      this.props.fetchTasks({ tasks: tasks });
     })
   }
 
@@ -177,7 +173,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     updateTasks: (tasks) => dispatch(actions.updateTask(tasks)),
-    fetchTasks: ({ tasks, email }) => dispatch(actions.fetchTasks({ tasks, email })),
+    fetchTasks: ({ tasks }) => dispatch(actions.fetchTasks({ tasks })),
   }
 }
 

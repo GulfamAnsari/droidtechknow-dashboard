@@ -16,7 +16,7 @@ if (window.location.hostname === 'localhost') {
 // Request interceptor
 AxiosInstance.interceptors.request.use((config) => {
   if (!excludeUrlForAuthenticate.includes(config.url)) {
-    AxiosInstance.defaults.headers.common['token'] = HELPER.getCookie('token');
+    config.headers['token'] = HELPER.getCookie('token');
   }
   return config;
 }, (error) => {

@@ -3,8 +3,7 @@ const initialState = {
     tasks: []
   },
   authState: {
-    isAuthenticated: false,
-    email: ''
+    isAuthenticated: false
   }
 }
 
@@ -20,7 +19,7 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         taskState: { tasks: action.value.tasks },
-        authState: { isAuthenticated: true, email: action.value.email }
+        authState: { isAuthenticated: true }
       }
 
     default:

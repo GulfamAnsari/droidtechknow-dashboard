@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Login from '../../components/log-in/Login';
 import Signup from '../../components/sign-up/Signup';
-import jwt from 'jsonwebtoken';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import * as hlp from '../../helper/helper-functions';
@@ -21,18 +20,14 @@ class Home extends Component {
   componentDidMount = () => {
     const token = hlp.getCookie('token');
     if (token) {
-      jwt.verify(token, 'pakhi', (err, decoded) => {
-        if (decoded) {
-          this.getUserData(decoded.email);
-        }
-      });
+      this.getUserData();
     }
   };
 
-  getUserData(email) {
-    Backend.post('/todo-list', { email: email }).then((result) => {
-      const tasks = result.data.tasks;
-      this.props.fetchTasks({ tasks: tasks, email: result.data.email });
+  getUserData() {
+    Backend.get('todo/todo-list').then((result) => {
+      const tasks = result.data;
+      this.props.fetchTasks({ tasks: tasks });
       setTimeout(() => {
         this.props.history.push({ pathname: '/todos' });
       }, 1000);
@@ -70,8 +65,8 @@ class Home extends Component {
   gotoDashboard(url, data) {
     Backend.post(url, data).then((result) => {
       if (result.data) {
-        hlp.setCookie('token', result.data['access_token'], result.data['expires_in']);
-        this.getUserData(result.data.user.email);
+        hlp.setCookie('token', result.data.data['access_token'], result.data.data['expires_in']);
+        this.getUserData();
       } else if (!result.data && url === '/signup') {
         this.setState({
           error: 'User Already Exists.'
@@ -115,7 +110,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTasks: ({ tasks, email }) => dispatch(actions.fetchTasks({ tasks, email })),
+    fetchTasks: ({ tasks }) => dispatch(actions.fetchTasks({ tasks })),
   }
 }
 
