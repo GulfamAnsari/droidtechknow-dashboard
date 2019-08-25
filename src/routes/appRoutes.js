@@ -25,7 +25,7 @@ appRoutes.route('/login').post((req, res) => {
     });
 });
 
-appRoutes.route('/sign-up').post((req, res) => {
+appRoutes.route('/signup').post((req, res) => {
     mongoDBConnectController.connectMongoDB().then((db) => {
         loginLogoutController.doSignUp(req, res, db).then((data) => {
             db.close();
