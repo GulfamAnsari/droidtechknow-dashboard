@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
-
+import * as HELPER from '../../helper/helper-functions';
+import * as BACKEND from '../../helper/backend';
 export default class Signup extends Component {
 
   constructor(props) {
+
     super(props);
     this.state = {
       signUp: {
         username: '',
         password: '',
         repeat: '',
-        email: ''
+        email: '',
+        usertype: 'admin',
+        country: 'Country is not defiend',
+        ip: 'IP is not defiend',
+        device: HELPER.getOS(),
       },
       name: 'sign-up'
     }
@@ -18,9 +24,17 @@ export default class Signup extends Component {
   signUpOnChangeHandler(event) {
     const { signUp } = this.state;
     signUp[event.target.name] = event.target.value;
-    this.setState({
-      signUp
-    });
+    BACKEND.get('http://ip-api.com/json').then((locationData) => {
+      signUp.country = locationData.data.city + ', ' + locationData.data.country;
+      signUp.ip = locationData.data.query;
+      this.setState({
+        signUp
+      });
+    }, (err) => {
+      this.setState({
+        signUp
+      });
+    })
   }
 
   render() {

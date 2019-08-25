@@ -59,7 +59,9 @@ class Home extends Component {
         email: data.signUp.email,
         username: data.signUp.username,
         password: data.signUp.password,
-        usertype: 'admin'
+        usertype: 'admin',
+        country: data.signUp.country,
+        device: data.signUp.device,
       }
       this.gotoDashboard('/signup', { payload });
     }
