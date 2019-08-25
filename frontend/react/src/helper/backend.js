@@ -1,6 +1,16 @@
 import Axios from 'axios';
 
-var OPTIONS = { 'Content-Type': 'application/json' };
+const AxiosInstance = Axios.create({
+  headers: { 'Content-Type': 'application/json' }
+});
 
-export const get = (url, options = OPTIONS) => Axios.get(url, options);
-export const post = (url, data, options = OPTIONS) => Axios.post(url, data, options);
+if (window.location.hostname === 'localhost') {
+  AxiosInstance.defaults.baseURL = 'http://localhost:5000';
+} else {
+  AxiosInstance.defaults.baseURL = 'http://droidtechknow-dashboard.herokuapp.com';
+}
+
+// instance.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+
+export const get = (url, options = null) => AxiosInstance.get(url, options);
+export const post = (url, data, options = null) => AxiosInstance.post(url, data, options);
