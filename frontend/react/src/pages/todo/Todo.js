@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import AddTask from '../../components/add-task/AddTask';
 import CompletedTask from '../../components/completed-task/CompletedTask';
 import Task from '../../components/tasks/Task';
-import jwt from 'jsonwebtoken';
 import { connect } from 'react-redux';
 import localForage from 'localforage';
 import * as actions from '../../store/actions';
@@ -54,6 +53,7 @@ class Todo extends Component {
 
   render() {
     const { tasks } = this.props.taskState;
+    console.log(tasks)
     const { openNewTodo } = this.state;
 
     return (

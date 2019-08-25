@@ -8,7 +8,7 @@ export const updateTask = (value) => {
       value: value
     }
     if (getState().authState.isAuthenticated) {
-      Backend.post('todo/todo-update', { tasks: value, email: getState().authState.email }, { 'Content-Type': 'application/json' }).then((result) => {
+      Backend.post('todo/todo-update', { payload: { tasks: value } }).then((result) => {
         dispatch(tasks);
       });
     } else {

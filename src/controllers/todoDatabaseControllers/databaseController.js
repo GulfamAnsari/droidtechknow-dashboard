@@ -19,7 +19,7 @@ class DatabaseController {
       var dbo = db.db(CRED_OBJECTS.database);
       dbo.collection(COLLECTIONS.TODOS).find({ email }).toArray((err, dbResult) => {
         if (err) reject(err);
-        resolve(dbResult);
+        resolve(dbResult[0].tasks);
       });
     });
   }
@@ -37,7 +37,7 @@ class DatabaseController {
         if (dbResult.length === 0) {
           dbo.collection(COLLECTIONS.LOGIN).find({ email }).toArray((err, dbResult) => {
             mongoDBConnectController.insertInto(db, COLLECTIONS.TODOS, { email, tasks, _id: dbResult[0]._id }).then((res) => {
-              resolve(res);
+              resolve(dbResult[0].tasks);
             }, err => reject(err));
           });
         } else {
