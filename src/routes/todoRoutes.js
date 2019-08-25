@@ -6,7 +6,7 @@ var DatabaseController = require('../controllers/todoDatabaseControllers/databas
 var databaseController = new DatabaseController();
 var mongoDBConnectController = new MongoDBConnectController();
 
-todoRoutes.route('/').get((req, res) => {
+todoRoutes.route('/*').get((req, res) => {
   res.sendFile(path.join(__dirname + '../../../public/index.html'));
 })
 

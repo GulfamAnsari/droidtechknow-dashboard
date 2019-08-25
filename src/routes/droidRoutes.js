@@ -5,7 +5,7 @@ var droidRoutes = express.Router();
 var DatabaseController = require('../controllers/droidDatabaseControllers/databaseController');
 var databaseController = new DatabaseController();
 
-droidRoutes.route('/').get((req, res) => {
+droidRoutes.route('/*').get((req, res) => {
   res.sendFile(path.join(__dirname + '../../../public/angular/index.html'));
 })
 
