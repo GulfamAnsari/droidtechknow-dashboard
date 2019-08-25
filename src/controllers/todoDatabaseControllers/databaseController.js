@@ -19,7 +19,7 @@ class DatabaseController {
       var dbo = db.db(CRED_OBJECTS.database);
       dbo.collection(COLLECTIONS.TODOS).find({ email }).toArray((err, dbResult) => {
         if (err) reject(err);
-        resolve(dbResult[0].tasks);
+        resolve(dbResult.length === 0 ? dbResult: dbResult[0].tasks);
       });
     });
   }
@@ -43,7 +43,7 @@ class DatabaseController {
         } else {
           var newvalues = { $set: { tasks } };
           mongoDBConnectController.updateOne(db, COLLECTIONS.TODOS, { email }, newvalues).then((res) => {
-            resolve(res);
+            resolve(newvalues);
           }, err => reject(err));
         }
       });

@@ -64,7 +64,7 @@ class Home extends Component {
 
   gotoDashboard(url, data) {
     Backend.post(url, data).then((result) => {
-      if (result.data) {
+      if (result.data.data) {
         hlp.setCookie('token', result.data.data['access_token'], result.data.data['expires_in']);
         this.getUserData();
       } else if (!result.data && url === '/signup') {
