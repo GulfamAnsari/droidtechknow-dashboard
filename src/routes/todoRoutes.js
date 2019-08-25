@@ -37,7 +37,7 @@ todoRoutes.route('/todo-update').post((req, res, db) => {
   });
 });
 
-todoRoutes.route('/*').get((req, res) => {
+todoRoutes.route('*').get((req, res) => {
   res.sendFile(path.join(__dirname + '../../../public/index.html'));
 })
 
