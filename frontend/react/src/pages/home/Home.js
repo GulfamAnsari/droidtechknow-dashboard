@@ -53,7 +53,7 @@ class Home extends Component {
         password: data.signIn.password,
         remember: data.signIn.remember
       }
-      this.gotoDashboard('/login', data);
+      this.gotoDashboard('/login', { payload });
     } else if (data.name === 'sign-up') {
       const payload = {
         email: data.signUp.email,
