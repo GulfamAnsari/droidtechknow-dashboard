@@ -6,10 +6,6 @@ var DatabaseController = require('../controllers/todoDatabaseControllers/databas
 var databaseController = new DatabaseController();
 var mongoDBConnectController = new MongoDBConnectController();
 
-todoRoutes.route('/*').get((req, res) => {
-  res.sendFile(path.join(__dirname + '../../../public/index.html'));
-})
-
 /**
  * Fetches the list of all todos
  */
@@ -40,5 +36,9 @@ todoRoutes.route('/todo-update').post((req, res, db) => {
     console.log(err);
   });
 });
+
+todoRoutes.route('/*').get((req, res) => {
+  res.sendFile(path.join(__dirname + '../../../public/index.html'));
+})
 
 module.exports = todoRoutes;
