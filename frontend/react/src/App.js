@@ -5,6 +5,7 @@ import './App.css';
 import TextEditor from './components/text-editor/TextEditor';
 import Home from './pages/home/Home';
 import Todo from './pages/todo/Todo';
+import Dashboard from './pages/dashboard/Dashboard';
 
 export default class App extends Component {
 
@@ -18,6 +19,7 @@ export default class App extends Component {
         <React.Fragment>
           <Switch>
             <Route path="/" exact component={Home} />
+            <Route path="/dashboard" exact component={Dashboard} />
             <Route path="/todos" exact component={Todo} />
             <Route path="/text-editor" exact component={TextEditor} />
           </Switch>
