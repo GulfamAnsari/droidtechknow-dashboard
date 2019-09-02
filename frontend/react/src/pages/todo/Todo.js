@@ -7,6 +7,7 @@ import localForage from 'localforage';
 import * as actions from '../../store/actions';
 import * as hlp from '../../helper/helper-functions';
 import * as Backend from '../../helper/backend';
+import './Todo.scss';
 
 class Todo extends Component {
 
@@ -78,7 +79,7 @@ class Todo extends Component {
 
             {/* To add new todo task */}
             <li className="todo-item new">
-              <div className="card" onClick={() => this.toggleTodoHandler(true)}>
+              <div className="todo-card" onClick={() => this.toggleTodoHandler(true)}>
                 <h3 className="todo-title"> <span className="action">
                   <i className="complete material-icons md-36 md-light">add_circle_outline</i>
                 </span>

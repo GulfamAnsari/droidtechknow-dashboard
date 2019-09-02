@@ -29,7 +29,7 @@ function Task(props) {
 
   return (
     <li draggable="true" className={'todo-item ' + task.priority.toLowerCase()}>
-      <div className="card">
+      <div className="todo-card">
         <h3 className="todo-title">
           <span className="action">
             <i className="material-icons md-36 icon-delete" onClick={() => { deleteTaskHandler(task.key) }}>delete</i>
