@@ -10,19 +10,9 @@ export default class Sidebar extends Component {
           <a href="https://droidtechknow.com" target="_blank" className="simple-text logo-normal">
             DroidTechKnow
               </a>
-              <div className="mini-sidebar-nav">
-                {/* only show in mobile view */}
-            {/* <span>
-              <form className="navbar-form">
-                <div className="input-group no-border">
-                  <input type="text" value="" className="form-control" placeholder="Search..." />
-                  <button type="submit" className="btn btn-white btn-round btn-just-icon">
-                    <i className="material-icons">search</i>
-                    <div className="ripple-container"></div>
-                  </button>
-                </div>
-              </form>
-            </span> */}
+          <div className="mini-sidebar-nav">
+            {/* only show in mobile view */}
+
 
             <span>
               <a className="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,8 +35,17 @@ export default class Sidebar extends Component {
                 <Link className="dropdown-item" onClick={() => { HELPER.setCookie('token', '', 0); }}>Log out</Link>
               </div>
             </span>
-            {/* ------------------ */}
+
+          </div>
+          <div className="mini-sidebar-nav">
+            <form className="navbar-form">
+              <div className="input-group no-border">
+                <input style={{ margin: '-15px', top: '12px' }} type="text" value="" className="form-control" placeholder="Search..." />
               </div>
+            </form>
+          </div>
+          {/* ------------------ */}
+
 
         </div>
         <div className="sidebar-wrapper">
