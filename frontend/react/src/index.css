@@ -14349,7 +14349,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   height: calc(100vh - 75px);
   overflow: auto;
   width: 260px;
-  z-index: 4;
+  z-index: 1;
   padding-bottom: 30px;
 }
 
@@ -14754,8 +14754,16 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   display: none !important;
 }
 
+.mini-sidebar-nav {
+  color: white;
+  margin: 0 !important;
+  padding: 0 !important;
+      display: flex;
+    justify-content: center;
+}
+
 @media (min-width: 991px) {
-  .sidebar-mini .visible-on-sidebar-regular {
+  .sidebar-mini .visible-on-sidebar-regular, .mini-sidebar-nav {
     display: none !important;
   }
 
