@@ -56,7 +56,7 @@ class Home extends Component {
     Backend.post(url, data).then((result) => {
       if (result.data.data) {
         hlp.setCookie('token', result.data.data['access_token'], result.data.data['expires_in']);
-        this.getUserData();
+        this.props.history.push({ pathname: '/dashboard' });
       } else if (!result.data && url === '/signup') {
         this.setState({
           error: 'User Already Exists.'
