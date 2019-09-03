@@ -73,7 +73,7 @@ class Home extends Component {
   render() {
     const { selectedForm, error } = this.state;
     return (
-      <div className="login">
+      <div className="login" style={{ overflow: 'hidden' }}>
         <div className="login-wrap">
           <div className="login-html">
             <p style={{ color: '#8e0428f7' }}>{error}</p>
