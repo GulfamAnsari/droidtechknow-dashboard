@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import AddTask from '../../components/add-task/AddTask';
-import CompletedTask from '../../components/completed-task/CompletedTask';
-import Task from '../../components/tasks/Task';
+import AddTask from '../../components/Todo/add-task/AddTask';
+import CompletedTask from '../../components/Todo/completed-task/CompletedTask';
+import Task from '../../components/Todo/tasks/Task';
 import { connect } from 'react-redux';
 import localForage from 'localforage';
 import * as actions from '../../store/actions';

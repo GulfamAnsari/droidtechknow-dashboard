@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Login from '../../components/log-in/Login';
-import Signup from '../../components/sign-up/Signup';
+import Login from '../../components/Home/log-in/Login';
+import Signup from '../../components/Home/sign-up/Signup';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import * as hlp from '../../helper/helper-functions';
