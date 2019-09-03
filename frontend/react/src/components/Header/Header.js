@@ -4,6 +4,16 @@ const Link = require("react-router-dom").Link;
 
 export default class Header extends Component {
   
+  constructor(props) {
+    super(props);
+    console.log(props)
+  }
+
+  logOut = () => {
+    HELPER.setCookie('token', '', 0);
+    this.props.history.push({ pathname: '/' });
+  }
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
@@ -51,7 +61,7 @@ export default class Header extends Component {
                   <Link className="dropdown-item" to="/profile">Profile</Link>
                   <Link className="dropdown-item" to="/setings">Settings</Link>
                   <div className="dropdown-divider"></div>
-                  <Link className="dropdown-item" to="/" onClick={() => { HELPER.setCookie('token', '', 0); }}>Log out</Link>
+                  <Link className="dropdown-item" to="/" onClick={() => { this.logOut() }}>Log out</Link>
                 </div>
               </li>
             </ul>

@@ -3,6 +3,12 @@ import * as HELPER from '../../helper/helper-functions';
 const Link = require("react-router-dom").Link;
 
 export default class Sidebar extends Component {
+
+  logOut = () => {
+    HELPER.setCookie('token', '', 0);
+    this.props.history.push({ pathname: '/' });
+  }
+
   render() {
     return (
       <div className="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
@@ -32,7 +38,7 @@ export default class Sidebar extends Component {
                 <Link className="dropdown-item" to="/profile">Profile</Link>
                 <Link className="dropdown-item" to="/setings">Settings</Link>
                 <div className="dropdown-divider"></div>
-                <Link className="dropdown-item" onClick={() => { HELPER.setCookie('token', '', 0); }}>Log out</Link>
+                <Link className="dropdown-item" onClick={() => { this.logOut() }}>Log out</Link>
               </div>
             </span>
 

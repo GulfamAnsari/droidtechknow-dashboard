@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import './Dashboard.scss';
-import { Route, Switch } from 'react-router-dom';
-import Header from '../../components/Header/Header';
-import Sidebar from '../../components/Sidebar/Sidebar';
-import Footer from '../../components/Footer/Footer';
 const Link = require("react-router-dom").Link;
 
 export default class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     return (

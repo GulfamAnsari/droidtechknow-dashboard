@@ -24,9 +24,9 @@ export default class App extends Component {
             <Route path="/" exact component={Home} />
             <div className="dashboard">
               <div className="wrapper ">
-                <Sidebar />
+                <Route path="/" component={Sidebar} />
                 <div className="main-panel">
-                  <Header className="header" />
+                  <Route path="/" component={Header} />
                   <Route path="/dashboard" exact component={Dashboard} />
                   <Route path="/todos" exact component={Todo} />
                   <Route path="/text-editor" exact component={TextEditor} />
