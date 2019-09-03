@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import * as HELPER from '../../helper/helper-functions';
 const Link = require("react-router-dom").Link;
 
 export default class Sidebar extends Component {
