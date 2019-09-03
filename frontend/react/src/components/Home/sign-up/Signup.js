@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import * as HELPER from '../../helper/helper-functions';
-import * as BACKEND from '../../helper/backend';
+import * as HELPER from '../../../helper/helper-functions';
+import * as BACKEND from '../../../helper/backend';
 export default class Signup extends Component {
 
   constructor(props) {
