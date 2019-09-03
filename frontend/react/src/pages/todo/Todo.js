@@ -54,66 +54,69 @@ class Todo extends Component {
 
   render() {
     const { tasks } = this.props.taskState;
-    console.log(tasks)
     const { openNewTodo } = this.state;
 
     return (
-      <section className="todo-list-container">
-        <div className="todo-in-progress">
-          <h2> Working tasks</h2>
-          <ul onDragStart={() => { console.log('on drag called') }} className="todo-list" id="target">
-            {/* Warning Task */}
-            {
-              tasks.map((task, index) => {
-                // setting index as  a key is not a good way
-                if (!task.completed) {
-                  return <Task
-                    task={task}
-                    key={index}
-                    deleteTaskHandler={() => { this.deleteTaskHandler(index) }}
-                    addCompletedTaskHandler={() => { this.addCompletedTaskHandler(index) }}
-                  />
+      <div className="content">
+        <div className="container-fluid">
+          <section className="todo-list-container">
+            <div className="todo-in-progress">
+              <h2> Working tasks</h2>
+              <ul onDragStart={() => { console.log('on drag called') }} className="todo-list" id="target">
+                {/* Warning Task */}
+                {
+                  tasks.map((task, index) => {
+                    // setting index as  a key is not a good way
+                    if (!task.completed) {
+                      return <Task
+                        task={task}
+                        key={index}
+                        deleteTaskHandler={() => { this.deleteTaskHandler(index) }}
+                        addCompletedTaskHandler={() => { this.addCompletedTaskHandler(index) }}
+                      />
+                    }
+                  })
                 }
-              })
-            }
 
-            {/* To add new todo task */}
-            <li className="todo-item new">
-              <div className="todo-card" onClick={() => this.toggleTodoHandler(true)}>
-                <h3 className="todo-title"> <span className="action">
-                  <i className="complete material-icons md-36 md-light">add_circle_outline</i>
-                </span>
-                  <span className="title">ADD A TODO</span></h3>
-              </div>
-            </li>
+                {/* To add new todo task */}
+                <li className="todo-item new">
+                  <div className="todo-card" onClick={() => this.toggleTodoHandler(true)}>
+                    <h3 className="todo-title"> <span className="action">
+                      <i className="complete material-icons md-36 md-light">add_circle_outline</i>
+                    </span>
+                      <span className="title">ADD A TODO</span></h3>
+                  </div>
+                </li>
 
-            {/* New Task creator form pop up */}
-            <AddTask
-              openNewTodo={openNewTodo}
-              toggleTodoHandler={this.toggleTodoHandler.bind(this)}
-              addNewTodoHandler={this.addNewTodoHandler.bind(this)}
-            />
-          </ul>
-        </div>
+                {/* New Task creator form pop up */}
+                <AddTask
+                  openNewTodo={openNewTodo}
+                  toggleTodoHandler={this.toggleTodoHandler.bind(this)}
+                  addNewTodoHandler={this.addNewTodoHandler.bind(this)}
+                />
+              </ul>
+            </div>
 
-        {/* completed todo task of app */}
-        <div className="todo-completed">
-          <ul className="todo-list-completed">
-            <h2> Completed Tasks </h2>
-            {
-              tasks.map((task, index) => {
-                if (task.completed) {
-                  return <CompletedTask
-                    completedTask={task}
-                    key={index}
-                    removeCompletedTaskHandler={this.removeCompletedTaskHandler.bind(this, index)}
-                  />
+            {/* completed todo task of app */}
+            <div className="todo-completed">
+              <ul className="todo-list-completed">
+                <h2> Completed Tasks </h2>
+                {
+                  tasks.map((task, index) => {
+                    if (task.completed) {
+                      return <CompletedTask
+                        completedTask={task}
+                        key={index}
+                        removeCompletedTaskHandler={this.removeCompletedTaskHandler.bind(this, index)}
+                      />
+                    }
+                  })
                 }
-              })
-            }
-          </ul>
+              </ul>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
     )
   }
 

@@ -20,19 +20,9 @@ class Home extends Component {
   componentDidMount = () => {
     const token = hlp.getCookie('token');
     if (token) {
-      this.getUserData();
+      this.props.history.push({ pathname: '/dashboard' });
     }
   };
-
-  getUserData() {
-    Backend.get('todo/todo-list').then((result) => {
-      const tasks = result.data;
-      this.props.fetchTasks({ tasks: tasks });
-      setTimeout(() => {
-        this.props.history.push({ pathname: '/todos' });
-      }, 1000);
-    })
-  }
 
   formSelectionHanndler(event) {
     this.setState({

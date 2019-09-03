@@ -18,10 +18,19 @@ export default class App extends Component {
       <BrowserRouter>
         <React.Fragment>
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/dashboard" exact component={Dashboard} />
-            <Route path="/todos" exact component={Todo} />
-            <Route path="/text-editor" exact component={TextEditor} />
+            <div className="dashboard">
+              <div className="wrapper ">
+                <Sidebar />
+                <div className="main-panel">
+                  <Header className="header" />
+                  <Route path="/" exact component={Home} />
+                  <Route path="/dashboard" exact component={Dashboard} />
+                  <Route path="/todos" exact component={Todo} />
+                  <Route path="/text-editor" exact component={TextEditor} />
+                  <Footer />
+                </div>
+              </div>
+            </div>
           </Switch>
         </React.Fragment>
       </BrowserRouter>
