@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-const Link = require("react-router-dom").Link;
 import * as HELPER from '../../helper/helper-functions';
+const Link = require("react-router-dom").Link;
 
 export default class Header extends Component {
 

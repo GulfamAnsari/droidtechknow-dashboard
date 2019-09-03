@@ -6,6 +6,9 @@ import TextEditor from './components/text-editor/TextEditor';
 import Home from './pages/home/Home';
 import Todo from './pages/todo/Todo';
 import Dashboard from './pages/dashboard/Dashboard';
+import Sidebar from './components/Sidebar/Sidebar';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
 
 export default class App extends Component {
 
