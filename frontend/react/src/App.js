@@ -9,6 +9,7 @@ import Dashboard from './pages/dashboard/Dashboard';
 import Sidebar from './components/Sidebar/Sidebar';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
+import Profile from './pages/profile/Profile';
 
 export default class App extends Component {
 
@@ -28,6 +29,7 @@ export default class App extends Component {
                 <div className="main-panel">
                   <Route path="/" component={Header} />
                   <Route path="/dashboard" exact component={Dashboard} />
+                  <Route path="/profile" exact component={Profile} />
                   <Route path="/todos" exact component={Todo} />
                   <Route path="/text-editor" exact component={TextEditor} />
                   <Footer />
