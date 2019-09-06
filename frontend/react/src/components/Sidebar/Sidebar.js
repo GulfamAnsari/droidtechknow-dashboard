@@ -16,57 +16,59 @@ export default class Sidebar extends Component {
           <a href="https://droidtechknow.com" target="_blank" className="simple-text logo-normal">
             DroidTechKnow
               </a>
-          <div className="mini-sidebar-nav">
-            {/* only show in mobile view */}
-
-
-            <span>
-              <a className="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i className="material-icons">notifications</i>
-                <span className="notification">5</span>
-              </a>
-              <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                <a className="dropdown-item" href="#">Mike John responded to your email</a>
+        </div>
+        <div className="sidebar-wrapper">
+          <form className="navbar-form">
+            <span className="bmd-form-group">
+              <div className="input-group no-border">
+                <input type="text" value="" className="form-control" placeholder="Search..." />
+                <button type="submit" className="btn btn-white btn-round btn-just-icon">
+                  <i className="material-icons">search</i>
+                  <div className="ripple-container"></div>
+                </button>
               </div>
             </span>
-
-            <span>
-              <a className="nav-link" href="#" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          </form>
+          <ul className="nav navbar-nav nav-mobile-menu">
+            <li className="nav-item dropdown">
+              <Link className="nav-link" to="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i className="material-icons">notifications</i>
+                <span className="notification">5</span>
+                <p className="d-lg-none d-md-block">
+                  Some Actions
+                  </p>
+              </Link>
+              <div className="dropdown-menu dropdown-menu-right showing hiding" aria-labelledby="navbarDropdownMenuLink" x-placement="bottom-end">
+                <a className="dropdown-item" href="#">Mike John responded to your email</a>
+              </div>
+            </li>
+            <li className="nav-item dropdown">
+              <Link className="nav-link" to="" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i className="material-icons">person</i>
-              </a>
-              <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                <p className="d-lg-none d-md-block">
+                  Account
+                  </p>
+              </Link>
+              <div className="dropdown-menu dropdown-menu-right hiding" aria-labelledby="navbarDropdownProfile" x-placement="bottom-end">
                 <Link className="dropdown-item" to="/profile">Profile</Link>
-                <Link className="dropdown-item" to="/setings">Settings</Link>
+                <Link className="dropdown-item" to="/setting">Settings</Link>
                 <div className="dropdown-divider"></div>
                 <Link className="dropdown-item" onClick={() => { this.logOut() }}>Log out</Link>
               </div>
-            </span>
-
-          </div>
-          <div className="mini-sidebar-nav">
-            <form className="navbar-form">
-              <div className="input-group no-border">
-                <input style={{ margin: '-15px', top: '12px' }} type="text" value="" className="form-control" placeholder="Search..." />
-              </div>
-            </form>
-          </div>
-          {/* ------------------ */}
-
-
-        </div>
-        <div className="sidebar-wrapper">
+            </li>
+          </ul>
           <ul className="nav">
             <li className="nav-item active  ">
-              <Link className="nav-link" to="./dashboard">
+              <a className="nav-link" href="./dashboard.html">
                 <i className="material-icons">dashboard</i>
                 <p>Dashboard</p>
-              </Link>
+              </a>
             </li>
             <li className="nav-item ">
-              <Link className="nav-link" to="/profile">
+              <a className="nav-link" href="./user.html">
                 <i className="material-icons">person</i>
                 <p>User Profile</p>
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
