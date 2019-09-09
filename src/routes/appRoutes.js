@@ -5,10 +5,6 @@ var MongoDBConnectController = require('../controllers/mongoDBControllers/mongoD
 var mongoDBConnectController = new MongoDBConnectController();
 var loginLogoutController = new LoginLogoutController();
 
-appRoutes.route('/').get((req, res) => {
-    res.sendFile(path.join(__dirname + '../../../public/react/index.html'));
-})
-
 appRoutes.route('/login').post((req, res) => {
     mongoDBConnectController.connectMongoDB().then((db) => {
         loginLogoutController.doLogin(req, res, db).then((data) => {
@@ -37,5 +33,9 @@ appRoutes.route('/signup').post((req, res) => {
         console.log(err);
     });
 });
+
+appRoutes.route('/').get((req, res) => {
+    res.sendFile(path.join(__dirname + '../../../public/react/index.html'));
+})
 
 module.exports = appRoutes;
