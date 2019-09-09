@@ -19,6 +19,12 @@ export default class Sidebar extends Component {
           icon: 'person',
           to: 'profile',
           path: '/profile'
+        },
+        {
+          name: 'Todo',
+          icon: 'view_list',
+          to: 'todos',
+          path: '/todos'
         }
       ]
     }
@@ -74,7 +80,6 @@ export default class Sidebar extends Component {
               </Link>
               <div className="dropdown-menu dropdown-menu-right hiding" aria-labelledby="navbarDropdownProfile" x-placement="bottom-end">
                 <Link className="dropdown-item" to="/profile">Profile</Link>
-                <Link className="dropdown-item" to="/setting">Settings</Link>
                 <div className="dropdown-divider"></div>
                 <Link className="dropdown-item" onClick={() => { this.logOut() }}>Log out</Link>
               </div>
@@ -94,6 +99,7 @@ export default class Sidebar extends Component {
             }
           </ul>
         </div>
+        <div class="sidebar-background"></div>
       </div>
     )
   }

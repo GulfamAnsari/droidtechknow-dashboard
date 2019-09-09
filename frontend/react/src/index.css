@@ -14350,7 +14350,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   height: calc(100vh - 75px);
   overflow: auto;
   width: 260px;
-  z-index: 1;
+  z-index: 2;
   padding-bottom: 30px;
 }
 
@@ -14494,7 +14494,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .sidebar .sidebar-background {
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   height: 100%;
   width: 100%;
   display: block;
@@ -14502,6 +14502,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   left: 0;
   background-size: cover;
   background-position: 50%;
+  background-image: url('./assets/images/sidebar-1.jpg')
 }
 
 .sidebar .sidebar-background:after {

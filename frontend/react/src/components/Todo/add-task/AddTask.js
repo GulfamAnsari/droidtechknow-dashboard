@@ -23,7 +23,7 @@ export default function AddTask({ openNewTodo, toggleTodoHandler, addNewTodoHand
   return (
     <main role="main" className={openNewTodo ? 'main-wrap' : 'hidden'}>
       <header role="heading" className="header">
-        <h1 className="app-header"> Add your task <span className="close-add-task" onClick={() => { toggleTodoHandler(false) }}>X</span></h1>
+        <h1 className="app-header"> Add your task <span className="Todo-close-add-task" onClick={() => { toggleTodoHandler(false) }}>X</span></h1>
       </header>
       <section className="main-content">
         <section className="todo-form">

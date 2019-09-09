@@ -59,7 +59,6 @@ export default class Header extends Component {
                 </a>
                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                   <Link className="dropdown-item" to="/profile">Profile</Link>
-                  <Link className="dropdown-item" to="/setings">Settings</Link>
                   <div className="dropdown-divider"></div>
                   <Link className="dropdown-item" to="/" onClick={() => { this.logOut() }}>Log out</Link>
                 </div>

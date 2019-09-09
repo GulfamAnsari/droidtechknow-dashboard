@@ -17,62 +17,53 @@ export default class Profile extends Component {
                     <div className="row">
                       <div className="col-md-5">
                         <div className="form-group bmd-form-group">
-                          <label className="bmd-label-floating">Company (disabled)</label>
-                          <input type="text" className="form-control" disabled />
+                          <input type="text" className="form-control" placeholder="Company (disabled)" disabled />
                         </div>
                       </div>
                       <div className="col-md-3">
                         <div className="form-group bmd-form-group">
-                          <label className="bmd-label-floating">Username</label>
-                          <input type="text" className="form-control" />
+                          <input placeholder="Usrename" type="text" className="form-control" />
                         </div>
                       </div>
                       <div className="col-md-4">
                         <div className="form-group bmd-form-group">
-                          <label className="bmd-label-floating">Email address</label>
-                          <input type="email" className="form-control" />
+                          <input type="email" className="form-control" placeholder="Email address" />
                         </div>
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group bmd-form-group">
-                          <label className="bmd-label-floating">Fist Name</label>
-                          <input type="text" className="form-control" />
+                          <input type="text" className="form-control"  placeholder="Fist Name"/>
                         </div>
                       </div>
                       <div className="col-md-6">
                         <div className="form-group bmd-form-group">
-                          <label className="bmd-label-floating">Last Name</label>
-                          <input type="text" className="form-control" />
+                          <input type="text" className="form-control" placeholder="Last Name" />
                         </div>
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-md-12">
                         <div className="form-group bmd-form-group">
-                          <label className="bmd-label-floating">Adress</label>
-                          <input type="text" className="form-control" />
+                          <input type="text" className="form-control" placeholder="Adress"/>
                         </div>
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-md-4">
                         <div className="form-group bmd-form-group">
-                          <label className="bmd-label-floating">City</label>
-                          <input type="text" className="form-control" />
+                          <input type="text" className="form-control" placeholder="City" />
                         </div>
                       </div>
                       <div className="col-md-4">
                         <div className="form-group bmd-form-group">
-                          <label className="bmd-label-floating">Country</label>
-                          <input type="text" className="form-control" />
+                          <input type="text" className="form-control" placeholder="Country" />
                         </div>
                       </div>
                       <div className="col-md-4">
                         <div className="form-group bmd-form-group">
-                          <label className="bmd-label-floating">Postal Code</label>
-                          <input type="text" className="form-control" />
+                          <input type="text" className="form-control" placeholder="Postal Code" />
                         </div>
                       </div>
                     </div>
@@ -81,9 +72,8 @@ export default class Profile extends Component {
                         <div className="form-group bmd-form-group">
                           <label>About Me</label>
                           <div className="form-group bmd-form-group">
-                            <label className="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that
-                            two seat Lambo.</label>
-                            <textarea className="form-control" rows="5"></textarea>
+                            <textarea className="form-control" rows="5" placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that
+                            two seat Lambo."></textarea>
                           </div>
                         </div>
                       </div>
