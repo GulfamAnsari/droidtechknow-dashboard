@@ -5,10 +5,6 @@ var droidRoutes = express.Router();
 var DatabaseController = require('../controllers/droidDatabaseControllers/databaseController');
 var databaseController = new DatabaseController();
 
-droidRoutes.route('/*').get((req, res) => {
-  res.sendFile(path.join(__dirname + '../../../public/angular/index.html'));
-})
-
 droidRoutes.route('/article-list').get((req, res) => {
   databaseController.getAllArticleList().then((data) => {
     res.send(data);
@@ -84,5 +80,9 @@ droidRoutes.route('/send-query').post((req, res) => {
     }
   });
 });
+
+droidRoutes.route('/*').get((req, res) => {
+  res.sendFile(path.join(__dirname + '../../../public/angular/index.html'));
+})
 
 module.exports = droidRoutes;
