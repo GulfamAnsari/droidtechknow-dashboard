@@ -1,9 +1,35 @@
 import React, { Component } from 'react'
-
+import * as Backend from '../../helper/backend';
 export default class Profile extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      profile_image: ''
+    }
+  }
+  uploadUserPhoto = ($event) =>{
+    const path = '/home/gulfamansari/Pictures/photo-gallery-apps-side.jpg';
+    console.log($event)
+    const payload = { payload: { userImage:  path }}
+    Backend.post('/upload', payload).then((success)=>{
+      this.setState({
+        profile_image: success.data.$set.profile_image
+      })
+    });
+  }
+
   render() {
     return (
+      
       <div className="content">
+        <input type="file" name="userImage" accept="image/*" 
+        onChange={(event)=> { 
+           this.uploadUserPhoto(event) 
+      }}
+      onClick={(event)=> { 
+           event.target.value = null
+      }} />
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-8">
@@ -88,7 +114,7 @@ export default class Profile extends Component {
               <div className="card card-profile">
                 <div className="card-avatar">
                   <a href="#pablo">
-                    <img className="img" src="../assets/img/faces/marc.jpg" />
+                    <img className="img" src={this.state.profile_image} />
                   </a>
                 </div>
                 <div className="card-body">
