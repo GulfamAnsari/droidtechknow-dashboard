@@ -5,81 +5,85 @@ const Link = require("react-router-dom").Link;
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      apps: [
+        {
+          name: 'TODO',
+          icon: 'list',
+          link: '/todos',
+          taglineIcon: 'format_list_numbered_rtl',
+          cardClass: 'card-header-warning',
+          tagline: '10 TODOS need to be done',
+          catagory: 'Used Space',
+          title: '49/50 \n GB'
+        },
+        {
+          name: 'STORE',
+          icon: 'store',
+          link: '/',
+          taglineIcon: 'date_range',
+          cardClass: 'card-header-success',
+          tagline: 'Last 24 Hours',
+          catagory: 'Revenue',
+          title: '$34,245'
+        },
+        {
+          name: 'TWITTER',
+          icon: 'update',
+          link: '/',
+          taglineIcon: 'list',
+          cardClass: 'card-header-danger',
+          tagline: 'Last 24 Hours',
+          catagory: 'Followers',
+          title: '245'
+        },
+        {
+          name: 'ISSUES',
+          icon: 'info_outline',
+          link: '/',
+          taglineIcon: 'update',
+          cardClass: 'card-header-info',
+          tagline: 'Just Updated',
+          catagory: 'Tracked from Github',
+          title: '75'
+        }
+      ]
+    }
   }
 
   render() {
+    const { apps } = this.state;
+
     return (
       <div className="content">
         <div className="container-fluid">
           {/* First row */}
           <div className="row">
-            <div className="col-lg-3 col-md-6 col-sm-6">
-              <div className="card card-stats">
-                <div className="card-header card-header-warning card-header-icon">
-                  <div className="card-icon">
-                    <i className="material-icons">content_copy</i>
-                  </div>
-                  <p className="card-category">Used Space</p>
-                  <h3 className="card-title">49/50
-                    <small>GB</small>
-                  </h3>
-                </div>
-                <div className="card-footer">
-                  <div className="stats">
-                    <i className="material-icons text-danger">warning</i>
-                    <Link to="/todos">TODO</Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6 col-sm-6">
-              <div className="card card-stats">
-                <div className="card-header card-header-success card-header-icon">
-                  <div className="card-icon">
-                    <i className="material-icons">store</i>
-                  </div>
-                  <p className="card-category">Revenue</p>
-                  <h3 className="card-title">$34,245</h3>
-                </div>
-                <div className="card-footer">
-                  <div className="stats">
-                    <i className="material-icons">date_range</i> Last 24 Hours
+            {
+              apps.map((app) => {
+                return <div className="col-lg-3 col-md-6 col-sm-6">
+                  <div className="card card-stats">
+                    <Link to={app.link}>
+                      <div className={`card-header ${app.cardClass} card-header-icon`}>
+                        <div className="card-icon">
+                          <i className="material-icons">{app.icon}</i>
+                        </div>
+                        <p className="card-category">{app.catagory}</p>
+                        <h3 className="card-title">
+                          {app.title}
+                        </h3>
+                      </div>
+                      <div className="card-footer">
+                        <div className="stats">
+                          <i className="material-icons">{app.taglineIcon}</i>
+                          <Link to={app.link}>{app.tagline}</Link>
+                        </div>
+                      </div>
+                    </Link>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6 col-sm-6">
-              <div className="card card-stats">
-                <div className="card-header card-header-danger card-header-icon">
-                  <div className="card-icon">
-                    <i className="material-icons">info_outline</i>
-                  </div>
-                  <p className="card-category">Fixed Issues</p>
-                  <h3 className="card-title">75</h3>
-                </div>
-                <div className="card-footer">
-                  <div className="stats">
-                    <i className="material-icons">local_offer</i> Tracked from Github
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6 col-sm-6">
-              <div className="card card-stats">
-                <div className="card-header card-header-info card-header-icon">
-                  <div className="card-icon">
-                    <i className="fa fa-twitter"></i>
-                  </div>
-                  <p className="card-category">Followers</p>
-                  <h3 className="card-title">+245</h3>
-                </div>
-                <div className="card-footer">
-                  <div className="stats">
-                    <i className="material-icons">update</i> Just Updated
-                  </div>
-                </div>
-              </div>
-            </div>
+              })
+            }
           </div>
 
           {/* Second Row */}
