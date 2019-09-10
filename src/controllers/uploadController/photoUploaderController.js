@@ -17,13 +17,18 @@ class PhotoUploaderController {
 
   uploadAndSave(req, res, db) {
     return new Promise((resolve, reject) => {
-      const options = { unique_filename: false, overwrite: true, use_filename: true };
       const filePath = req.body.payload.userImage;
+      const email = helperController.decoreJWT(req.headers.token).email;
+      const options = {
+        unique_filename: false,
+        overwrite: true,
+        use_filename: true,
+        public_id: email,
+        width: 200, height: 200, gravity: "face", radius: "max", crop: "thumb"
+      };
 
       cloudinary.uploader.upload(filePath, options, (error, result) => {
         if (error) reject(error);
-        
-        const email = helperController.decoreJWT(req.headers.token).email;
         const imageUrl = result.secure_url;
         var dbo = db.db(CRED_OBJECTS.database);
 
