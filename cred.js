@@ -11,6 +11,11 @@ module.exports = CRED_OBJECTS = {
     password: process.env.MONGO_PASSWORD,
     database: process.env.MONGO_DATABASE
   },
+  CLOUDINARY: {
+    API_KEY: process.env.CLOUDINARY_API_KEY,
+    API_SECRET: process.env.CLOUDINARY_API_SECRET,
+    CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+  },
   SECRET_KEY: process.env.SECRET_KEY
 }
 
