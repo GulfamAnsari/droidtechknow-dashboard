@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import * as Backend from '../../helper/backend';
 import * as Helper from '../../helper/helper-functions';
-import personImage from '../../assets/images/person-default.svg';
 export default class Profile extends Component {
 
   constructor(props) {
@@ -16,7 +15,7 @@ export default class Profile extends Component {
       city: '',
       userDefiendCountry: '',
       about: '',
-      userImage: personImage
+      userImage: 'https://res.cloudinary.com/dcbkmnryr/image/upload/v1568225419/person-default_biywdl.svg'
     }
   }
 
