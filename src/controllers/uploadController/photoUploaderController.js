@@ -19,6 +19,7 @@ class PhotoUploaderController {
     return new Promise((resolve, reject) => {
       const filePath = req.body.payload.userImage;
       const email = helperController.decoreJWT(req.headers.token).email;
+      // const email = "gulfam@gmail.com"
       const options = {
         unique_filename: false,
         overwrite: true,
@@ -26,7 +27,6 @@ class PhotoUploaderController {
         public_id: email,
         width: 200, height: 200, gravity: "face", radius: "max", crop: "thumb"
       };
-
       cloudinary.uploader.upload(filePath, options, (error, result) => {
         if (error) reject(error);
         const imageUrl = result.secure_url;
