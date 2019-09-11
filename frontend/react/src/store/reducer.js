@@ -1,4 +1,7 @@
 const initialState = {
+  userInfor: {
+
+  },
   taskState: {
     tasks: []
   },

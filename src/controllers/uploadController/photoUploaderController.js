@@ -29,12 +29,10 @@ class PhotoUploaderController {
       };
       cloudinary.uploader.upload(filePath, options, (error, result) => {
         if (error) reject(error);
-        const imageUrl = result.secure_url;
         var dbo = db.db(CRED_OBJECTS.database);
-
         dbo.collection(COLLECTIONS.LOGIN).find({ email }).toArray((err, dbResult) => {
           if (err) reject(err);
-          var newvalues = { $set: { profile_image: imageUrl } };
+          var newvalues = { $set: { ...req.body.payload } };
           mongoDBConnectController.updateOne(db, COLLECTIONS.LOGIN, { email }, newvalues).then((res) => {
             resolve(newvalues);
           }, err => reject(err));

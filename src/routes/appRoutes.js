@@ -36,7 +36,7 @@ appRoutes.route('/signup').post((req, res) => {
     });
 });
 
-appRoutes.route('/upload').post((req, res) => {
+appRoutes.route('/update').post((req, res) => {
     mongoDBConnectController.connectMongoDB().then((db) => {
         photoUploaderController.uploadAndSave(req, res, db).then((data) => {
             db.close();

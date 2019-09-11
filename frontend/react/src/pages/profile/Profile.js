@@ -1,36 +1,51 @@
 import React, { Component } from 'react'
 import * as Backend from '../../helper/backend';
 import * as Helper from '../../helper/helper-functions';
+import personImage from '../../assets/images/person-default.svg';
 export default class Profile extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      profile_image: ''
+      firstname: '',
+      lastname: '',
+      mobile: '',
+      occupation: '',
+      gender: '',
+      address: '',
+      city: '',
+      userDefiendCountry: '',
+      about: '',
+      userImage: personImage
     }
   }
 
+  onInputChange = (event) =>{
+    this.setState({
+      [event.target.name]:event.target.value
+    })
+  }
+
+
   uploadUserPhoto = ($event) =>{
     Helper.getBase64($event.target.files[0]).then((base64Data)=>{
-    const data = { payload: { userImage:  base64Data }}
-    Backend.post('/upload', data).then((success)=>{
-        this.setState({
-          profile_image: success.data.$set.profile_image
-        })
-      });
+      this.setState({
+        userImage: base64Data
+      })
+    });
+  }
+
+  updateProfile = (event) => {
+    event.preventDefault();
+    const data = { payload: {...this.state}}
+    Backend.post('/update', data).then((success)=>{
+      // update global store
     });
   }
 
   render() {
     return (
       <div className="content">
-        <input type="file" name="userImage" accept="image/*" 
-        onChange={(event)=> { 
-           this.uploadUserPhoto(event) 
-      }}
-      onClick={(event)=> { 
-           event.target.value = null
-      }} />
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-8">
@@ -42,55 +57,50 @@ export default class Profile extends Component {
                 <div className="card-body">
                   <form>
                     <div className="row">
-                      <div className="col-md-5">
+                      <div className="col-md-6">
                         <div className="form-group bmd-form-group">
-                          <input type="text" className="form-control" placeholder="Company (disabled)" disabled />
+                          <input name="firstname" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control"  placeholder="Fist Name"/>
                         </div>
                       </div>
-                      <div className="col-md-3">
+                      <div className="col-md-6">
                         <div className="form-group bmd-form-group">
-                          <input placeholder="Usrename" type="text" className="form-control" />
-                        </div>
-                      </div>
-                      <div className="col-md-4">
-                        <div className="form-group bmd-form-group">
-                          <input type="email" className="form-control" placeholder="Email address" />
+                          <input name="lastname" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="Last Name" />
                         </div>
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col-md-6">
+                      <div className="col-md-4">
                         <div className="form-group bmd-form-group">
-                          <input type="text" className="form-control"  placeholder="Fist Name"/>
+                          <input name="mobile" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="Mobile Number" />
                         </div>
                       </div>
-                      <div className="col-md-6">
+                      <div className="col-md-4">
                         <div className="form-group bmd-form-group">
-                          <input type="text" className="form-control" placeholder="Last Name" />
+                          <input name="occupation" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="Occupation" />
+                        </div>
+                      </div>
+                      <div className="col-md-4">
+                        <div className="form-group bmd-form-group">
+                          <input name="gender" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="Gender" />
                         </div>
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-md-12">
                         <div className="form-group bmd-form-group">
-                          <input type="text" className="form-control" placeholder="Adress"/>
+                          <input name="address" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="Adress"/>
                         </div>
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col-md-4">
+                      <div className="col-md-6">
                         <div className="form-group bmd-form-group">
-                          <input type="text" className="form-control" placeholder="City" />
+                          <input name="city" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="City" />
                         </div>
                       </div>
-                      <div className="col-md-4">
+                      <div className="col-md-6">
                         <div className="form-group bmd-form-group">
-                          <input type="text" className="form-control" placeholder="Country" />
-                        </div>
-                      </div>
-                      <div className="col-md-4">
-                        <div className="form-group bmd-form-group">
-                          <input type="text" className="form-control" placeholder="Postal Code" />
+                          <input name="userDefiendCountry" onChange={(event)=>{this.onInputChange(event)}} type="text" className="form-control" placeholder="Country" />
                         </div>
                       </div>
                     </div>
@@ -99,13 +109,30 @@ export default class Profile extends Component {
                         <div className="form-group bmd-form-group">
                           <label>About Me</label>
                           <div className="form-group bmd-form-group">
-                            <textarea className="form-control" rows="5" placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that
+                            <textarea onChange={(event)=>{this.onInputChange(event)}} name="about" className="form-control" rows="5" placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that
                             two seat Lambo."></textarea>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <button type="submit" className="btn btn-primary pull-right">Update Profile</button>
+
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="form-group bmd-form-group">
+                          <label style={{ display:'block', cursor: 'pointer',border: 'dotted 2px #9c27b0',padding: '8px 24px',color: '#9c27b0'}} tabindex="0" for="profile-photo" class="input-file-trigger">Upload your profile photo <i className="fa fa-edit"></i></label>
+                          <div className="form-group bmd-form-group">
+                            <input type="file" name="userImage" accept="image/*" id="profile-photo" 
+                              onChange={(event)=> { 
+                                this.uploadUserPhoto(event) 
+                            }}
+                            onClick={(event)=> { 
+                                event.target.value = null
+                            }} />
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                    <button type="submit" className="btn btn-primary pull-right" onClick={(event)=>{this.updateProfile(event)}}>Update Profile</button>
                     <div className="clearfix"></div>
                   </form>
                 </div>
@@ -114,9 +141,7 @@ export default class Profile extends Component {
             <div className="col-md-4">
               <div className="card card-profile">
                 <div className="card-avatar">
-                  <a href="#pablo">
-                    <img className="img" src={this.state.profile_image} />
-                  </a>
+                  <img className="img" style={{background: 'white'}} src={this.state.userImage} />
                 </div>
                 <div className="card-body">
                   <h6 className="card-category text-gray">CEO / Co-Founder</h6>
