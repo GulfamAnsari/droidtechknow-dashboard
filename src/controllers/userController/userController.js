@@ -43,6 +43,7 @@ class UserController {
 
   fetchInformation(req, res, db) {
     const email = helperController.decoreJWT(req.headers.token).email;
+    var dbo = db.db(CRED_OBJECTS.database);
     dbo.collection(COLLECTIONS.LOGIN).find({ email }).toArray((err, dbResult) => {
       if (err) reject(err);
       resolve({ userInfo: dbResult[0] });

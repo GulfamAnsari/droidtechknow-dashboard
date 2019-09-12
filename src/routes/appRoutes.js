@@ -38,7 +38,7 @@ appRoutes.route('/signup').post((req, res) => {
 
 appRoutes.route('/fetch-user-info').get((req, res) => {
     mongoDBConnectController.connectMongoDB().then((db) => {
-        userController.updateInformation(req, res, db).then((data) => {
+        userController.fetchInformation(req, res, db).then((data) => {
             db.close();
             res.send(data);
         }, (err) => {
@@ -51,7 +51,7 @@ appRoutes.route('/fetch-user-info').get((req, res) => {
 
 appRoutes.route('/update-user-info').post((req, res) => {
     mongoDBConnectController.connectMongoDB().then((db) => {
-        userController.fetchInformation(req, res, db).then((data) => {
+        userController.updateInformation(req, res, db).then((data) => {
             db.close();
             res.send(data);
         }, (err) => {
