@@ -43,7 +43,7 @@ export const fetchUserInfo = () => {
     //     }
     //   }
     // }
-    dispatch(data);
+    // dispatch(data);
   }
 }
 
