@@ -13,9 +13,9 @@ cloudinary.config({
 });
 
 
-class PhotoUploaderController {
+class UserController {
 
-  uploadAndSave(req, res, db) {
+  updateInformation(req, res, db) {
     return new Promise((resolve, reject) => {
       const filePath = req.body.payload.userImage;
       const email = helperController.decoreJWT(req.headers.token).email;
@@ -41,6 +41,14 @@ class PhotoUploaderController {
     })
   }
 
+  fetchInformation(req, res, db) {
+    const email = helperController.decoreJWT(req.headers.token).email;
+    dbo.collection(COLLECTIONS.LOGIN).find({ email }).toArray((err, dbResult) => {
+      if (err) reject(err);
+      resolve({ userInfo: dbResult[0] });
+    });
+  }
+
 }
 
-module.exports = PhotoUploaderController;
+module.exports = UserController;

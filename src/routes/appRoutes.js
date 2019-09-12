@@ -2,8 +2,8 @@ var appRoutes = require('express').Router();
 const path = require('path')
 var LoginLogoutController = require('../controllers/loginLogoutControllers/loginLogoutController')
 var MongoDBConnectController = require('../controllers/mongoDBControllers/mongoDBConnectController');
-var PhotoUploaderController = require('../controllers/uploadController/photoUploaderController');
-var photoUploaderController = new PhotoUploaderController()
+var UserController = require('../controllers/userController/userController');
+var userController = new UserController()
 var mongoDBConnectController = new MongoDBConnectController();
 var loginLogoutController = new LoginLogoutController();
 
@@ -36,9 +36,22 @@ appRoutes.route('/signup').post((req, res) => {
     });
 });
 
+appRoutes.route('/fetch-user-info').get((req, res) => {
+    mongoDBConnectController.connectMongoDB().then((db) => {
+        userController.updateInformation(req, res, db).then((data) => {
+            db.close();
+            res.send(data);
+        }, (err) => {
+            console.log(err);
+        });
+    }, (err) => {
+        console.log(err);
+    });
+});
+
 appRoutes.route('/update-user-info').post((req, res) => {
     mongoDBConnectController.connectMongoDB().then((db) => {
-        photoUploaderController.uploadAndSave(req, res, db).then((data) => {
+        userController.fetchInformation(req, res, db).then((data) => {
             db.close();
             res.send(data);
         }, (err) => {
