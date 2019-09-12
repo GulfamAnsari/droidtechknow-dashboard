@@ -20,11 +20,11 @@ export const updateTask = (value) => {
 
 export const fetchTasks = () => {
   return (dispatch) => {
-    const tasks = {
-      type: FETCH_TASKS_DATA
-    }
     Backend.get('todo/todo-list').then((result) => {
-      const tasks = result.data;
+      const tasks = {
+        type: FETCH_TASKS_DATA,
+        value: { tasks: result.data }
+      }
       dispatch(tasks);
     })
   }

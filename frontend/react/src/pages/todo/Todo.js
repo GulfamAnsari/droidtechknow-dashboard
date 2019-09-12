@@ -125,9 +125,6 @@ class Todo extends Component {
   componentDidMount = () => {
     this.props.fetchTasks();
   }
-
-
-
 }
 
 const mapStateToProps = (state) => {
