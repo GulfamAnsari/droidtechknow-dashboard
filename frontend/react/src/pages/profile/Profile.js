@@ -6,7 +6,7 @@ class Profile extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {userImage:''};
+    this.state = null;
   }
 
   componentDidMount = async ()=>{
@@ -53,7 +53,7 @@ class Profile extends Component {
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group bmd-form-group">
-                          <input name="firstname" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control"  placeholder="Fist Name"/>
+                          <input name="firstname" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control"  placeholder="First Name"/>
                         </div>
                       </div>
                       <div className="col-md-6">
