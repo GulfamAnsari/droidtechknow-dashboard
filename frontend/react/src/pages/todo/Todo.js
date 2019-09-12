@@ -3,10 +3,7 @@ import AddTask from '../../components/Todo/add-task/AddTask';
 import CompletedTask from '../../components/Todo/completed-task/CompletedTask';
 import Task from '../../components/Todo/tasks/Task';
 import { connect } from 'react-redux';
-import localForage from 'localforage';
-import * as actions from '../../store/actions';
-import * as hlp from '../../helper/helper-functions';
-import * as Backend from '../../helper/backend';
+import * as actions from './store/actions';
 import './Todo.scss';
 
 class Todo extends Component {
@@ -126,58 +123,23 @@ class Todo extends Component {
  * to fetch the application data.
  */
   componentDidMount = () => {
-    if (this.props.authState.isAuthenticated || hlp.getCookie('token')) {
-      const token = hlp.getCookie('token');
-      if (token) {
-        this.getUserData();
-      }
-    } else {
-      Backend.get('https://jsonplaceholder.typicode.com/posts').then((response) => {
-        localForage.getItem('tasks').then((data) => {
-          if (data) {
-            this.props.updateTasks(data.value);
-            return;
-          }
-        })
-        const updatedResponse = response.data.slice(1, 10);
-        const tasks = [];
-        updatedResponse.map((result, index) => {
-          // for better UI
-          const priority = ['Medium', 'High', 'Medium', 'High', 'Low', 'Medium', 'High', 'Low', 'Medium', 'High'];
-          const completed = [true, false, true, true, false, true, false, false, false, false];
-          /***/
-          tasks.push({
-            title: result.title,
-            description: result.body,
-            completed: completed[index],
-            priority: priority[index]
-          });
-        });
-        this.props.updateTasks(tasks);
-      });
-    };
+    this.props.fetchTasks();
   }
 
-  getUserData() {
-    Backend.get('todo/todo-list').then((result) => {
-      const tasks = result.data;
-      this.props.fetchTasks({ tasks: tasks });
-    })
-  }
+
 
 }
 
 const mapStateToProps = (state) => {
   return {
-    taskState: state.taskState,
-    authState: state.authState
+    taskState: state.Todo_Reducer.taskState
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     updateTasks: (tasks) => dispatch(actions.updateTask(tasks)),
-    fetchTasks: ({ tasks }) => dispatch(actions.fetchTasks({ tasks })),
+    fetchTasks: () => dispatch(actions.fetchTasks()),
   }
 }
 

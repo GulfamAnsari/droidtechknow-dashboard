@@ -4,9 +4,9 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux';
-import Reducer from './store/reducer';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import Reducer from './store/reducerCombiner';
 
 const store = createStore(Reducer, applyMiddleware(thunk));
 

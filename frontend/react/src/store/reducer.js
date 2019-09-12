@@ -2,26 +2,17 @@ const initialState = {
   userInfor: {
 
   },
-  taskState: {
-    tasks: []
-  },
   authState: {
     isAuthenticated: false
   }
 }
 
-const Reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'UPDATE_TASK':
-      return {
-        ...state,
-        taskState: { tasks: action.value, openNewTodo: false }
-      }
 
-    case 'FETCH_TASKS_DATA':
+const Main_Reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'login':
       return {
         ...state,
-        taskState: { tasks: action.value.tasks },
         authState: { isAuthenticated: true }
       }
 
@@ -30,4 +21,4 @@ const Reducer = (state = initialState, action) => {
   }
 }
 
-export default Reducer;
+export default Main_Reducer;
