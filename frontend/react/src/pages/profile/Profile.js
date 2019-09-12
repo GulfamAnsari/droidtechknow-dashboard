@@ -1,22 +1,19 @@
 import React, { Component } from 'react'
-import * as Backend from '../../helper/backend';
+import { connect } from 'react-redux';
 import * as Helper from '../../helper/helper-functions';
-export default class Profile extends Component {
+import * as actions from './store/actions';
+class Profile extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      firstname: '',
-      lastname: '',
-      mobile: '',
-      occupation: '',
-      gender: '',
-      address: '',
-      city: '',
-      userDefiendCountry: '',
-      about: '',
-      userImage: 'https://res.cloudinary.com/dcbkmnryr/image/upload/v1568225419/person-default_biywdl.svg'
-    }
+    this.state = {userImage:''};
+  }
+
+  componentDidMount = async ()=>{
+    this.props.fetchUserInfo();
+    await this.setState(()=>{
+     return this.props.userInfo;
+    })
   }
 
   onInputChange = (event) =>{
@@ -37,9 +34,7 @@ export default class Profile extends Component {
   updateProfile = (event) => {
     event.preventDefault();
     const data = { payload: {...this.state}}
-    Backend.post('/update', data).then((success)=>{
-      // update global store
-    });
+    this.props.updateProfile(data);
   }
 
   render() {
@@ -159,3 +154,18 @@ export default class Profile extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.Profile_Reducer.userInfo
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateProfile: (data) => dispatch(actions.updateProfile(data)),
+    fetchUserInfo: ()=> dispatch(actions.fetchUserInfo())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
