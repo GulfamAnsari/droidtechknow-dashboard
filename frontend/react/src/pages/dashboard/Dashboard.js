@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Dashboard.scss';
+import Table from '../../components/Table/Table';
 const Link = require("react-router-dom").Link;
 
 export default class Dashboard extends Component {
@@ -387,48 +388,11 @@ export default class Dashboard extends Component {
               </div>
             </div>
             <div className="col-lg-6 col-md-12">
-              <div className="card">
-                <div className="card-header card-header-warning">
-                  <h4 className="card-title">Employees Stats</h4>
-                  <p className="card-category">New employees on 15th September, 2016</p>
-                </div>
-                <div className="card-body table-responsive">
-                  <table className="table table-hover">
-                    <thead className="text-warning">
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Salary</th>
-                      <th>Country</th>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Dakota Rice</td>
-                        <td>$36,738</td>
-                        <td>Niger</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Minerva Hooper</td>
-                        <td>$23,789</td>
-                        <td>Curaçao</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Sage Rodriguez</td>
-                        <td>$56,142</td>
-                        <td>Netherlands</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Philip Chaney</td>
-                        <td>$38,735</td>
-                        <td>Korea, South</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+              <Table tableData={{
+                title: 'Employees Stats',
+                description: 'New employees on 15th September, 2016',
+                data: [{ name: 'gulfam', salary: '$2' }, { name: 'ansari', salary: '$2' }]
+              }} />
             </div>
           </div>
         </div>

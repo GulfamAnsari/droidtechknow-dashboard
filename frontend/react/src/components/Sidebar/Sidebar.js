@@ -8,6 +8,7 @@ class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      userInfo: null,
       pathMapping: [
         {
           name: 'Dashboard',
@@ -90,7 +91,7 @@ class Sidebar extends Component {
           <ul className="nav">
             {
               pathMapping.map((li) => {
-                return <li className={`nav-item ${pathname === li.path ? 'active': ''}`}>
+                return <li className={`nav-item ${pathname === li.path ? 'active' : ''}`}>
                   <Link className="nav-link" to={li.to}>
                     <i className="material-icons">{li.icon}</i>
                     <p>{li.name}</p>
@@ -104,6 +105,20 @@ class Sidebar extends Component {
       </div>
     )
   }
+
+  componentDidMount = () => {
+    this.setState({
+      userInfo: this.props.userInfo
+    })
+    if (this.props.userInfo === null) {
+      this.props.fetchUserInfo().then((data) => {
+        this.setState({
+          userInfo: this.props.userInfo
+        })
+      })
+    }
+  }
+
 }
 
 
@@ -116,8 +131,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUserInfo: ()=> dispatch(actions.fetchUserInfo()),
-    logout: ()=> dispatch(actions.logout())
+    fetchUserInfo: () => dispatch(actions.fetchUserInfo()),
+    logout: () => dispatch(actions.logout())
   }
 }
 

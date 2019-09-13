@@ -5,9 +5,12 @@ import * as actions from '../../store/actions';
 const Link = require("react-router-dom").Link;
 
 class Header extends Component {
-  
+
   constructor(props) {
     super(props);
+    this.state = {
+      userInfo: null
+    }
   }
 
   logOut = () => {
@@ -16,7 +19,6 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.props.userInfo);
     return (
       <nav className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div className="container-fluid">
@@ -71,6 +73,19 @@ class Header extends Component {
       </nav>
     )
   }
+
+  componentDidMount = () => {
+    this.setState({
+      userInfo: this.props.userInfo
+    })
+    if (this.props.userInfo === null) {
+      this.props.fetchUserInfo().then((data) => {
+        this.setState({
+          userInfo: this.props.userInfo
+        })
+      })
+    }
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -81,8 +96,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUserInfo: ()=> dispatch(actions.fetchUserInfo()),
-    logout: ()=> dispatch(actions.logout())
+    fetchUserInfo: () => dispatch(actions.fetchUserInfo()),
+    logout: () => dispatch(actions.logout())
   }
 }
 

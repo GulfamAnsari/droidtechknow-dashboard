@@ -17,13 +17,16 @@ export const logout = () => {
 
 export const fetchUserInfo = () => {
   return (dispatch, getState) => {
-    Backend.get('/fetch-user-info').then((result) => {
-      const data = {
-        type: FETCH_USER_INFO,
-        value: result.data
-      }
-      dispatch(data);
-    });
+    return new Promise((resolve, reject) => {
+      Backend.get('/fetch-user-info').then((result) => {
+        const data = {
+          type: FETCH_USER_INFO,
+          value: result.data
+        }
+        dispatch(data);
+        resolve(data);
+      });
+    })
   }
 }
 
