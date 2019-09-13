@@ -1,30 +1,28 @@
-// import localForage from 'localforage';
-// import * as Backend from '../helper/backend';
+import * as Backend from '../helper/backend';
 
-// export const updateTask = (value) => {
-//   return (dispatch, getState) => {
-//     const tasks = {
-//       type: 'UPDATE_TASK',
-//       value: value
-//     }
-//     if (getState().authState.isAuthenticated) {
-//       Backend.post('todo/todo-update', { payload: { tasks: value } }).then((result) => {
-//         dispatch(tasks);
-//       });
-//     } else {
-//       localForage.setItem('tasks', tasks).then((success) => {
-//         dispatch(success);
-//       });
-//     }
-//   }
-// }
+export const UPDATE_PROFILE = 'UPDATE_PROFILE';
+export const FETCH_USER_INFO = 'FETCH_USER_INFO';
 
-// export const fetchTasks = (value) => {
-//   return (dispatch) => {
-//     const tasks = {
-//       type: 'FETCH_TASKS_DATA',
-//       value: value
-//     }
-//     dispatch(tasks);
-//   }
-// }
+export const fetchUserInfo = () => {
+  return (dispatch, getState) => {
+    Backend.get('/fetch-user-info').then((result) => {
+      const data = {
+        type: FETCH_USER_INFO,
+        value: result.data
+      }
+      dispatch(data);
+    });
+  }
+}
+
+export const updateProfile = (value) => {
+  return (dispatch, getState) => {
+    Backend.post('/update-user-info', value).then((result) => {
+      const data = {
+        type: UPDATE_PROFILE,
+        userInfo: result.data
+      }
+      dispatch(data);
+    });
+  }
+}

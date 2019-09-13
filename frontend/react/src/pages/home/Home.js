@@ -20,7 +20,7 @@ class Home extends Component {
   componentDidMount = () => {
     const token = hlp.getCookie('token');
     if (token) {
-      this.props.history.push({ pathname: '/dashboard' });
+      this.fetchInitData()
     }
   };
 
@@ -56,7 +56,7 @@ class Home extends Component {
     Backend.post(url, data).then((result) => {
       if (result.data.data) {
         hlp.setCookie('token', result.data.data['access_token'], result.data.data['expires_in']);
-        this.props.history.push({ pathname: '/dashboard' });
+        this.fetchInitData()
       } else if (!result.data && url === '/signup') {
         this.setState({
           error: 'User Already Exists.'
@@ -68,6 +68,16 @@ class Home extends Component {
         });
       }
     })
+  }
+
+  fetchInitData = () => {
+    this.props.fetchUserInfo();
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (this.props.userInfo) {
+      this.props.history.push({ pathname: '/dashboard' });
+    }
   }
 
   render() {
@@ -94,13 +104,13 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    taskState: state.taskState
+    userInfo: state.Main_Reducer.userInfo
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTasks: ({ tasks }) => dispatch(actions.fetchTasks({ tasks })),
+    fetchUserInfo: () => dispatch(actions.fetchUserInfo())
   }
 }
 

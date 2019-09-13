@@ -1,19 +1,15 @@
+import { FETCH_USER_INFO } from './actions'
+
 const initialState = {
-  userInfor: {
-
-  },
-  authState: {
-    isAuthenticated: false
-  }
+  userInfo: null
 }
-
 
 const Main_Reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'login':
+    case FETCH_USER_INFO:
       return {
         ...state,
-        authState: { isAuthenticated: true }
+        userInfo: action.value.userInfo
       }
 
     default:

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import * as Helper from '../../helper/helper-functions';
-import * as actions from './store/actions';
+import * as actions from '../../store/actions';
 class Profile extends Component {
 
   constructor(props) {
@@ -10,8 +10,7 @@ class Profile extends Component {
   }
 
   componentDidMount = async ()=>{
-    this.props.fetchUserInfo();
-    await this.setState(()=>{
+    this.setState(()=>{
      return this.props.userInfo;
     })
   }
@@ -159,14 +158,13 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    userInfo: state.Profile_Reducer.userInfo
+    userInfo: state.Main_Reducer.userInfo
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateProfile: (data) => dispatch(actions.updateProfile(data)),
-    fetchUserInfo: ()=> dispatch(actions.fetchUserInfo())
+    updateProfile: (data) => dispatch(actions.updateProfile(data))
   }
 }
 

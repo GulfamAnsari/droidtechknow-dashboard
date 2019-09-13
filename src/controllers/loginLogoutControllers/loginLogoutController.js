@@ -60,7 +60,8 @@ class LoginLogoutController {
       time: Date(),
       country: userData.country,
       device: userData.device,
-      emailVefiry: false
+      emailVefiry: false,
+      userImage: 'https://res.cloudinary.com/dcbkmnryr/image/upload/v1568225419/person-default_biywdl.svg'
     }
     return userInfo;
   }

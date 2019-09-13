@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import * as HELPER from '../../helper/helper-functions';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions';
+
 const Link = require("react-router-dom").Link;
 
-export default class Header extends Component {
+class Header extends Component {
   
   constructor(props) {
     super(props);
-    console.log(props)
   }
 
   logOut = () => {
@@ -15,6 +17,7 @@ export default class Header extends Component {
   }
 
   render() {
+    console.log(this.props.userInfo);
     return (
       <nav className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div className="container-fluid">
@@ -70,3 +73,18 @@ export default class Header extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.Main_Reducer.userInfo
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUserInfo: ()=> dispatch(actions.fetchUserInfo())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
+
