@@ -135,7 +135,7 @@ class Profile extends Component {
               <div className="col-md-4">
                 <div className="card card-profile">
                   <div className="card-avatar">
-                    <img className="img" style={{background: 'white'}} src={this.state.userImage} />
+                    <img className="img" alt="your-profile" style={{background: 'white'}} src={this.state.userImage} />
                   </div>
                   <div className="card-body">
                     <h6 className="card-category text-gray">CEO / Co-Founder</h6>

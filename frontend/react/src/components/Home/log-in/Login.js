@@ -33,12 +33,12 @@ export default class Login extends Component {
     return (
       <form onSubmit={(event) => { onSubmitHandler(event, this.state) }} className="sign-in-htm">
         <div className="group">
-          <label htmlFor="user" className="label">Email</label>
-          <input required onChange={this.signInOnChangeHandler.bind(this)} id="user" name="username" type="text" className="input" />
+          <label htmlFor="sign-user" className="label">Email</label>
+          <input required onChange={this.signInOnChangeHandler.bind(this)} id="sign-user" name="username" type="text" className="input" />
         </div>
         <div className="group">
-          <label htmlFor="pass" className="label">Password</label>
-          <input required onChange={this.signInOnChangeHandler.bind(this)} id="pass" type="password" name="password" className="input" data-type="password" />
+          <label htmlFor="sign-pass" className="label">Password</label>
+          <input required onChange={this.signInOnChangeHandler.bind(this)} id="sign-pass" type="password" name="password" className="input" data-type="password" />
         </div>
         <div className="group">
           <input onChange={this.signInOnChangeHandler.bind(this)} id="check" type="checkbox" name="remebmer" className="check" />

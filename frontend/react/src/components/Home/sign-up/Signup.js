@@ -50,12 +50,12 @@ export default class Signup extends Component {
           <input required onChange={this.signUpOnChangeHandler.bind(this)} id="pass" type="password" name="password" className="input" data-type="password" />
         </div>
         <div className="group">
-          <label htmlFor="pass" className="label">Repeat Password</label>
-          <input required onChange={this.signUpOnChangeHandler.bind(this)} id="pass" type="password" name="repeat" className="input" data-type="password" />
+          <label htmlFor="r-pass" className="label">Repeat Password</label>
+          <input required onChange={this.signUpOnChangeHandler.bind(this)} id="r-pass" type="password" name="repeat" className="input" data-type="password" />
         </div>
         <div className="group">
-          <label htmlFor="pass" className="label">Email Address</label>
-          <input required onChange={this.signUpOnChangeHandler.bind(this)} id="pass" type="text" name="email" className="input" />
+          <label htmlFor="email" className="label">Email Address</label>
+          <input required onChange={this.signUpOnChangeHandler.bind(this)} id="email" type="text" name="email" className="input" />
         </div>
         <div className="group">
           <input type="submit" className="button" name="sign-up" value="Sign Up" />
