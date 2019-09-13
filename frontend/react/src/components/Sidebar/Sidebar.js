@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import * as HELPER from '../../helper/helper-functions';
-const Link = require("react-router-dom").Link;
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions';
 
-export default class Sidebar extends Component {
+const Link = require("react-router-dom").Link;
+class Sidebar extends Component {
 
   constructor(props) {
     super(props);
@@ -31,7 +32,7 @@ export default class Sidebar extends Component {
   }
 
   logOut = () => {
-    HELPER.setCookie('token', '', 0);
+    this.props.logout();
     this.props.history.push({ pathname: '/' });
   }
 
@@ -104,3 +105,21 @@ export default class Sidebar extends Component {
     )
   }
 }
+
+
+
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.Main_Reducer.userInfo
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUserInfo: ()=> dispatch(actions.fetchUserInfo()),
+    logout: ()=> dispatch(actions.logout())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+

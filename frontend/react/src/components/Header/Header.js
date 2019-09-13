@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import * as HELPER from '../../helper/helper-functions';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 
@@ -12,7 +11,7 @@ class Header extends Component {
   }
 
   logOut = () => {
-    HELPER.setCookie('token', '', 0);
+    this.props.logout();
     this.props.history.push({ pathname: '/' });
   }
 
@@ -82,7 +81,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUserInfo: ()=> dispatch(actions.fetchUserInfo())
+    fetchUserInfo: ()=> dispatch(actions.fetchUserInfo()),
+    logout: ()=> dispatch(actions.logout())
   }
 }
 
