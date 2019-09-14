@@ -49,9 +49,10 @@ class Profile extends Component {
 
   getUserTableData = ()=>{
     const { userInfo } =  this.state;
-
-    return [
-      {},
+    const showInfo = [{}];
+    const allInfo =  [
+      {key: 'Username', value: userInfo.username},
+      {key: 'Email', value: userInfo.email},      
       {key: 'Firstname', value: userInfo.firstname},
       {key: 'Lastname', value:  userInfo.lastname},
       {key: 'Mobile', value:userInfo.mobile},
@@ -61,7 +62,13 @@ class Profile extends Component {
       {key:'City', value: userInfo.city},
       {key:'UserDefiendCountry', value: userInfo.userDefiendCountry},
       {key:'About', value: userInfo.about},
-    ]
+    ];
+    for (let info of allInfo) {
+      if (info['value']) {
+        showInfo.push(info)
+      }
+    }
+    return showInfo;
   }
 
   render() {
@@ -175,12 +182,12 @@ class Profile extends Component {
                     <img className="img" alt="your-profile" style={{background: 'white'}} src={this.state.userInfo.userImage} />
                   </div>
                   <div className="card-body">
-                    <h6 className="card-category text-gray">{userInfo.occupation}</h6>
-                    <h4 className="card-title">{`${userInfo.firstname} ${userInfo.lastname}`}</h4>
+                    {userInfo.occupation ? <h6 className="card-category text-gray">{userInfo.occupation}</h6> : ''}
+                    <h4 className="card-title">{userInfo.firstname || userInfo.lastname ? `${userInfo.firstname} ${userInfo.lastname}`: `${userInfo.username}`}</h4> 
                     <p className="card-description">
-                      {userInfo.about}
+                      {userInfo.about ? userInfo.about: ''}
                        </p>
-                    <a href="#pablo" className="btn btn-primary btn-round">Follow</a>
+                    <a href="#" className="btn btn-primary btn-round">Follow</a>
                   </div>
                 </div>
               </div>
