@@ -8,18 +8,18 @@ export default class Footer extends Component {
           <nav className="float-left">
             <ul>
               <li>
-                <a href="https://droidtechknow.com/about" target="_blank" rel="noopener noreferrer">
+                <a className="text-gray" href="https://droidtechknow.com/about" target="_blank" rel="noopener noreferrer">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="https://droidtechknow.com/about" target="_blank" rel="noopener noreferrer">
+                <a className="text-gray" href="https://droidtechknow.com/about" target="_blank" rel="noopener noreferrer">
                   Blog
                 </a>
               </li>
             </ul>
           </nav>
-          <div className="copyright float-right">
+          <div className="copyright float-right text-gray">
             © 2019, DroidTechKnow
                 </div>
         </div>

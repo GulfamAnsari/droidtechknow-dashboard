@@ -14285,7 +14285,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .footer .copyright {
-  padding: 15px 0;
+  padding: 12px 0 15px 0;
 }
 
 .footer .copyright .material-icons {
@@ -19525,7 +19525,7 @@ html[dir="rtl"] .card .card-body, html[dir="rtl"] .card .card-footer {
 .toggle {
   width: 80px;
   height: 30px;
-  background: #333;
+  background: #8e24aa;
   margin: 20px auto;
   position: relative;
   border-radius: 50px;

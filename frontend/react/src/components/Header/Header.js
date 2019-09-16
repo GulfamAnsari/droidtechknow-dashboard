@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
+import * as scss from './Header.module.scss';
 
 const Link = require("react-router-dom").Link;
 
@@ -19,11 +20,12 @@ class Header extends Component {
   }
 
   render() {
+    const {userInfo} = this.state;
     return (
-      <nav className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+      <nav className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top Header">
         <div className="container-fluid">
           <div className="navbar-wrapper">
-            <Link className="navbar-brand" to="/dashboard">Dashboard</Link>
+            <span className="navbar-brand text-gray">{`Howdy, ${userInfo? userInfo.username: ''}`}</span>
           </div>
           <button className="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span className="sr-only">Toggle navigation</span>
@@ -56,7 +58,7 @@ class Header extends Component {
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i className="material-icons">person</i>
+                  <img width="35" className="rounded-circle" src={userInfo ? userInfo.userImage: ''} alt="profile" />
                   <p className="d-lg-none d-md-block">
                     Account
                   </p>
@@ -86,6 +88,7 @@ class Header extends Component {
       })
     }
   }
+
 }
 
 const mapStateToProps = (state) => {

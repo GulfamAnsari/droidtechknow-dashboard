@@ -32,7 +32,6 @@ class Profile extends Component {
   };
 
   onInputChange = (event) =>{
-    console.log(event.target.name, event.target.value)
     this.setState({
       userInfo: { ...this.state.userInfo, [event.target.name]: event.target.value}
     })
@@ -57,17 +56,18 @@ class Profile extends Component {
     const { userInfo } =  this.state;
     const showInfo = [{}];
     const allInfo =  [
-      {key: 'Username', value: userInfo.username},
-      {key: 'Email', value: userInfo.email},      
-      {key: 'Firstname', value: userInfo.firstname},
-      {key: 'Lastname', value:  userInfo.lastname},
-      {key: 'Mobile', value:userInfo.mobile},
-      {key:'Occupation', value: userInfo.occupation},
-      {key:'Gender', value: userInfo.gender},
-      {key:'Address', value: userInfo.address},
-      {key:'City', value: userInfo.city},
-      {key:'UserDefiendCountry', value: userInfo.userDefiendCountry},
-      {key:'About', value: userInfo.about},
+      {key: 'USERNAME', value: userInfo.username},
+      {key: 'EMAIL', value: userInfo.email},      
+      {key: 'FIRSTNAME', value: userInfo.firstname},
+      {key: 'LASTNAME', value:  userInfo.lastname},
+      {key: 'MOBILE', value:userInfo.mobile},
+      {key:'OCCUPATION', value: userInfo.occupation},
+      {key:'GENDER', value: userInfo.gender},
+      {key:'ADDRESS', value: userInfo.address},
+      {key:'CITY', value: userInfo.city},
+      {key:'COUNTRY', value: userInfo.userDefiendCountry? userInfo.userDefiendCountry: userInfo.country},
+      {key:'FACEBOOK URL', value: userInfo.facebookUrl},
+      {key:'ABOUT', value: userInfo.about},
     ];
     for (let info of allInfo) {
       if (info['value']) {
@@ -103,27 +103,27 @@ class Profile extends Component {
                         <div className="row">
                           <div className="col-md-6">
                             <div className="form-group bmd-form-group">
-                              <input name="firstname" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control"  placeholder="First Name"/>
+                              <input name="firstname" value={userInfo.firstname} type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control"  placeholder="First Name"/>
                             </div>
                           </div>
                           <div className="col-md-6">
                             <div className="form-group bmd-form-group">
-                              <input name="lastname" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="Last Name" />
+                              <input name="lastname" value={userInfo.lastname} type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="Last Name" />
                             </div>
                           </div>
                         </div>
                         <div className="row">
-                          <div className="col-md-4">
+                          <div className="col-md-3">
                             <div className="form-group bmd-form-group">
-                              <input name="mobile" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="Mobile Number" />
+                              <input name="mobile" value={userInfo.mobile} type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="Mobile Number" />
                             </div>
                           </div>
-                          <div className="col-md-4">
+                          <div className="col-md-3">
                             <div className="form-group bmd-form-group">
-                              <input name="occupation" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="Occupation" />
+                              <input name="occupation" value={userInfo.occupation} type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="Occupation" />
                             </div>
                           </div>
-                          <div className="col-md-4">
+                          <div className="col-md-6">
                             <div className="form-group bmd-form-group">
                               <span style={{color: 'rgba(134, 138, 124, 0.79)', margin: '0 4px 0 0', 'font-weight': '400'}}>Gender </span>
                               <input type="button" name="gender"  onClick={(event)=>{this.onInputChange(event)}} className={`${userInfo.gender === 'male' ? 'btn btn-sm btn-primary': 'btn btn-sm'}`} value="male" />
@@ -134,19 +134,26 @@ class Profile extends Component {
                         <div className="row">
                           <div className="col-md-12">
                             <div className="form-group bmd-form-group">
-                              <input name="address" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="Adress"/>
+                              <input name="address" type="text" value={userInfo.address} onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="Adress"/>
                             </div>
                           </div>
                         </div>
                         <div className="row">
                           <div className="col-md-6">
                             <div className="form-group bmd-form-group">
-                              <input name="city" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="City" />
+                              <input name="city" type="text" value={userInfo.city} onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="City" />
                             </div>
                           </div>
                           <div className="col-md-6">
                             <div className="form-group bmd-form-group">
-                              <input name="userDefiendCountry" onChange={(event)=>{this.onInputChange(event)}} type="text" className="form-control" placeholder="Country" />
+                              <input name="userDefiendCountry" value={userInfo.userDefiendCountry ? userInfo.userDefiendCountry: userInfo.country} onChange={(event)=>{this.onInputChange(event)}} type="text" className="form-control" placeholder="Country" />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-md-12">
+                            <div className="form-group bmd-form-group">
+                              <input name="facebookUrl" value={userInfo.facebookUrl} onChange={(event)=>{this.onInputChange(event)}} type="text" className="form-control" placeholder="Facebook URL" />
                             </div>
                           </div>
                         </div>
@@ -155,7 +162,7 @@ class Profile extends Component {
                             <div className="form-group bmd-form-group">
                               <label>About Me</label>
                               <div className="form-group bmd-form-group">
-                                <textarea onChange={(event)=>{this.onInputChange(event)}} name="about" className="form-control" rows="5" placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that
+                                <textarea onChange={(event)=>{this.onInputChange(event)}} value={userInfo.about} name="about" className="form-control" rows="5" placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that
                                 two seat Lambo."></textarea>
                               </div>
                             </div>
@@ -201,7 +208,7 @@ class Profile extends Component {
                     <p className="card-description">
                       {userInfo.about ? userInfo.about: ''}
                        </p>
-                    <a href="#" className="btn btn-primary btn-round">Follow</a>
+                    <a style={userInfo.facebookUrl ? {}: {cursor: 'not-allowed'}} href={userInfo.facebookUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-round">Follow</a>
                   </div>
                 </div>
               </div>

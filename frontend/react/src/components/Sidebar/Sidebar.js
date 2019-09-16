@@ -38,7 +38,7 @@ class Sidebar extends Component {
   }
 
   render() {
-    const { pathMapping } = this.state;
+    const { pathMapping, userInfo } = this.state;
     const { pathname } = this.props.location;
     return (
       <div className="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
@@ -75,7 +75,9 @@ class Sidebar extends Component {
             </li>
             <li className="nav-item dropdown">
               <Link className="nav-link" to="" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i className="material-icons">person</i>
+                <i className="material-icons">
+                  <img width="35" className="rounded-circle" src={userInfo ? userInfo.userImage: ''} alt="profile" />
+                </i>
                 <p className="d-lg-none d-md-block">
                   Account
                   </p>
