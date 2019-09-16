@@ -26,7 +26,7 @@ class UserController {
         overwrite: true,
         use_filename: true,
         public_id: email,
-        width: 200, height: 200, gravity: "face", radius: "max", crop: "thumb"
+        width: 200, height: 200, radius: "max", crop: "thumb"
       };
       cloudinary.uploader.upload(filePath, options, (error, result) => {
         if (error) reject(error);
