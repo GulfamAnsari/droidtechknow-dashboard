@@ -1,6 +1,9 @@
 .profilePage {
   .toggle {
-    align-self: center;
+    position: absolute;
+    z-index: 9;
+    top: 6px;
+    right: 42px;
   }
 
   .cardHeader {

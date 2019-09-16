@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import * as Helper from '../../helper/helper-functions';
 import * as actions from '../../store/actions';
 import Table from '../../components/Table/Table';
-import * as scss from './Profile.module.scss';class Profile extends Component {
+import * as scss from './Profile.module.scss';
+class Profile extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       userInfo: null,
-      edit: true
+      edit: false
     };
   }
 
@@ -83,6 +84,10 @@ import * as scss from './Profile.module.scss';class Profile extends Component {
           this.state.userInfo ? <div className="container-fluid">
             <div className="row">
               <div className="col-md-8">
+                <span className={scss.toggle + ' toggle'} >  
+                  <input type="checkbox" id="toggleButton"/>
+                  <label onClick={($event)=>{ this.setState({edit: !document.getElementById('toggleButton').checked}) }} for="toggleButton"></label>
+                </span>
                 {
                   edit ?
                   <div className="card">
@@ -91,12 +96,6 @@ import * as scss from './Profile.module.scss';class Profile extends Component {
                         <h4 className="card-title">Edit Profile</h4>
                       <p className="card-category">Complete your profile</p>
                       </div>
-                      <span className={scss.toggle}><Switch
-                        checked={edit}
-                        onChange={()=>{this.handleChange()}}
-                        value={true}
-                        inputProps={{ 'aria-label': 'secondary checkbox' }}
-                      /></span>
                     </div>
                     <div className="card-body">
                       <form>
@@ -125,7 +124,9 @@ import * as scss from './Profile.module.scss';class Profile extends Component {
                           </div>
                           <div className="col-md-4">
                             <div className="form-group bmd-form-group">
-                              <input name="gender" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="Gender" />
+                              <input type="button" name="male"  onChange={(event)=>{this.onInputChange(event)}} className={`btn btn-sm btn-primary ${this.state.userInfo.gender === 'male' ? 'active': ''}`} value={this.state.userInfo.gender} />
+                              <input type="button" name="female" onChange={(event)=>{this.onInputChange(event)}} className={`btn btn-sm btn-primary ${this.state.userInfo.gender === 'male' ? 'active': ''}`} value={this.state.userInfo.gender} />
+                               {/* <input name="gender" type="text" onChange={(event)=>{this.onInputChange(event)}} className="form-control" placeholder="Gender" /> */}
                             </div>
                           </div>
                         </div>
