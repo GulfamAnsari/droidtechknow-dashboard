@@ -30,7 +30,8 @@ class UserController {
       };
       cloudinary.uploader.upload(filePath, options, (error, result) => {
         if (error) reject(error);
-        payload.userImage = result.secure_url
+        payload.userImage = result.secure_url;
+        delete(payload_id);
         var dbo = db.db(CRED_OBJECTS.database);
         dbo.collection(COLLECTIONS.LOGIN).find({ email }).toArray((err, dbResult) => {
           if (err) reject(err);
