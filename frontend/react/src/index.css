@@ -19575,7 +19575,7 @@ html[dir="rtl"] .card .card-body, html[dir="rtl"] .card .card-footer {
   left: 54px;
 }
 .toggle input[type=checkbox]:checked + label:after {
-  background: #27ae60;
+  background: #7a12b5;
   /*activeColor*/
 }
 

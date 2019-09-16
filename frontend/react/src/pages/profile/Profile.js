@@ -32,6 +32,7 @@ class Profile extends Component {
   };
 
   onInputChange = (event) =>{
+    console.log(event.target.name, event.target.value)
     this.setState({
       userInfo: { ...this.state.userInfo, [event.target.name]: event.target.value}
     })
@@ -124,8 +125,9 @@ class Profile extends Component {
                           </div>
                           <div className="col-md-4">
                             <div className="form-group bmd-form-group">
-                              <input type="button" name="gender"  onChange={(event)=>{this.onInputChange(event)}} className={`btn btn-sm btn-default ${this.state.userInfo.gender === 'male' ? ' active primary': ''}`} value="male" />
-                              <input type="button" name="gender" onChange={(event)=>{this.onInputChange(event)}} className={`btn btn-sm btn-default ${this.state.userInfo.gender === 'female' ? ' active primary': ''}`} value="female" />
+                              <span style={{color: 'rgba(134, 138, 124, 0.79)', margin: '0 4px 0 0', 'font-weight': '400'}}>Gender </span>
+                              <input type="button" name="gender"  onClick={(event)=>{this.onInputChange(event)}} className={`${userInfo.gender === 'male' ? 'btn btn-sm btn-primary': 'btn btn-sm'}`} value="male" />
+                              <input type="button" name="gender" onClick={(event)=>{this.onInputChange(event)}} className={`${userInfo.gender === 'female' ? 'btn btn-sm btn-primary': 'btn btn-sm'}`} value="female" />
                             </div>
                           </div>
                         </div>
