@@ -124,8 +124,8 @@ class Profile extends Component {
                           </div>
                           <div className="col-md-4">
                             <div className="form-group bmd-form-group">
-                              <input type="button" name="male"  onChange={(event)=>{this.onInputChange(event)}} className={`btn btn-sm btn-primary ${this.state.userInfo.gender === 'male' ? 'active': ''}`} value="male" />
-                              <input type="button" name="female" onChange={(event)=>{this.onInputChange(event)}} className={`btn btn-sm btn-primary ${this.state.userInfo.gender === 'female' ? 'active': ''}`} value="female" />
+                              <input type="button" name="gender"  onChange={(event)=>{this.onInputChange(event)}} className={`btn btn-sm btn-default ${this.state.userInfo.gender === 'male' ? ' active primary': ''}`} value="male" />
+                              <input type="button" name="gender" onChange={(event)=>{this.onInputChange(event)}} className={`btn btn-sm btn-default ${this.state.userInfo.gender === 'female' ? ' active primary': ''}`} value="female" />
                             </div>
                           </div>
                         </div>
