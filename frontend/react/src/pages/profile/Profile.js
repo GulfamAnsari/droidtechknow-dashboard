@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import * as Helper from '../../helper/helper-functions';
 import * as actions from '../../store/actions';
 import Table from '../../components/Table/Table';
-class Profile extends Component {
+import * as scss from './Profile.module.scss';class Profile extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       userInfo: null,
-      edit: false
+      edit: true
     };
   }
 
@@ -25,6 +25,10 @@ class Profile extends Component {
       })
     }
   }
+
+  handleChange = () => event => {
+    this.setState({ ...this.state, edit: !this.state.edit });
+  };
 
   onInputChange = (event) =>{
     this.setState({
@@ -74,7 +78,7 @@ class Profile extends Component {
   render() {
     const { edit, userInfo} = this.state;
     return (
-      <div className="content">
+      <div className={scss.profilePage + ' content'}>
         {
           this.state.userInfo ? <div className="container-fluid">
             <div className="row">
@@ -82,9 +86,17 @@ class Profile extends Component {
                 {
                   edit ?
                   <div className="card">
-                    <div className="card-header card-header-primary">
-                      <h4 className="card-title">Edit Profile</h4>
+                    <div className={`${scss.cardHeader} card-header card-header-primary`}>
+                      <div>
+                        <h4 className="card-title">Edit Profile</h4>
                       <p className="card-category">Complete your profile</p>
+                      </div>
+                      <span className={scss.toggle}><Switch
+                        checked={edit}
+                        onChange={()=>{this.handleChange()}}
+                        value={true}
+                        inputProps={{ 'aria-label': 'secondary checkbox' }}
+                      /></span>
                     </div>
                     <div className="card-body">
                       <form>
