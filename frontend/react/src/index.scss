@@ -1,4 +1,5 @@
 /* Bootstarp and Dashboard styllling */
+$themeColor : #9c27b0;
 
 *,
 *::before,
@@ -3076,7 +3077,7 @@ fieldset:disabled a.btn {
 
 .btn-link {
   font-weight: 400;
-  color: #9c27b0;
+  color: $themeColor;
   background-color: transparent;
 }
 
@@ -9014,8 +9015,8 @@ a.text-dark:hover {
 
 .btn.btn-primary {
   color: #fff;
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  background-color: $themeColor;
+  border-color: $themeColor;
   box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2),
     0 1px 5px 0 rgba(156, 39, 176, 0.12);
 }
@@ -9058,7 +9059,7 @@ a.text-dark:hover {
 
 .open > .btn.btn-primary.dropdown-toggle.bmd-btn-icon {
   color: inherit;
-  background-color: #9c27b0;
+  background-color: $themeColor;
 }
 
 .open > .btn.btn-primary.dropdown-toggle.bmd-btn-icon:hover {
@@ -9071,8 +9072,8 @@ a.text-dark:hover {
 .btn.btn-primary:disabled.focus,
 .btn.btn-primary:disabled:focus,
 .btn.btn-primary:disabled:hover {
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  background-color: $themeColor;
+  border-color: $themeColor;
 }
 
 .btn.btn-primary:active,
@@ -9091,7 +9092,7 @@ a.text-dark:hover {
 .btn.btn-primary.btn-link:focus,
 .btn.btn-primary.btn-link:hover {
   background-color: transparent;
-  color: #9c27b0;
+  color: $themeColor;
 }
 
 .btn.btn-secondary {
@@ -9878,26 +9879,26 @@ fieldset[disabled][disabled] .btn.btn-raised {
 }
 
 .btn.btn-outline-primary {
-  color: #9c27b0;
+  color: $themeColor;
   background-color: transparent;
-  border-color: #9c27b0;
+  border-color: $themeColor;
 }
 
 .btn.btn-outline-primary.focus,
 .btn.btn-outline-primary:focus,
 .btn.btn-outline-primary:hover {
-  color: #9c27b0;
+  color: $themeColor;
   background-color: hsla(0, 0%, 60%, 0.2);
-  border-color: #9c27b0;
+  border-color: $themeColor;
 }
 
 .btn.btn-outline-primary.active,
 .btn.btn-outline-primary:active,
 .open > .btn.btn-outline-primary.dropdown-toggle,
 .show > .btn.btn-outline-primary.dropdown-toggle {
-  color: #9c27b0;
+  color: $themeColor;
   background-color: hsla(0, 0%, 60%, 0.2);
-  border-color: #9c27b0;
+  border-color: $themeColor;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
@@ -9913,9 +9914,9 @@ fieldset[disabled][disabled] .btn.btn-raised {
 .show > .btn.btn-outline-primary.dropdown-toggle.focus,
 .show > .btn.btn-outline-primary.dropdown-toggle:focus,
 .show > .btn.btn-outline-primary.dropdown-toggle:hover {
-  color: #9c27b0;
+  color: $themeColor;
   background-color: hsla(0, 0%, 60%, 0.4);
-  border-color: #9c27b0;
+  border-color: $themeColor;
 }
 
 .open > .btn.btn-outline-primary.dropdown-toggle.bmd-btn-icon {
@@ -9935,17 +9936,17 @@ fieldset[disabled][disabled] .btn.btn-raised {
 .btn.btn-outline-primary:disabled:focus,
 .btn.btn-outline-primary:disabled:hover {
   background-color: transparent;
-  border-color: #9c27b0;
+  border-color: $themeColor;
 }
 
 .bg-inverse .btn.btn-outline-primary {
-  color: #9c27b0;
+  color: $themeColor;
 }
 
 .bg-inverse .btn.btn-outline-primary.focus,
 .bg-inverse .btn.btn-outline-primary:focus,
 .bg-inverse .btn.btn-outline-primary:hover {
-  color: #9c27b0;
+  color: $themeColor;
   background-color: hsla(0, 0%, 80%, 0.15);
   border-color: hsla(0, 0%, 80%, 0.15);
 }
@@ -9954,7 +9955,7 @@ fieldset[disabled][disabled] .btn.btn-raised {
 .bg-inverse .btn.btn-outline-primary:active,
 .open > .bg-inverse .btn.btn-outline-primary.dropdown-toggle,
 .show > .bg-inverse .btn.btn-outline-primary.dropdown-toggle {
-  color: #9c27b0;
+  color: $themeColor;
   background-color: hsla(0, 0%, 80%, 0.15);
   border-color: hsla(0, 0%, 80%, 0.15);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
@@ -9972,7 +9973,7 @@ fieldset[disabled][disabled] .btn.btn-raised {
 .show > .bg-inverse .btn.btn-outline-primary.dropdown-toggle.focus,
 .show > .bg-inverse .btn.btn-outline-primary.dropdown-toggle:focus,
 .show > .bg-inverse .btn.btn-outline-primary.dropdown-toggle:hover {
-  color: #9c27b0;
+  color: $themeColor;
   background-color: hsla(0, 0%, 80%, 0.25);
   border-color: hsla(0, 0%, 80%, 0.25);
 }
@@ -9993,7 +9994,7 @@ fieldset[disabled][disabled] .btn.btn-raised {
 .bg-inverse .btn.btn-outline-primary:disabled:focus,
 .bg-inverse .btn.btn-outline-primary:disabled:hover {
   background-color: transparent;
-  border-color: #9c27b0;
+  border-color: $themeColor;
 }
 
 .btn.btn-outline-primary.btn-link {
@@ -10864,7 +10865,7 @@ fieldset[disabled][disabled] .btn.btn-raised {
 }
 
 .form-check .form-check-input:checked + .form-check-sign .check {
-  background: #9c27b0;
+  background: $themeColor;
 }
 
 .form-check .form-check-input:checked + .form-check-sign .check:before {
@@ -10950,7 +10951,7 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
   height: 15px;
   width: 15px;
   border-radius: 100%;
-  background-color: #9c27b0;
+  background-color: $themeColor;
   transform: scale3d(0, 0, 0);
 }
 
@@ -10967,11 +10968,11 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
 }
 
 .form-check .form-check-input:checked ~ .check {
-  background-color: #9c27b0;
+  background-color: $themeColor;
 }
 
 .form-check .form-check-input:checked ~ .circle {
-  border-color: #9c27b0;
+  border-color: $themeColor;
 }
 
 .form-check .form-check-input:checked .check:before {
@@ -11269,7 +11270,7 @@ fieldset[disabled] .switch label:hover {
 
 .form-control,
 .is-focused .form-control {
-  background-image: linear-gradient(0deg, #9c27b0 2px, rgba(156, 39, 176, 0) 0),
+  background-image: linear-gradient(0deg, $themeColor 2px, rgba(156, 39, 176, 0) 0),
     linear-gradient(0deg, #d2d2d2 1px, hsla(0, 0%, 82%, 0) 0);
 }
 
@@ -11294,21 +11295,21 @@ fieldset[disabled][disabled] .form-control {
 
 .form-control.form-control-success,
 .is-focused .form-control.form-control-success {
-  background-image: linear-gradient(0deg, #9c27b0 2px, rgba(156, 39, 176, 0) 0),
+  background-image: linear-gradient(0deg, $themeColor 2px, rgba(156, 39, 176, 0) 0),
     linear-gradient(0deg, #d2d2d2 1px, hsla(0, 0%, 82%, 0) 0),
     "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MTIgNzkyIj48cGF0aCBmaWxsPSIjNWNiODVjIiBkPSJNMjMzLjggNjEwYy0xMy4zIDAtMjYtNi0zNC0xNi44TDkwLjUgNDQ4LjhDNzYuMyA0MzAgODAgNDAzLjMgOTguOCAzODljMTguOC0xNC4yIDQ1LjUtMTAuNCA1OS44IDguNGw3MiA5NUw0NTEuMyAyNDJjMTIuNS0yMCAzOC44LTI2LjIgNTguOC0xMy43IDIwIDEyLjQgMjYgMzguNyAxMy43IDU4LjhMMjcwIDU5MGMtNy40IDEyLTIwLjIgMTkuNC0zNC4zIDIwaC0yeiIvPjwvc3ZnPg==";
 }
 
 .form-control.form-control-warning,
 .is-focused .form-control.form-control-warning {
-  background-image: linear-gradient(0deg, #9c27b0 2px, rgba(156, 39, 176, 0) 0),
+  background-image: linear-gradient(0deg, $themeColor 2px, rgba(156, 39, 176, 0) 0),
     linear-gradient(0deg, #d2d2d2 1px, hsla(0, 0%, 82%, 0) 0),
     "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MTIgNzkyIj48cGF0aCBmaWxsPSIjZjBhZDRlIiBkPSJNNjAzIDY0MC4ybC0yNzguNS01MDljLTMuOC02LjYtMTAuOC0xMC42LTE4LjUtMTAuNnMtMTQuNyA0LTE4LjUgMTAuNkw5IDY0MC4yYy0zLjcgNi41LTMuNiAxNC40LjIgMjAuOCAzLjggNi41IDEwLjggMTAuNCAxOC4zIDEwLjRoNTU3YzcuNiAwIDE0LjYtNCAxOC40LTEwLjQgMy41LTYuNCAzLjYtMTQuNCAwLTIwLjh6bS0yNjYuNC0zMGgtNjEuMlY1NDloNjEuMnY2MS4yem0wLTEwN2gtNjEuMlYzMDRoNjEuMnYxOTl6Ii8+PC9zdmc+";
 }
 
 .form-control.form-control-danger,
 .is-focused .form-control.form-control-danger {
-  background-image: linear-gradient(0deg, #9c27b0 2px, rgba(156, 39, 176, 0) 0),
+  background-image: linear-gradient(0deg, $themeColor 2px, rgba(156, 39, 176, 0) 0),
     linear-gradient(0deg, #d2d2d2 1px, hsla(0, 0%, 82%, 0) 0),
     "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MTIgNzkyIj48cGF0aCBmaWxsPSIjZDk1MzRmIiBkPSJNNDQ3IDU0NC40Yy0xNC40IDE0LjQtMzcuNiAxNC40LTUyIDBsLTg5LTkyLjctODkgOTIuN2MtMTQuNSAxNC40LTM3LjcgMTQuNC01MiAwLTE0LjQtMTQuNC0xNC40LTM3LjYgMC01Mmw5Mi40LTk2LjMtOTIuNC05Ni4zYy0xNC40LTE0LjQtMTQuNC0zNy42IDAtNTJzMzcuNi0xNC4zIDUyIDBsODkgOTIuOCA4OS4yLTkyLjdjMTQuNC0xNC40IDM3LjYtMTQuNCA1MiAwIDE0LjMgMTQuNCAxNC4zIDM3LjYgMCA1MkwzNTQuNiAzOTZsOTIuNCA5Ni40YzE0LjQgMTQuNCAxNC40IDM3LjYgMCA1MnoiLz48L3N2Zz4=";
 }
@@ -11425,7 +11426,7 @@ fieldset[disabled][disabled] .form-control {
 
 .is-focused [class*=" bmd-label"],
 .is-focused [class^="bmd-label"] {
-  color: #9c27b0;
+  color: $themeColor;
 }
 
 .is-focused .bmd-label-placeholder {
@@ -13116,14 +13117,14 @@ fieldset[disabled] .form-group .form-control {
 
 .navbar.bg-primary {
   color: #fff;
-  background-color: #9c27b0 !important;
+  background-color: $themeColor !important;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 12px -5px rgba(156, 39, 176, 0.46);
 }
 
 .navbar.bg-primary .dropdown-item:focus,
 .navbar.bg-primary .dropdown-item:hover {
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
-  background-color: #9c27b0;
+  background-color: $themeColor;
   color: #fff;
 }
 
@@ -13465,7 +13466,7 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .alert.alert-primary i {
-  color: #9c27b0;
+  color: $themeColor;
 }
 
 .alert.alert-rose {
@@ -13643,7 +13644,7 @@ h2.title {
 }
 
 .text-primary {
-  color: #9c27b0 !important;
+  color: $themeColor !important;
 }
 
 .text-danger {
@@ -13719,12 +13720,12 @@ h2.title {
 
 .nav-tabs .nav-link.active {
   color: #333;
-  border-color: #9c27b0;
+  border-color: $themeColor;
 }
 
 .nav-tabs .nav-link.active:focus,
 .nav-tabs .nav-link.active:hover {
-  border-color: #9c27b0;
+  border-color: $themeColor;
 }
 
 .nav-tabs .nav-link.disabled,
@@ -13990,7 +13991,7 @@ h2.title {
 .dropdown-menu a:focus,
 .dropdown-menu a:hover {
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
-  background-color: #9c27b0;
+  background-color: $themeColor;
   color: #fff;
 }
 
@@ -14163,7 +14164,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .togglebutton label input[type="checkbox"]:checked + .toggle:after {
-  border-color: #9c27b0;
+  border-color: $themeColor;
 }
 
 .togglebutton label input[type="checkbox"]:checked + .toggle:active:after {
@@ -14604,7 +14605,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .sidebar[data-color="purple"] li.active > a {
-  background-color: #9c27b0;
+  background-color: $themeColor;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
 }
 
@@ -15009,8 +15010,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .fixed-plugin .btn.btn-primary {
   color: #fff;
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  background-color: $themeColor;
+  border-color: $themeColor;
   box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2),
     0 1px 5px 0 rgba(156, 39, 176, 0.12);
 }
@@ -15053,7 +15054,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .open > .fixed-plugin .btn.btn-primary.dropdown-toggle.bmd-btn-icon {
   color: inherit;
-  background-color: #9c27b0;
+  background-color: $themeColor;
 }
 
 .open > .fixed-plugin .btn.btn-primary.dropdown-toggle.bmd-btn-icon:hover {
@@ -15066,8 +15067,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .fixed-plugin .btn.btn-primary:disabled.focus,
 .fixed-plugin .btn.btn-primary:disabled:focus,
 .fixed-plugin .btn.btn-primary:disabled:hover {
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  background-color: $themeColor;
+  border-color: $themeColor;
 }
 
 .fixed-plugin .btn.btn-primary:active,
@@ -15086,7 +15087,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .fixed-plugin .btn.btn-primary.btn-link:focus,
 .fixed-plugin .btn.btn-primary.btn-link:hover {
   background-color: transparent;
-  color: #9c27b0;
+  color: $themeColor;
 }
 
 .fixed-plugin .btn.btn-secondary {
@@ -16057,7 +16058,7 @@ legend {
 }
 
 a {
-  color: #9c27b0;
+  color: $themeColor;
 }
 
 a:focus,
@@ -16157,7 +16158,7 @@ label {
   padding: 3px 7px;
   font-size: 8px;
   line-height: 9px;
-  background-color: #9c27b0;
+  background-color: $themeColor;
 }
 
 .bootstrap-datetimepicker-widget .timepicker .table-condesed .btn .ripple-container {
@@ -19521,7 +19522,7 @@ html[dir="rtl"] .card .card-body, html[dir="rtl"] .card .card-footer {
 ******** Newly Custom CSS *******************
 ************************************** */
 
-/* .slideTwo */
+/* .Toggle */
 .toggle {
   width: 80px;
   height: 30px;
@@ -19579,4 +19580,64 @@ html[dir="rtl"] .card .card-body, html[dir="rtl"] .card .card-footer {
   /*activeColor*/
 }
 
-/* end .slideTwo */
+/* end  */
+
+///************  Loader ******/
+
+.dot-loader,
+.dot-loader:before,
+.dot-loader:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out;
+  animation: load7 1.8s infinite ease-in-out;
+}
+.dot-loader {
+  color: $themeColor;
+  font-size: 8px;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+  text-indent: -9999em;
+  transform: translateZ(0);
+  animation-delay: -0.16s;
+}
+.dot-loader:before,
+.dot-loader:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+.dot-loader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.dot-loader:after {
+  left: 3.5em;
+}
+@-webkit-keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+@keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}

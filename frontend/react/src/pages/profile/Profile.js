@@ -4,6 +4,7 @@ import * as Helper from '../../helper/helper-functions';
 import * as actions from '../../store/actions';
 import Table from '../../components/Table/Table';
 import * as scss from './Profile.module.scss';
+import * as Notiflix from '../../helper/notiflix';
 class Profile extends Component {
 
   constructor(props) {
@@ -49,6 +50,7 @@ class Profile extends Component {
   updateProfile = (event) => {
     event.preventDefault();
     const data = { payload: {...this.state.userInfo}}
+    Notiflix.loading('Updating your profile. Please wait.')
     this.props.updateProfile(data);
   }
 
@@ -83,6 +85,7 @@ class Profile extends Component {
       <div className={scss.profilePage + ' content'}>
         {
           this.state.userInfo ? <div className="container-fluid">
+            {Notiflix.remove()}
             <div className="row">
               <div className="col-md-8">
                 <span className={scss.toggle + ' toggle'} >  
@@ -213,7 +216,7 @@ class Profile extends Component {
                 </div>
               </div>
             </div>
-          </div> : 'Loading your profile. Please wait'
+          </div> : Notiflix.loading('Please Wait. Your Profile will be ready in few moments.')
         }
       </div>
     )

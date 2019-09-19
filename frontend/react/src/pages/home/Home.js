@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import * as hlp from '../../helper/helper-functions';
 import * as Backend from '../../helper/backend';
+import * as Notiflix from '../../helper/notiflix';
 import './Home.scss';
 
 class Home extends Component {
@@ -13,7 +14,11 @@ class Home extends Component {
     super(props);
     this.state = {
       selectedForm: 'sign-in',
-      error: ''
+      loading: false,
+      error: {
+        status: false,
+        msg: ''
+      }
     }
   }
 
@@ -53,20 +58,44 @@ class Home extends Component {
   }
 
   gotoDashboard(url, data) {
+    this.setState({ loading: true });
     Backend.post(url, data).then((result) => {
-      if (result.data.data) {
+      this.setState({ loading: false });
+      if (result.data) {
+        if (result.data.existence && url === '/signup') {
+          this.setState(() => {
+            setTimeout(() => {
+              this.setState({ error: { status: false, msg: '' } })
+            }, 0);
+            return {
+              error: { status: true, msg: 'User Already Exists.' }
+            }
+          });
+          return;
+        } else if (!result.data.existence && url === '/login') {
+          this.setState(() => {
+            setTimeout(() => {
+              this.setState({ error: { status: false, msg: '' } })
+            }, 0);
+            return {
+              error: { status: true, msg: 'Please check your email and password' }
+            }
+          });
+          return;
+        }
         hlp.setCookie('token', result.data.data['access_token'], result.data.data['expires_in']);
-        this.fetchInitData()
-      } else if (!result.data && url === '/signup') {
-        this.setState({
-          error: 'User Already Exists.'
-        });
-
-      } else if (!result.data && url === '/login') {
-        this.setState({
-          error: 'Please check your email and password'
-        });
+        this.fetchInitData();
       }
+    }, (error) => {
+      this.setState(() => {
+        setTimeout(() => {
+          this.setState({ error: { status: false, msg: '' } })
+        }, 0);
+        return {
+          loading: false,
+          error: { status: true, msg: 'Something went wrong. Please try again.' }
+        }
+      });
     })
   }
 
@@ -81,17 +110,18 @@ class Home extends Component {
   }
 
   render() {
-    const { selectedForm, error } = this.state;
+    const { selectedForm, error, loading } = this.state;
     return (
       <div className="login" style={{ overflow: 'hidden' }}>
+        {loading ? Notiflix.loading('Sign In....') : Notiflix.remove()}
+        {error.status && !loading ? Notiflix.notify('Failure', error.msg) : ''}
         <div className="login-wrap">
           <div className="login-html">
-            <p style={{ color: '#8e0428f7' }}>{error}</p>
             <input id="tab-1" type="radio" name="tab" className="sign-in" name="sign-in" checked={selectedForm === 'sign-in' ? true : false} onChange={this.formSelectionHanndler.bind(this)} /><label htmlFor="tab-1" className="tab">Sign In</label>
             <input id="tab-2" type="radio" name="tab" className="sign-up" name="sign-up" checked={selectedForm === 'sign-up' ? true : false} onChange={this.formSelectionHanndler.bind(this)} /><label htmlFor="tab-2" className="tab">Sign Up</label>
             <div className="login-form">
-              <Login onSubmitHandler={(event, payload) => { this.onSubmitHandler(event, payload) }} />
-              <Signup onSubmitHandler={(event, payload) => { this.onSubmitHandler(event, payload) }} />
+              <Login loading={loading} onSubmitHandler={(event, payload) => { this.onSubmitHandler(event, payload) }} />
+              <Signup loading={loading} onSubmitHandler={(event, payload) => { this.onSubmitHandler(event, payload) }} />
             </div>
           </div>
         </div>
