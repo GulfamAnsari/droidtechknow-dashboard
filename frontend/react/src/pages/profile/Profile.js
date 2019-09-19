@@ -22,10 +22,11 @@ class Profile extends Component {
       error: this.props.error
     })
     if (this.props.userInfo === null) {
+      Notiflix.loading('Please Wait. Your Profile will be ready in few moments.')
       this.props.fetchUserInfo().then((data) => {
         this.setState({
           userInfo: this.props.userInfo,
-          error: this.props.error
+          error: null
         })
       }, (error)=>{
         this.setState({
@@ -224,7 +225,7 @@ class Profile extends Component {
                 </div>
               </div>
             </div>
-          </div> : Notiflix.loading('Please Wait. Your Profile will be ready in few moments.')
+          </div> : ''
         }
       </div>
     )
