@@ -93,7 +93,7 @@ class Profile extends Component {
         {
           userInfo ? <div className="container-fluid">
             {Notiflix.remove()}
-            {error.status? Notiflix.notify('Failure', error.message): ''}
+            {error && error.status? Notiflix.notify('Failure', error.message): ''}
             <div className="row">
               <div className="col-md-8">
                 <span className={scss.toggle + ' toggle'} >  
