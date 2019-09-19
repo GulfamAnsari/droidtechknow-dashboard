@@ -29,7 +29,6 @@ class Profile extends Component {
           error: null
         });
         Notiflix.remove();
-        Notiflix.notify('Success', 'Your Profile has been successfully updated.');
       }, (error)=>{
         this.setState({
           error: this.props.error
@@ -64,9 +63,17 @@ class Profile extends Component {
     const data = { payload: {...this.state.userInfo}}
     Notiflix.loading('Updating your profile. Please wait.');
     this.props.updateProfile(data).then((data)=>{
+      this.setState({
+        userInfo: this.props.userInfo,
+        error: null
+      });
       Notiflix.remove();
       Notiflix.notify('Success', 'Your Profile has been successfully updated.');
     }, (error)=>{
+      this.setState({
+        userInfo: this.props.userInfo,
+        error: this.props.error
+      });
       Notiflix.remove();
       Notiflix.notify('Failure', this.props.error.message);
     });
