@@ -37,7 +37,7 @@ class UserController {
           if (err) reject(err);
           var newvalues = { $set: payload };
           mongoDBConnectController.updateOne(db, COLLECTIONS.LOGIN, { email }, newvalues).then((res) => {
-            resolve({ userInfo: newvalues });
+            resolve({ userInfo: newvalues.$set });
           }, err => reject(err));
         });
       })
