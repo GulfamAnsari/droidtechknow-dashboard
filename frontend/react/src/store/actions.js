@@ -40,18 +40,22 @@ export const fetchUserInfo = () => {
 
 export const updateProfile = (value) => {
   return (dispatch, getState) => {
-    Backend.post('/update-user-info', value).then((result) => {
-      const data = {
-        type: UPDATE_PROFILE,
-        value: result.data
-      }
-      dispatch(data);
-    }, (error) => {
-      const data = {
-        type: API_ERROR,
-        value: { error: { status: true, message: 'Somthing went wrong. Please try again leter', errorObject: error } }
-      }
-      dispatch(data);
+    return new Promise((resolve, reject) => {
+      Backend.post('/update-user-info', value).then((result) => {
+        const data = {
+          type: UPDATE_PROFILE,
+          value: result.data
+        }
+        dispatch(data);
+        resolve(data);
+      }, (error) => {
+        const data = {
+          type: API_ERROR,
+          value: { error: { status: true, message: 'Somthing went wrong. Please try again leter', errorObject: error } }
+        }
+        dispatch(data);
+        reject(data);
+      });
     });
   }
 }

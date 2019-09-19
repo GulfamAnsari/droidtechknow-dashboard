@@ -62,8 +62,14 @@ class Profile extends Component {
   updateProfile = (event) => {
     event.preventDefault();
     const data = { payload: {...this.state.userInfo}}
-    Notiflix.loading('Updating your profile. Please wait.')
-    this.props.updateProfile(data);
+    Notiflix.loading('Updating your profile. Please wait.');
+    this.props.updateProfile(data).then((data)=>{
+      Notiflix.remove();
+      Notiflix.notify('Success', 'Your Profile has been successfully updated.');
+    }, (error)=>{
+      Notiflix.remove();
+      Notiflix.notify('Failure', this.props.error.message);
+    });
   }
 
   getUserTableData = ()=>{
