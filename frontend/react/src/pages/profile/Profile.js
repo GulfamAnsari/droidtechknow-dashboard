@@ -28,12 +28,13 @@ class Profile extends Component {
           userInfo: this.props.userInfo,
           error: null
         });
-        Notiflix.notify('Success', 'Your Profile has been successfully updated.');
         Notiflix.remove();
+        Notiflix.notify('Success', 'Your Profile has been successfully updated.');
       }, (error)=>{
         this.setState({
           error: this.props.error
         });
+        Notiflix.remove();
         Notiflix.notify('Failure', this.props.error.message);
       })
     }
