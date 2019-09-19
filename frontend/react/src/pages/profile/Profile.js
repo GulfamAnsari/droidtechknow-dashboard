@@ -22,16 +22,19 @@ class Profile extends Component {
       error: this.props.error
     })
     if (this.props.userInfo === null) {
-      Notiflix.loading('Please Wait. Your Profile will be ready in few moments.')
+      Notiflix.loading('Please Wait. Your Profile will be ready in few moments.');
       this.props.fetchUserInfo().then((data) => {
         this.setState({
           userInfo: this.props.userInfo,
           error: null
-        })
+        });
+        Notiflix.notify('Success', 'Your Profile has been successfully updated.');
+        Notiflix.remove();
       }, (error)=>{
         this.setState({
           error: this.props.error
-        })
+        });
+        Notiflix.notify('Failure', this.props.error.message);
       })
     }
   }
@@ -93,8 +96,6 @@ class Profile extends Component {
       <div className={scss.profilePage + ' content'}>
         {
           userInfo ? <div className="container-fluid">
-            {Notiflix.remove()}
-            {error && error.status? Notiflix.notify('Failure', error.message): ''}
             <div className="row">
               <div className="col-md-8">
                 <span className={scss.toggle + ' toggle'} >  
