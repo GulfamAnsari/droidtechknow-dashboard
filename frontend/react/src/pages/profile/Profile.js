@@ -19,7 +19,7 @@ class Profile extends Component {
   componentDidMount = () => {
     this.setState({
       userInfo: this.props.userInfo,
-      error: this.props.error
+      error: null
     })
     if (this.props.userInfo === null) {
       Notiflix.loading('Please Wait. Your Profile will be ready in few moments.');
@@ -63,17 +63,9 @@ class Profile extends Component {
     const data = { payload: {...this.state.userInfo}}
     Notiflix.loading('Updating your profile. Please wait.');
     this.props.updateProfile(data).then((data)=>{
-      this.setState({
-        userInfo: this.props.userInfo,
-        error: null
-      });
       Notiflix.remove();
       Notiflix.notify('Success', 'Your Profile has been successfully updated.');
     }, (error)=>{
-      this.setState({
-        userInfo: this.props.userInfo,
-        error: this.props.error
-      });
       Notiflix.remove();
       Notiflix.notify('Failure', this.props.error.message);
     });
