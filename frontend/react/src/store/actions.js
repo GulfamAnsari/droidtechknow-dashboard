@@ -4,6 +4,7 @@ import * as Helper from '../helper/helper-functions';
 export const LOG_OUT = 'LOG_OUT';
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';
 export const FETCH_USER_INFO = 'FETCH_USER_INFO';
+export const API_ERROR = 'API_ERROR';
 
 export const logout = () => {
   return (dispatch, getState) => {
@@ -36,6 +37,12 @@ export const updateProfile = (value) => {
       const data = {
         type: UPDATE_PROFILE,
         value: result.data
+      }
+      dispatch(data);
+    }, (error) => {
+      const data = {
+        type: API_ERROR,
+        value: { error: { status: true, message: 'Somthing went wrong. Please try again leter', errorObject: error } }
       }
       dispatch(data);
     });

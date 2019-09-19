@@ -1,7 +1,12 @@
 import { FETCH_USER_INFO, UPDATE_PROFILE, LOG_OUT } from './actions';
 
 const initialState = {
-  userInfo: null
+  userInfo: null,
+  error: {
+    status: false,
+    message: '',
+    errorObject: null
+  }
 }
 
 const Main_Reducer = (state = initialState, action) => {
@@ -21,6 +26,11 @@ const Main_Reducer = (state = initialState, action) => {
       return {
         ...state,
         userInfo: action.value.userInfo
+      }
+    case API_ERROR:
+      return {
+        ...state,
+        error: action.value.error
       }
 
     default:

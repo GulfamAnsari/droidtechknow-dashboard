@@ -80,12 +80,13 @@ class Profile extends Component {
   }
 
   render() {
-    const { edit, userInfo} = this.state;
+    const { edit, userInfo, error } = this.state;
     return (
       <div className={scss.profilePage + ' content'}>
         {
-          this.state.userInfo ? <div className="container-fluid">
+          userInfo ? <div className="container-fluid">
             {Notiflix.remove()}
+            {error.status? Notiflix.notify('Failure', error.message): ''}
             <div className="row">
               <div className="col-md-8">
                 <span className={scss.toggle + ' toggle'} >  
@@ -225,7 +226,8 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    userInfo: state.Main_Reducer.userInfo
+    userInfo: state.Main_Reducer.userInfo,
+    error: state.Main_Reducer.error
   }
 }
 
