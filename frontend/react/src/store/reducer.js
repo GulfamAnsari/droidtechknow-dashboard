@@ -2,11 +2,7 @@ import { API_ERROR, FETCH_USER_INFO, UPDATE_PROFILE, LOG_OUT } from './actions';
 
 const initialState = {
   userInfo: null,
-  error: {
-    status: false,
-    message: '',
-    errorObject: null
-  }
+  error: null
 }
 
 const Main_Reducer = (state = initialState, action) => {

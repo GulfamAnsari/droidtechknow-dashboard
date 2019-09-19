@@ -26,6 +26,13 @@ export const fetchUserInfo = () => {
         }
         dispatch(data);
         resolve(data);
+      }, (error) => {
+        const data = {
+          type: API_ERROR,
+          value: { error: { status: true, message: 'Somthing went wrong. Please try again leter', errorObject: error } }
+        }
+        dispatch(data);
+        reject(data);
       });
     })
   }

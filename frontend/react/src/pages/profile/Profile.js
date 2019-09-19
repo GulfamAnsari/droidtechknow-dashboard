@@ -11,18 +11,25 @@ class Profile extends Component {
     super(props);
     this.state = {
       userInfo: null,
+      error: null,
       edit: false
     };
   }
 
   componentDidMount = () => {
     this.setState({
-      userInfo: this.props.userInfo
+      userInfo: this.props.userInfo,
+      error: this.props.error
     })
     if (this.props.userInfo === null) {
       this.props.fetchUserInfo().then((data) => {
         this.setState({
-          userInfo: this.props.userInfo
+          userInfo: this.props.userInfo,
+          error: this.props.error
+        })
+      }, (error)=>{
+        this.setState({
+          error: this.props.error
         })
       })
     }
