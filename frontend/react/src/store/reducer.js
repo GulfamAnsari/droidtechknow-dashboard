@@ -1,4 +1,4 @@
-import { FETCH_USER_INFO, UPDATE_PROFILE, LOG_OUT } from './actions';
+import { API_ERROR, FETCH_USER_INFO, UPDATE_PROFILE, LOG_OUT } from './actions';
 
 const initialState = {
   userInfo: null,
