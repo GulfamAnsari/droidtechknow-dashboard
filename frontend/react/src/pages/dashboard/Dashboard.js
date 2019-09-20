@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Dashboard.scss';
 import Table from '../../components/Table/Table';
+import AppCard from '../../components/AppCard/AppCard';
 const Link = require("react-router-dom").Link;
 
 export default class Dashboard extends Component {
@@ -15,8 +16,7 @@ export default class Dashboard extends Component {
           taglineIcon: 'format_list_numbered_rtl',
           cardClass: 'card-header-warning',
           tagline: '10 TODOS need to be done',
-          catagory: 'Used Space',
-          title: '49/50 \n GB'
+          title: 'Todos'
         },
         {
           name: 'STORE',
@@ -25,7 +25,6 @@ export default class Dashboard extends Component {
           taglineIcon: 'date_range',
           cardClass: 'card-header-success',
           tagline: 'Last 24 Hours',
-          catagory: 'Revenue',
           title: '$34,245'
         },
         {
@@ -35,7 +34,6 @@ export default class Dashboard extends Component {
           taglineIcon: 'list',
           cardClass: 'card-header-danger',
           tagline: 'Last 24 Hours',
-          catagory: 'Followers',
           title: '245'
         },
         {
@@ -45,7 +43,6 @@ export default class Dashboard extends Component {
           taglineIcon: 'update',
           cardClass: 'card-header-info',
           tagline: 'Just Updated',
-          catagory: 'Tracked from Github',
           title: '75'
         }
       ]
@@ -64,23 +61,7 @@ export default class Dashboard extends Component {
               apps.map((app) => {
                 return <div className="col-lg-3 col-md-6 col-sm-6">
                   <div className="card card-stats">
-                    <Link to={app.link}>
-                      <div className={`card-header ${app.cardClass} card-header-icon`}>
-                        <div className="card-icon">
-                          <i className="material-icons">{app.icon}</i>
-                        </div>
-                        <p className="card-category">{app.catagory}</p>
-                        <h3 className="card-title">
-                          {app.title}
-                        </h3>
-                      </div>
-                      <div className="card-footer">
-                        <div className="stats">
-                          <i className="material-icons">{app.taglineIcon}</i>
-                          <Link to={app.link}>{app.tagline}</Link>
-                        </div>
-                      </div>
-                    </Link>
+                    <AppCard app={app} />
                   </div>
                 </div>
               })
