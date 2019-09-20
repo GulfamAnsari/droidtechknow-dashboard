@@ -20,12 +20,12 @@ class Header extends Component {
   }
 
   render() {
-    const {userInfo} = this.state;
+    const { userInfo } = this.state;
     return (
       <nav className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top Header">
         <div className="container-fluid">
           <div className="navbar-wrapper">
-            <span className="navbar-brand text-gray">{`Howdy, ${userInfo? userInfo.username: ''}`}</span>
+            <span className="navbar-brand text-gray">{`Howdy, ${userInfo ? userInfo.username : ''}`}</span>
           </div>
           <button className="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span className="sr-only">Toggle navigation</span>
@@ -58,7 +58,7 @@ class Header extends Component {
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img width="35" className="rounded-circle" src={userInfo ? userInfo.userImage: ''} alt="profile" />
+                  <img width="35" className="rounded-circle" src={userInfo ? userInfo.userImage : ''} alt="profile" />
                   <p className="d-lg-none d-md-block">
                     Account
                   </p>
@@ -76,6 +76,14 @@ class Header extends Component {
     )
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.userInfo && this.props.userInfo && prevProps.userInfo.userImage !== this.props.userInfo.userImage) {
+      this.setState({
+        userInfo: this.props.userInfo
+      })
+    }
+  }
+  
   componentDidMount = () => {
     this.setState({
       userInfo: this.props.userInfo

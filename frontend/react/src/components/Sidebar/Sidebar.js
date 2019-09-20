@@ -76,7 +76,7 @@ class Sidebar extends Component {
             <li className="nav-item dropdown">
               <Link className="nav-link" to="" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i className="material-icons">
-                  <img width="35" className="rounded-circle" src={userInfo ? userInfo.userImage: ''} alt="profile" />
+                  <img width="35" className="rounded-circle" src={userInfo ? userInfo.userImage : ''} alt="profile" />
                 </i>
                 <p className="d-lg-none d-md-block">
                   Account
@@ -108,7 +108,16 @@ class Sidebar extends Component {
     )
   }
 
-  componentDidMount = () => {
+  componentDidUpdate(prevProps) {
+    if (prevProps.userInfo && this.props.userInfo &&  prevProps.userInfo.userImage !== this.props.userInfo.userImage) {
+      this.setState({
+        userInfo: this.props.userInfo
+      })
+    }
+  }
+
+  componentDidMount = (prevProps, prevState, snapshot) => {
+    console.log(snapshot)
     this.setState({
       userInfo: this.props.userInfo
     })
