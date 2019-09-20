@@ -75,16 +75,6 @@ class Todo extends Component {
                   })
                 }
 
-                {/* To add new todo task */}
-                <li className="todo-item new">
-                  <div className="todo-card" onClick={() => this.toggleTodoHandler(true)}>
-                    <h3 className="todo-title"> <span className="action">
-                      <i className="complete material-icons md-36 md-light">add_circle_outline</i>
-                    </span>
-                      <span className="title">ADD A TODO</span></h3>
-                  </div>
-                </li>
-
                 {/* New Task creator form pop up */}
                 <AddTask
                   openNewTodo={openNewTodo}
@@ -111,6 +101,7 @@ class Todo extends Component {
                 }
               </ul>
             </div>
+            <button onClick={() => this.toggleTodoHandler(true)} className="add-button"><i className="fa fa-plus"></i></button>
           </section>
         </div>
       </div>
