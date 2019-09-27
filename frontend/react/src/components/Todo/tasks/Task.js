@@ -37,7 +37,7 @@ function Task(props) {
         stats: task.time,
         stats_icon: "access_time",
         actions: [{ name: 'Done', function: addCompletedTaskHandler }, { name: 'Edit', function: '' }, { name: 'Delele', function: deleteTaskHandler }],
-        cardClass: task.priority === "high" ? "card-header-danger" : task.priority === "low" ? "card-header-success" : "card-header-warning"
+        cardClass: task.priority.toLocaleLowerCase() === "high" ? "card-header-danger" : task.priority.toLocaleLowerCase() === "low" ? "card-header-success" : "card-header-warning"
       }} />
     </div>
   )
