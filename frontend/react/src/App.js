@@ -10,6 +10,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Profile from './pages/profile/Profile';
+import Weather from './pages/weather/Weather';
 
 export default class App extends Component {
 
@@ -31,6 +32,7 @@ export default class App extends Component {
                   <Route path="/dashboard" exact component={Dashboard} />
                   <Route path="/profile" exact component={Profile} />
                   <Route path="/todos" exact component={Todo} />
+                  <Route path="/todos" exact component={Weather} />
                   <Route path="/text-editor" exact component={TextEditor} />
                   <Footer />
                 </div>

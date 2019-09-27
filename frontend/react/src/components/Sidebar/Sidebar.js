@@ -27,6 +27,12 @@ class Sidebar extends Component {
           icon: 'view_list',
           to: 'todos',
           path: '/todos'
+        },
+        {
+          name: "Weather",
+          icon: "cloud",
+          to: 'weather',
+          path: "/weather"
         }
       ]
     }
@@ -109,7 +115,7 @@ class Sidebar extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.userInfo && this.props.userInfo &&  prevProps.userInfo.userImage !== this.props.userInfo.userImage) {
+    if (prevProps.userInfo && this.props.userInfo && prevProps.userInfo.userImage !== this.props.userInfo.userImage) {
       this.setState({
         userInfo: this.props.userInfo
       })

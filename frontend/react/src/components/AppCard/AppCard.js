@@ -17,7 +17,7 @@ export default class AppCard extends Component {
           </div>
           {/* <p className="card-category">{app.catagory}</p> */}
           <h3 className="card-title">
-            {app.title}
+            {app.name}
           </h3>
         </div>
         <div className="card-footer">

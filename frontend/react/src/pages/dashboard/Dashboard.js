@@ -11,40 +11,36 @@ export default class Dashboard extends Component {
     this.state = {
       apps: [
         {
-          name: "TODO",
+          name: "Todos",
           icon: "list",
           link: "/todos",
           taglineIcon: "format_list_numbered_rtl",
           cardClass: "card-header-warning",
-          tagline: "10 TODOS need to be done",
-          title: "Todos"
+          tagline: "10 TODOS need to be done"
         },
         {
-          name: "STORE",
-          icon: "store",
-          link: "/",
-          taglineIcon: "date_range",
-          cardClass: "card-header-success",
-          tagline: "Last 24 Hours",
-          title: "$34,245"
+          name: "Weather",
+          icon: "cloud-sun-rain",
+          link: "/weather",
+          taglineIcon: "cloud",
+          cardClass: "card-header-primary",
+          tagline: "Chances of rain is higher today."
         },
         {
-          name: "TWITTER",
+          name: "Twitter",
           icon: "update",
           link: "/",
           taglineIcon: "list",
           cardClass: "card-header-danger",
           tagline: "Last 24 Hours",
-          title: "245"
         },
         {
-          name: "ISSUES",
+          name: "Issues",
           icon: "info_outline",
           link: "/",
           taglineIcon: "update",
           cardClass: "card-header-info",
           tagline: "Just Updated",
-          title: "75"
         }
       ]
     };
