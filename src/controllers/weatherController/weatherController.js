@@ -7,7 +7,7 @@ var request = new OAuth.OAuth(null, null, null, null, '1.0', null, 'HMAC-SHA1', 
 
 class WeatherController {
 
-    fetchWeatherInformation(req, res, db) {
+    fetchWeatherInformation(req, res) {
         return new Promise((resolve, reject) => {
             const { email } = helperController.decoreJWT(req.headers.token);
             const { payload } = req.body;
