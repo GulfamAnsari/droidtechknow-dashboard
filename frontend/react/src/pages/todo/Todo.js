@@ -11,24 +11,13 @@ class Todo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      openNewTodo: false
     }
   }
-
-  toggleTodoHandler(value) {
-    // Use setState function argument as a function if your new state is dependent on
-    // prevous one else you should use object as argument
-    this.setState((prevState, props) => {
-      return { openNewTodo: value };
-    });
-  }
-
 
   addNewTodoHandler(data) {
     const { tasks } = this.props.taskState;
     tasks.push(data);
     this.props.updateTasks(tasks);
-    this.toggleTodoHandler(false);
   }
 
   deleteTaskHandler(index) {
@@ -77,11 +66,7 @@ class Todo extends Component {
                 }
 
                 {/* New Task creator form pop up */}
-                {/* <AddTask
-                  openNewTodo={openNewTodo}
-                  toggleTodoHandler={this.toggleTodoHandler.bind(this)}
-                  addNewTodoHandler={this.addNewTodoHandler.bind(this)}
-                /> */}
+                <AddTask addNewTodoHandler={this.addNewTodoHandler.bind(this)} />
               </ul>
             </div>
 
@@ -102,7 +87,7 @@ class Todo extends Component {
                 }
               </ul>
             </div>
-            <button onClick={() => this.toggleTodoHandler(true)} className="add-button"><i className="fa fa-plus"></i></button>
+            <button type="button" data-toggle="modal" data-target="#addTodo" className="add-button"><i className="fa fa-plus"></i></button>
           </section>
         </div>
       </div>

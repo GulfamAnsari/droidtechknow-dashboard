@@ -21,35 +21,48 @@ export default function AddTask({ openNewTodo, toggleTodoHandler, addNewTodoHand
   }
 
   return (
-    <main role="main" className={openNewTodo ? 'main-wrap' : 'hidden'} className="__Add_TODO_Container">
-      <header role="heading" className="header">
-        <h1 className="app-header"> Add your task <span className="Todo-close-add-task" onClick={() => { toggleTodoHandler(false) }}>X</span></h1>
-      </header>
-      <section className="main-content">
-        <section className="todo-form">
-          <form role="form" id="todoForm" onSubmit={onSubmitHandler}>
-            <div className="row">
-              <label htmlFor="title"> Title </label>
-              <input onChange={onChangeHandler} className="form-input" name="title" id="title" type="text" placeholder="Learn JavaScript" />
+    <div className="__Add_TODO_Container">
+      <div class="modal fade" id="addTodo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form role="form" id="todoForm" onSubmit={onSubmitHandler}>
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <section className="main-content">
+                  <section className="todo-form">
+
+                    <div className="row">
+                      <label htmlFor="title"> Title </label>
+                      <input onChange={onChangeHandler} className="form-input" name="title" id="title" type="text" placeholder="Learn JavaScript" />
+                    </div>
+                    <div className="row">
+                      <label htmlFor="description"> Description </label>
+                      <textarea onChange={onChangeHandler} id="description" name="description" rows="4" cols="30" placeholder="Coz you already know Java"></textarea>
+                    </div>
+                    <div className="row">
+                      <label htmlFor="priority"> Priority </label>
+                      <select onChange={onChangeHandler} id="priority" name="priority">
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                      </select>
+                    </div>
+                  </section>
+                </section>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">DO IT</button>
+              </div>
             </div>
-            <div className="row">
-              <label htmlFor="description"> Description </label>
-              <textarea onChange={onChangeHandler} id="description" name="description" rows="4" cols="30" placeholder="Coz you already know Java"></textarea>
-            </div>
-            <div className="row">
-              <label htmlFor="priority"> Priority </label>
-              <select onChange={onChangeHandler} id="priority" name="priority">
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
-              </select>
-            </div>
-            <div className="row submit-btn">
-              <input onChange={onChangeHandler} type="submit" className="primary-button" value="DO IT" />
-            </div>
-          </form>
-        </section>
-      </section>
-    </main>
+          </div>
+        </form>
+      </div>
+    </div>
   )
 }
