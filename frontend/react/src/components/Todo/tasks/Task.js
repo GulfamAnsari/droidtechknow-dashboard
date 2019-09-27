@@ -29,17 +29,15 @@ function Task(props) {
   /****************************************************************************************/
 
   return (
-    <div className="col-md-12">
-      <Card card={{
-        title: task.title,
-        description: task.description,
-        description_icon: "",
-        stats: task.time,
-        stats_icon: "access_time",
-        actions: [{ name: 'Done', function: addCompletedTaskHandler }, { name: 'Edit', function: '' }, { name: 'Delele', function: deleteTaskHandler }],
-        cardClass: task.priority.toLocaleLowerCase() === "high" ? "card-header-danger" : task.priority.toLocaleLowerCase() === "low" ? "card-header-success" : "card-header-warning"
-      }} />
-    </div>
+    <Card card={{
+      title: task.title,
+      description: task.description,
+      description_icon: "",
+      stats: task.time,
+      stats_icon: "access_time",
+      actions: [{ name: 'Done', function: addCompletedTaskHandler }, { name: 'Edit', function: '' }, { name: 'Delele', function: deleteTaskHandler }],
+      cardClass: task.priority.toLocaleLowerCase() === "high" ? "card-header-danger" : task.priority.toLocaleLowerCase() === "low" ? "card-header-success" : "card-header-warning"
+    }} />
   )
 }
 
