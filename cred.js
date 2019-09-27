@@ -16,6 +16,9 @@ module.exports = CRED_OBJECTS = {
     API_SECRET: process.env.CLOUDINARY_API_SECRET,
     CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
   },
+  WEATHER: {
+    API_KEY: process.env.WEATHER_API_KEY
+  },
   SECRET_KEY: process.env.SECRET_KEY
 }
 
