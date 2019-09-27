@@ -3,6 +3,7 @@
   /*box-shadow: 0 -5px 10px rgba(0, 0, 0, .08);*/
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 
   .todo-list {
     margin: 0 auto;

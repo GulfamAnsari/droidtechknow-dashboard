@@ -82,6 +82,10 @@
         cursor: pointer;
     }
 
+    .todo-item .icon-check {
+        align-self: center;
+    }
+
     .todo-item:hover .icon-check {
         display: none;
     }
