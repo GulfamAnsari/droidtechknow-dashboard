@@ -58,7 +58,7 @@ class Todo extends Component {
       <div className="content">
         <div className="container-fluid">
           <section className="todo-list-container">
-            <div className="todo-in-progress">
+            <div className="todo-in-progress col-md-8">
               <h2> Working tasks</h2>
               <ul onDragStart={() => { console.log('on drag called') }} className="todo-list" id="target">
                 {/* Warning Task */}
@@ -86,7 +86,7 @@ class Todo extends Component {
             </div>
 
             {/* completed todo task of app */}
-            <div className="todo-completed">
+            <div className="todo-completed col-md-4">
               <ul className="todo-list-completed">
                 <h2> Completed Tasks </h2>
                 {
