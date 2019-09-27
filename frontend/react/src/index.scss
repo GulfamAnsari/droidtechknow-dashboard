@@ -19683,6 +19683,7 @@ html[dir="rtl"] .card .card-body, html[dir="rtl"] .card .card-footer {
   margin: 0;
   display: inline-flex;
   outline: none;
+  z-index: 9999;
 }
 
 .add-button:active {

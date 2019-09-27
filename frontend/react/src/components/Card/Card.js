@@ -15,7 +15,7 @@ export default class Card extends Component {
             <h4 className="card-title">{title}</h4>
             {
               actions && actions.length ? <div class="btn-group">
-                <span className={`dropdown-toggle ${''}`} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
+                <span className={`dropdownButton dropdown-toggle ${''}`} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
                 <div className="dropdown-menu">
                   {
                     actions.map((action) => {
