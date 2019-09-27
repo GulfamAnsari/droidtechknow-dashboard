@@ -22,7 +22,7 @@ class WeatherController {
                     if (err) {
                         reject(err);
                     } else {
-                        resolve({ darksky: data });
+                        resolve({ darksky: JSON.parse(data) });
                     }
                 }
             );

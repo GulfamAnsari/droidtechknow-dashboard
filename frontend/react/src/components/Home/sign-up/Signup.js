@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as HELPER from '../../../helper/helper-functions';
 import * as BACKEND from '../../../helper/backend';
+import { LOCATION_API_URL } from '../../../constants'
 export default class Signup extends Component {
 
   constructor(props) {
@@ -24,7 +25,7 @@ export default class Signup extends Component {
   signUpOnChangeHandler(event) {
     const { signUp } = this.state;
     signUp[event.target.name] = event.target.value;
-    BACKEND.get('http://ip-api.com/json').then((locationData) => {
+    BACKEND.get(LOCATION_API_URL).then((locationData) => {
       signUp.country = locationData.data.city + ', ' + locationData.data.country;
       signUp.ip = locationData.data.query;
       this.setState({

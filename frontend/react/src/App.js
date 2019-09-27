@@ -32,7 +32,7 @@ export default class App extends Component {
                   <Route path="/dashboard" exact component={Dashboard} />
                   <Route path="/profile" exact component={Profile} />
                   <Route path="/todos" exact component={Todo} />
-                  <Route path="/todos" exact component={Weather} />
+                  <Route path="/weather" exact component={Weather} />
                   <Route path="/text-editor" exact component={TextEditor} />
                   <Footer />
                 </div>
