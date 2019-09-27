@@ -14,7 +14,7 @@ export default class Card extends Component {
           <div className="titleBox">
             <h4 className="card-title">{title}</h4>
             {
-              actions.length ? <div class="btn-group">
+              actions && actions.length ? <div class="btn-group">
                 <span className={`dropdown-toggle ${''}`} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
                 <div className="dropdown-menu">
                   {
