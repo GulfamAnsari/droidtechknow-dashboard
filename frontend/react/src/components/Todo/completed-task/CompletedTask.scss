@@ -1,0 +1,111 @@
+.__Completed_Task {
+    .todo-item .pad-15 {
+        padding: 15px;
+    }
+
+    .high .todo-title,
+    .high .todo-priority,
+    .high [class*="icon"] {
+        background-color: #cd4436;
+    }
+
+    .medium .todo-title,
+    .medium .todo-priority,
+    .medium [class*="icon"] {
+        background-color: #f19f0f;
+    }
+
+    .low .todo-title,
+    .low .todo-priority,
+    .low [class*="icon"] {
+        background-color: #2ac56c;
+    }
+
+    .todo-list .icon-delete {
+        position: absolute;
+        right: 0px;
+        text-decoration: none;
+        padding: 0 10px;
+        cursor: pointer;
+        color: #fff;
+        z-index: 0;
+        cursor: pointer;
+    }
+
+    .todo-list .icon-delete:hover::after {
+        color: #fff;
+    }
+
+    .todo-list .icon-delete:hover::before {
+        opacity: 1;
+        -webkit-transform: translateX(-50%) translateY(-50%) scale(1);
+        -moz-transform: translateX(-50%) translateY(-50%) scale(1);
+        transform: translateX(-50%) translateY(-50%) scale(1);
+        z-index: -1;
+    }
+
+    .todo-list .icon-delete::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 40px;
+        height: 40px;
+        border: 2px solid #ccc;
+        border-radius: 50%;
+        content: "";
+        opacity: 0;
+        background: #000;
+        color: white;
+        z-index: -1;
+        -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+        -moz-transition: -moz-transform 0.3s, opacity 0.3s;
+        transition: transform 0.3s, opacity 0.3s;
+        -webkit-transform: translateX(-50%) translateY(-50%) scale(0.2);
+        -moz-transform: translateX(-50%) translateY(-50%) scale(0.2);
+        transform: translateX(-50%) translateY(-50%) scale(0.2);
+    }
+
+    .todo-item {
+        color: #999;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        background: #fff;
+        position: relative;
+        box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+        border-radius: 6px;
+    }
+
+    .icon-delete {
+        display: none;
+        cursor: pointer;
+    }
+
+    .todo-item:hover .icon-check {
+        display: none;
+    }
+
+    .todo-item:hover .icon-delete {
+        display: block;
+    }
+
+    .todo-item .content {
+        padding: 15px 10px;
+        flex: 1;
+        font-size: 1.2em;
+        text-decoration: line-through;
+    }
+
+    /** TODO List **/
+
+    li {
+        list-style-type: none;
+    }
+
+    .Todo-close-add-task {
+        position: absolute;
+        right: 16px;
+        cursor: pointer;
+
+    }
+}

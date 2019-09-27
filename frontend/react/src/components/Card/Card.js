@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './Card.scss';
 
 export default class Card extends Component {
   constructor(props) {
@@ -6,11 +7,26 @@ export default class Card extends Component {
   }
 
   render() {
-    const { title, description, description_icon, stats, stats_icon, cardClass } = this.props.card;
+    const { title, description, description_icon, stats, stats_icon, cardClass, actions } = this.props.card;
     return (
-      <div className="card card-chart">
+      <div className="card card-chart __Card">
         <div className={`card-header ${cardClass}`}>
-          <h4 className="card-title">{title}</h4>
+          <div className="titleBox">
+            <h4 className="card-title">{title}</h4>
+            {
+              actions.length ? <div class="btn-group">
+                <span className={`dropdown-toggle ${''}`} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
+                <div className="dropdown-menu">
+                  {
+                    actions.map((action) => {
+                      return <a onClick={action.function} className="dropdown-item" href="#">{action.name}</a>
+                    })
+                  }
+                </div>
+              </div> : null
+            }
+          </div>
+
         </div>
         <div className="card-body">
           <p className="card-category">

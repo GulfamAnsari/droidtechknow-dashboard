@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Card from '../../Card/Card';
 
 function Task(props) {
   const { task, deleteTaskHandler, addCompletedTaskHandler } = props;
@@ -28,21 +29,17 @@ function Task(props) {
   /****************************************************************************************/
 
   return (
-    <li draggable="true" className={'todo-item ' + task.priority.toLowerCase()}>
-      <div className="todo-card">
-        <h3 className="todo-title">
-          <span className="action">
-            <i className="material-icons md-36 icon-delete" onClick={() => { deleteTaskHandler(task.key) }}>delete</i>
-            <i className="icon-checkbox-outline material-icons md-36 md-dark" onClick={() => { addCompletedTaskHandler(task.key) }}>check_box_outline_blank</i>
-            <i className="icon-checkbox material-icons md-36 md-light">check_box</i>
-          </span>
-          <span className="title">{task.title} </span></h3>
-        <p className="todo-description">
-          {task.description} </p>
-        <span className="todo-priority"> {task.priority}</span>
-        <span className="time">{task.time}</span>
-      </div>
-    </li>
+    <div className="col-md-12">
+      <Card card={{
+        title: task.title,
+        description: task.description,
+        description_icon: "",
+        stats: task.time,
+        stats_icon: "access_time",
+        actions: [{ name: 'Done', function: addCompletedTaskHandler }, { name: 'Edit', function: '' }, { name: 'Delele', function: deleteTaskHandler }],
+        cardClass: task.priority === "high" ? "card-header-danger" : task.priority === "low" ? "card-header-success" : "card-header-warning"
+      }} />
+    </div>
   )
 }
 
