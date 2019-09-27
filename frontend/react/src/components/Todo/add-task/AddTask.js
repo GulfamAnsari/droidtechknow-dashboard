@@ -1,5 +1,5 @@
 import React from 'react';
-import './AddTask.css';
+import './AddTask.scss';
 
 export default function AddTask({ openNewTodo, toggleTodoHandler, addNewTodoHandler }) {
 
@@ -21,7 +21,7 @@ export default function AddTask({ openNewTodo, toggleTodoHandler, addNewTodoHand
   }
 
   return (
-    <main role="main" className={openNewTodo ? 'main-wrap' : 'hidden'}>
+    <main role="main" className={openNewTodo ? 'main-wrap' : 'hidden'} className="__Add_TODO_Container">
       <header role="heading" className="header">
         <h1 className="app-header"> Add your task <span className="Todo-close-add-task" onClick={() => { toggleTodoHandler(false) }}>X</span></h1>
       </header>

@@ -51,6 +51,7 @@ class Todo extends Component {
 
   render() {
     const { tasks } = this.props.taskState;
+    // const tasks = [{ title: 'Hello', time: '12:30PM', 'description': 'description', priority: 'high', completed: false }, { title: 'low', 'description': 'description', priority: 'low', completed: false }, { title: 'medium', 'description': 'description', priority: 'medium', completed: false }, { title: 'Hello', 'description': 'description', priority: 'high', completed: true }]
     const { openNewTodo } = this.state;
 
     return (
@@ -76,11 +77,11 @@ class Todo extends Component {
                 }
 
                 {/* New Task creator form pop up */}
-                <AddTask
+                {/* <AddTask
                   openNewTodo={openNewTodo}
                   toggleTodoHandler={this.toggleTodoHandler.bind(this)}
                   addNewTodoHandler={this.addNewTodoHandler.bind(this)}
-                />
+                /> */}
               </ul>
             </div>
 
