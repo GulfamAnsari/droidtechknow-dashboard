@@ -82,7 +82,7 @@ droidRoutes.route('/send-query').post((req, res) => {
 });
 
 droidRoutes.route('/*').get((req, res) => {
-  res.sendFile(path.join(__dirname + '../../../public/angular/index.html'));
-})
+  res.sendFile(path.join(__dirname + '../../../public/droid/index.html'));
+});
 
 module.exports = droidRoutes;

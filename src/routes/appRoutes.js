@@ -62,8 +62,8 @@ appRoutes.route('/update-user-info').post((req, res) => {
     });
 });
 
-appRoutes.route('/').get((req, res) => {
+appRoutes.route('/*').get((req, res) => {
     res.sendFile(path.join(__dirname + '../../../public/react/index.html'));
-})
+});
 
 module.exports = appRoutes;
