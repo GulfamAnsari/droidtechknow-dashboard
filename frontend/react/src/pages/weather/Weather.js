@@ -41,7 +41,7 @@ export default class Weather extends Component {
                                                     <h4>{weatherData.currently.temperature}<span>°c</span></h4>
                                                 </div>
                                                 <div className="w3layouts_main_grid_right">
-                                                    <canvas id="sleet" width="70" height="70"></canvas>
+                                                    <canvas id={weatherData.currently.icon} width="70" height="70"></canvas>
                                                     <div id="w3time">{currentTime.h + ":" + currentTime.m + ":" + currentTime.s}</div>
                                                     {this.getData()}
                                                 </div>
