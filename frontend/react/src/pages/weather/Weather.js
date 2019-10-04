@@ -8,13 +8,14 @@ export default class Weather extends Component {
         super(props);
         this.state = {
             weatherData: null,
+            currentLocation: null,
             currentTime: { h: 'h', m: 'm', s: 's' }
         }
     }
 
 
     render() {
-        const { weatherData, currentTime } = this.state;
+        const { weatherData, currentTime, currentLocation } = this.state;
         return (
             <div className="__Weather content">
                 <div className="container-fluid">
@@ -23,10 +24,10 @@ export default class Weather extends Component {
                             <div className="w3_agile_main_grids">
                                 <div className="w3layouts_main_grid">
                                     <div className="w3layouts_main_grid_left">
-                                        <h2>London, United Kingdom.</h2>
-                                        <p>Mostly Rainy</p>
+                                        <h2>{currentLocation.city + ', ' + currentLocation.country}</h2>
+                                        <p>{weatherData.currently.summary}</p>
                                         <h3>Now</h3>
-                                        <h4>10<span>°c</span></h4>
+                                        <h4>{weatherData.currently.temperature}<span>°c</span></h4>
                                     </div>
                                     <div className="w3layouts_main_grid_right">
                                         <canvas id="sleet" width="70" height="70"></canvas>
@@ -231,7 +232,8 @@ export default class Weather extends Component {
             BACKEND.post('/weather/get-weather-information', { payload }).then((weatherData) => {
                 console.log(weatherData);
                 this.setState({
-                    weatherData: weatherData.data
+                    weatherData: weatherData.data,
+                    currentLocation: locationData
                 })
             }, (err) => {
                 console.log(err);
@@ -301,33 +303,4 @@ export default class Weather extends Component {
         });
     }
 
-    // loadScript = (src) => {
-    //     console.log('hello')
-    //     const head = document.querySelector("head");
-
-    //     const script = document.createElement("script");
-    //     script.setAttribute(
-    //         "src",
-    //         src
-    //     );
-    //     head.appendChild(script);
-    // }
-
-    // loadExtScript = (src, test, callback) => {
-    //     var s = document.createElement('script');
-    //     s.src = src;
-    //     document.body.appendChild(s);
-
-    //     var callbackTimer = setInterval(function () {
-    //         var call = false;
-    //         try {
-    //             call = test.call();
-    //         } catch (e) { }
-
-    //         if (call) {
-    //             clearInterval(callbackTimer);
-    //             callback.call();
-    //         }
-    //     }, 100);
-    // }
 }
