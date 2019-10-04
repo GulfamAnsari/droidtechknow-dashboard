@@ -13,19 +13,13 @@ export default class Weather extends Component {
     }
 
 
-
     render() {
         const { weatherData, currentTime } = this.state;
-        setInterval(() => {
-            this.setState({ currentTime: this.startTime() })
-        }, 1000);
-
         return (
-            <div className="content">
+            <div className="__Weather content">
                 <div className="container-fluid">
-                    <section className="__Weather">
+                    <section>
                         <div className="main">
-                            <h1>Aridity Weather Widget</h1>
                             <div className="w3_agile_main_grids">
                                 <div className="w3layouts_main_grid">
                                     <div className="w3layouts_main_grid_left">
@@ -197,7 +191,6 @@ export default class Weather extends Component {
                                                             <div className="w3_main_grid_right_grid1_right">
                                                                 <p>12<i>°c</i><span>Partly Cloudy</span></p>
                                                             </div>
-                                                            <div className="clear"> </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -207,17 +200,6 @@ export default class Weather extends Component {
                                     <div className="clear"> </div>
                                 </div>
                             </div>
-                            <div className="agileits_copyright">
-                                <p>© 2017 Aridity Weather Widget. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
-                            </div>
-                            {this.iconPlay([
-                                "sleet"
-                            ])}
-                            {this.iconPlay([
-                                "clear-night", "partly-cloudy-day",
-                                "partly-cloudy-night", "cloudy", "rain", "clear-day", "snow", "wind",
-                                "fog"
-                            ])}
                         </div>
                     </section>
                 </div>
@@ -231,9 +213,15 @@ export default class Weather extends Component {
     }
 
     componentDidMount = () => {
-        this.setState({
-            currentTime: this.startTime()
-        })
+        setInterval(() => {
+            this.setState({ currentTime: this.startTime() })
+        }, 1000);
+        this.iconPlay([
+            "sleet", "clear-night", "partly-cloudy-day",
+            "partly-cloudy-night", "cloudy", "rain", "clear-day", "snow", "wind",
+            "fog"
+        ]);
+
         BACKEND.get(LOCATION_API_URL).then((locationData) => {
             const payload = {
                 city: locationData.data.city + ', ' + locationData.data.country,

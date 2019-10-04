@@ -9,7 +9,6 @@
     -ms-background-size: cover;
     background-attachment: fixed;
 
-
     /* start editing from here */
     a {
         text-decoration: none;
@@ -152,7 +151,6 @@
 
     /*-- //main --*/
     .w3_agile_main_grids {
-        width: 50%;
         margin: 0 auto;
         background: url(../../assets/images/1.jpg) no-repeat 0px 0px;
         background-size: cover;
@@ -212,6 +210,7 @@
     .agile_main_grid_left {
         float: left;
         width: 40%;
+        height: -webkit-fill-available;
         background: rgba(95, 252, 204, 0.69);
         min-height: 322px;
     }
@@ -227,6 +226,7 @@
     .w3_agileits_main_grid_right {
         float: right;
         width: 60%;
+        height: -webkit-fill-available;
         background: rgba(255, 8, 8, 0.6);
     }
 
@@ -611,6 +611,8 @@
         border-color: #911b11;
         background: none !important;
         font-weight: 600;
+        width: 33.33%;
+        text-align: center;
     }
 
     .resp-tabs-container {
