@@ -247,8 +247,8 @@ export default class Weather extends Component {
             BACKEND.post('/weather/get-weather-information', { payload }).then((weatherData) => {
                 console.log(weatherData);
                 this.setState({
-                    weatherData: weatherData.data,
-                    currentLocation: locationData,
+                    weatherData: weatherData.data.darksky,
+                    currentLocation: locationData.data,
                     loading: false
                 });
             }, (err) => {
