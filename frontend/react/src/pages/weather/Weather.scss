@@ -153,7 +153,7 @@
 
         /*-- //main --*/
         .w3_agile_main_grids {
-            margin: 0 auto;
+            // margin: 0 auto;
             background: url(../../assets/images/1.jpg) no-repeat 0px 0px;
             background-size: cover;
             -webkit-background-size: cover;
@@ -316,11 +316,6 @@
         }
 
         /*-- start-responsive-design --*/
-        @media (max-width:1366px) {
-            .w3_agile_main_grids {
-                width: 55%;
-            }
-        }
 
         @media (max-width:1280px) {
             .w3l_main_grid_left_grid1_right {
@@ -332,11 +327,6 @@
             }
         }
 
-        @media (max-width: 1080px) {
-            .w3_agile_main_grids {
-                width: 70%;
-            }
-        }
 
         @media (max-width: 900px) {
             .main h1 {
@@ -349,11 +339,7 @@
             }
         }
 
-        @media (max-width: 800px) {
-            .w3_agile_main_grids {
-                width: 80%;
-            }
-        }
+   
 
         @media (max-width: 768px) {
 
@@ -379,11 +365,7 @@
             }
         }
 
-        @media (max-width: 736px) {
-            .w3_agile_main_grids {
-                width: 85%;
-            }
-        }
+   
 
         @media (max-width: 667px) {
             .w3layouts_main_grid {
@@ -512,10 +494,6 @@
         @media (max-width: 414px) {
             .main h1 {
                 font-size: 1.6em;
-            }
-
-            .w3_agile_main_grids {
-                width: 95%;
             }
         }
 
