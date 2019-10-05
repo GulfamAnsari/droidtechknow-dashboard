@@ -3,7 +3,6 @@
     .__Weather {
         font-size: 100%;
         font-family: "heebo";
-        // background: url(../../assets/images/banner.jpg) no-repeat 0px 0px;
         background-size: cover;
         -webkit-background-size: cover;
         -moz-background-size: cover;
@@ -143,7 +142,7 @@
 
         .main h1 {
             text-align: center;
-            color: #fff;
+            color: rgb(212, 209, 209);
             font-size: 2.8em;
             margin: 0em 0 1em;
             text-transform: uppercase;
@@ -154,7 +153,7 @@
         /*-- //main --*/
         .w3_agile_main_grids {
             // margin: 0 auto;
-            background: url(../../assets/images/1.jpg) no-repeat 0px 0px;
+            background: url(../../assets/images/weather/india.jpg) no-repeat 0px 0px;
             background-size: cover;
             -webkit-background-size: cover;
             -moz-background-size: cover;
@@ -164,7 +163,7 @@
 
         .w3layouts_main_grid {
             padding: 1.5em 2em;
-            background: rgba(0, 0, 0, 0.46);
+            background: rgba(13, 5, 88, 0.26);
         }
 
         .w3layouts_main_grid_left {
@@ -174,7 +173,7 @@
 
         .w3layouts_main_grid_left h2 {
             font-size: 1.5em;
-            color: #fff;
+            color: rgb(235, 231, 231);
             font-weight: 700;
         }
 
@@ -186,7 +185,7 @@
 
         .w3layouts_main_grid_left h3 {
             font-size: 1em;
-            color: #fff;
+            color: rgb(223, 219, 219);
             font-weight: bold;
             margin: 3em 0 .5em;
         }
@@ -211,7 +210,7 @@
 
         .agile_main_grid_left {
             height: -webkit-fill-available;
-            background: rgba(95, 252, 204, 0.69);
+            background: rgba(16, 99, 74, 0.9);
             // min-height: 322px;
         }
 
@@ -230,7 +229,7 @@
             // float: right;
             // width: 60%;
             height: -webkit-fill-available;
-            background: rgba(255, 8, 8, 0.6);
+            background: rgba(119, 12, 12, 0.9);
         }
 
         .w3l_main_grid_left_grid1_left {
@@ -242,13 +241,13 @@
             text-transform: uppercase;
             font-size: .9em;
             font-weight: 600;
-            color: #212121;
+            color: #d1caca;
             letter-spacing: 1px;
         }
 
         .w3l_main_grid_left_grid1_left p {
             font-size: 2em;
-            color: #1b4e3f;
+            color: #74cab0;
             font-weight: 600;
         }
 
@@ -275,7 +274,7 @@
         .w3_main_grid_right_grid1_left p,
         .w3_main_grid_right_grid1_right p {
             font-size: 1em;
-            color: #fff;
+            color: rgb(223, 219, 219);
             font-weight: 600;
         }
 
