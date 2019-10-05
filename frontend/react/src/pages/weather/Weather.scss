@@ -209,9 +209,7 @@
         }
 
         .agile_main_grid_left {
-            height: -webkit-fill-available;
             background: rgba(16, 99, 74, 0.9);
-            // min-height: 322px;
         }
 
         .wthree_main_grid_left_grid {
@@ -226,9 +224,6 @@
         }
 
         .w3_agileits_main_grid_right {
-            // float: right;
-            // width: 60%;
-            height: -webkit-fill-available;
             background: rgba(119, 12, 12, 0.9);
         }
 
@@ -263,6 +258,7 @@
 
         .w3ls_main_grid_left_grid1 {
             margin: 1.5em 0;
+            width: 50%;
         }
 
         .w3_main_grid_right_grid1_left {
@@ -358,10 +354,6 @@
             .wthree_main_grid_left_grid {
                 padding: 0 1.5em 0;
             }
-
-            .agile_main_grid_left {
-                min-height: 415px;
-            }
         }
 
    
@@ -423,7 +415,6 @@
             }
 
             .agile_main_grid_left {
-                min-height: auto;
                 float: none;
                 width: 100%;
             }

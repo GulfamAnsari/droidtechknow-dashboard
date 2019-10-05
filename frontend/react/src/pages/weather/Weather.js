@@ -203,6 +203,7 @@ export default class Weather extends Component {
                                                         <div className="w3_main_grid_right_grid1_right">
                                                             <p>12<i>°c</i><span>Partly Cloudy</span></p>
                                                         </div>
+                                                        <div className="clear"> </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -218,7 +219,7 @@ export default class Weather extends Component {
     }
 
     currentWeatherInformationGrid = (name, value, si, icon) => {
-        return <div className="w3ls_main_grid_left_grid1 col-md-6">
+        return <div className="w3ls_main_grid_left_grid1">
             <div className="w3l_main_grid_left_grid1_left">
                 <h3>{name}</h3>
                 <p>{value} <span>{si}</span></p>
