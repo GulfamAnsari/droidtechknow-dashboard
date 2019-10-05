@@ -47,8 +47,8 @@ class CompletedTask extends Component {
           <div className="icon-delete">
             <i className="pad-15 material-icons md-36 md-light" onClick={() => { removeCompletedTaskHandler(completedTask.key) }}>delete</i>
           </div>
-          <div className="content">
-            {completedTask.title}
+          <div className="title">
+          <p>{completedTask.title}</p>
           </div>
         </li>
       </div>
