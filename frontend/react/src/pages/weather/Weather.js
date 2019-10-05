@@ -3,13 +3,39 @@ import * as BACKEND from '../../helper/backend';
 import { LOCATION_API_URL } from '../../constants';
 import './Weather.scss';
 import * as Notiflix from '../../helper/notiflix';
+import { SSL_OP_EPHEMERAL_RSA } from 'constants';
 
 export default class Weather extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            weatherData: null,
-            currentLocation: null,
+            weatherData: {
+                currently: {
+                    apparentTemperature: '',
+                    summary: '',
+                    temperature: '',
+                    time: '',
+                    icon: '',
+                    windGust: '',
+                    windSpeed: '',
+                    humidity: '',
+                    uvIndex: '',
+                    visibility: '',
+                    pressure: '',
+                    dewPoint: '',
+
+                    precipProbability: 0,
+                    cloudCover: 0.32,
+                    nearestStormDistance: 0,
+                    ozone: 278.4,
+                    precipIntensity: 0,
+                    windBearing: 313,
+                }
+            },
+            currentLocation: {
+                city: null,
+                country: null
+            },
             currentTime: { h: 'h', m: 'm', s: 's' },
             loading: false,
             error: {
@@ -26,200 +52,187 @@ export default class Weather extends Component {
             <React.Fragment>
                 {loading ? Notiflix.loading('Loading Weather App. Please wait...') : Notiflix.remove()}
                 {error.status && !loading ? Notiflix.notify('Failure', error.msg) : ''}
-                {
-                    weatherData ?
-                        <div className="__Weather content">
-                            <div className="container-fluid">
-                                <section>
-                                    <div className="main">
-                                        <div className="w3_agile_main_grids">
-                                            <div className="w3layouts_main_grid">
-                                                <div className="w3layouts_main_grid_left">
-                                                    <h2>{currentLocation.city + ', ' + currentLocation.country}</h2>
-                                                    <p>{weatherData.currently.summary}</p>
-                                                    <h3>Now</h3>
-                                                    <h4>{weatherData.currently.temperature}<span>°c</span></h4>
-                                                </div>
-                                                <div className="w3layouts_main_grid_right">
-                                                    <canvas id={weatherData.currently.icon} width="70" height="70"></canvas>
-                                                    <div id="w3time">{currentTime.h + ":" + currentTime.m + ":" + currentTime.s}</div>
-                                                    {this.getData()}
-                                                </div>
-                                                <div className="clear"> </div>
-                                            </div>
+                <div className="content">
+                    <div className="container-fluid">
+                        <section className="main __Weather">
+                            <div className="w3_agile_main_grids">
+                                <div className="w3layouts_main_grid row">
+                                    <div className="w3layouts_main_grid_left">
+                                        <h2>{currentLocation.city + ', ' + currentLocation.country}</h2>
+                                        <p>{weatherData.currently.summary}</p>
+                                        <h3>Now</h3>
+                                        <h4>{weatherData.currently.temperature}<span>°c</span></h4>
+                                        <p>Feels like {weatherData.currently.apparentTemperature}<span>°c</span></p>
 
-                                            <div className="agileits_w3layouts_main_grid">
-                                                <div className="agile_main_grid_left">
-                                                    <div className="wthree_main_grid_left_grid">
-                                                        <div className="w3ls_main_grid_left_grid1">
-                                                            <div className="w3l_main_grid_left_grid1_left">
-                                                                <h3>Partly Sunny</h3>
-                                                                <p>3 <span>%</span></p>
+                                    </div>
+                                    <div className="w3layouts_main_grid_right">
+                                        <canvas id={weatherData.currently.icon} width="70" height="70"></canvas>
+                                        <div id="w3time">{currentTime.h + ":" + currentTime.m + ":" + currentTime.s}</div>
+                                        {this.getData()}
+                                    </div>
+                                    <div className="clear"> </div>
+                                </div>
+
+                                <div className="agileits_w3layouts_main_grid row">
+                                    <div className="agile_main_grid_left col-md-5">
+                                        <div className="wthree_main_grid_left_grid">
+                                            {this.currentWeatherInformationGrid('Wind', weatherData.currently.windSpeed, 'Km/h', '')}
+                                            {this.currentWeatherInformationGrid('Wind gust', weatherData.currently.windGust, 'Km/h', '')}
+                                            {this.currentWeatherInformationGrid('Humidity', weatherData.currently.humidity * 100, '%', '')}
+                                            {this.currentWeatherInformationGrid('UV Index', weatherData.currently.uvIndex, '', '')}
+                                            {this.currentWeatherInformationGrid('Visibility', weatherData.currently.visibility, 'km', '')}
+                                            {this.currentWeatherInformationGrid('Pressure', weatherData.currently.pressure, 'mbar', '')}
+                                            {this.currentWeatherInformationGrid('Dew Point', weatherData.currently.dewPoint, '°c', '')}
+                                        </div>
+                                    </div>
+                                    <div className="w3_agileits_main_grid_right col-md-7">
+                                        <div className="agileinfo_main_grid_right_grid">
+                                            <div id="parentHorizontalTab">
+                                                <ul className="resp-tabs-list hor_1">
+                                                    <li>Today</li>
+                                                    <li>Week</li>
+                                                    <li>Month</li>
+                                                </ul>
+                                                <div className="resp-tabs-container hor_1">
+                                                    <div className="w3_agileits_tabs">
+                                                        <div className="w3_main_grid_right_grid1">
+                                                            <div className="w3_main_grid_right_grid1_left">
+                                                                <p>10 AM</p>
                                                             </div>
-                                                            <div className="w3l_main_grid_left_grid1_right">
-                                                                <canvas id="partly-cloudy-day" width="45" height="45"></canvas>
+                                                            <div className="w3_main_grid_right_grid1_right">
+                                                                <p>15<i>°c</i><span>Cloudy</span></p>
                                                             </div>
                                                             <div className="clear"> </div>
                                                         </div>
-                                                        <div className="w3ls_main_grid_left_grid1">
-                                                            <div className="w3l_main_grid_left_grid1_left">
-                                                                <h3>Cloud</h3>
-                                                                <p>38 <span>%</span></p>
+                                                        <div className="w3_main_grid_right_grid1">
+                                                            <div className="w3_main_grid_right_grid1_left">
+                                                                <p>11 AM</p>
                                                             </div>
-                                                            <div className="w3l_main_grid_left_grid1_right">
-                                                                <canvas id="cloudy" width="45" height="45"></canvas>
+                                                            <div className="w3_main_grid_right_grid1_right">
+                                                                <p>16<i>°c</i><span>Clear</span></p>
                                                             </div>
                                                             <div className="clear"> </div>
                                                         </div>
-                                                        <div className="w3ls_main_grid_left_grid1">
-                                                            <div className="w3l_main_grid_left_grid1_left">
-                                                                <h3>Wind</h3>
-                                                                <p>14 <span>Km/h</span></p>
+                                                        <div className="w3_main_grid_right_grid1">
+                                                            <div className="w3_main_grid_right_grid1_left">
+                                                                <p>12 PM</p>
                                                             </div>
-                                                            <div className="w3l_main_grid_left_grid1_right">
-                                                                <canvas id="wind" width="45" height="45"></canvas>
+                                                            <div className="w3_main_grid_right_grid1_right">
+                                                                <p>18<i>°c</i><span>Cear</span></p>
+                                                            </div>
+                                                            <div className="clear"> </div>
+                                                        </div>
+                                                        <div className="w3_main_grid_right_grid1">
+                                                            <div className="w3_main_grid_right_grid1_left">
+                                                                <p>2 PM</p>
+                                                            </div>
+                                                            <div className="w3_main_grid_right_grid1_right">
+                                                                <p>12<i>°c</i><span>Partly Cloudy</span></p>
                                                             </div>
                                                             <div className="clear"> </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="w3_agileits_main_grid_right">
-                                                    <div className="agileinfo_main_grid_right_grid">
-                                                        <div id="parentHorizontalTab">
-                                                            <ul className="resp-tabs-list hor_1">
-                                                                <li>Today</li>
-                                                                <li>Week</li>
-                                                                <li>Month</li>
-                                                            </ul>
-                                                            <div className="resp-tabs-container hor_1">
-                                                                <div className="w3_agileits_tabs">
-                                                                    <div className="w3_main_grid_right_grid1">
-                                                                        <div className="w3_main_grid_right_grid1_left">
-                                                                            <p>10 AM</p>
-                                                                        </div>
-                                                                        <div className="w3_main_grid_right_grid1_right">
-                                                                            <p>15<i>°c</i><span>Cloudy</span></p>
-                                                                        </div>
-                                                                        <div className="clear"> </div>
-                                                                    </div>
-                                                                    <div className="w3_main_grid_right_grid1">
-                                                                        <div className="w3_main_grid_right_grid1_left">
-                                                                            <p>11 AM</p>
-                                                                        </div>
-                                                                        <div className="w3_main_grid_right_grid1_right">
-                                                                            <p>16<i>°c</i><span>Clear</span></p>
-                                                                        </div>
-                                                                        <div className="clear"> </div>
-                                                                    </div>
-                                                                    <div className="w3_main_grid_right_grid1">
-                                                                        <div className="w3_main_grid_right_grid1_left">
-                                                                            <p>12 PM</p>
-                                                                        </div>
-                                                                        <div className="w3_main_grid_right_grid1_right">
-                                                                            <p>18<i>°c</i><span>Cear</span></p>
-                                                                        </div>
-                                                                        <div className="clear"> </div>
-                                                                    </div>
-                                                                    <div className="w3_main_grid_right_grid1">
-                                                                        <div className="w3_main_grid_right_grid1_left">
-                                                                            <p>2 PM</p>
-                                                                        </div>
-                                                                        <div className="w3_main_grid_right_grid1_right">
-                                                                            <p>12<i>°c</i><span>Partly Cloudy</span></p>
-                                                                        </div>
-                                                                        <div className="clear"> </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="w3_agileits_tabs">
-                                                                    <div className="w3_main_grid_right_grid1">
-                                                                        <div className="w3_main_grid_right_grid1_left">
-                                                                            <p>Monday</p>
-                                                                        </div>
-                                                                        <div className="w3_main_grid_right_grid1_right">
-                                                                            <p>14<i>°c</i><span>Clear</span></p>
-                                                                        </div>
-                                                                        <div className="clear"> </div>
-                                                                    </div>
-                                                                    <div className="w3_main_grid_right_grid1">
-                                                                        <div className="w3_main_grid_right_grid1_left">
-                                                                            <p>Tuesday</p>
-                                                                        </div>
-                                                                        <div className="w3_main_grid_right_grid1_right">
-                                                                            <p>16<i>°c</i><span>Cloudy</span></p>
-                                                                        </div>
-                                                                        <div className="clear"> </div>
-                                                                    </div>
-                                                                    <div className="w3_main_grid_right_grid1">
-                                                                        <div className="w3_main_grid_right_grid1_left">
-                                                                            <p>Wednesday</p>
-                                                                        </div>
-                                                                        <div className="w3_main_grid_right_grid1_right">
-                                                                            <p>11<i>°c</i><span>Rainy</span></p>
-                                                                        </div>
-                                                                        <div className="clear"> </div>
-                                                                    </div>
-                                                                    <div className="w3_main_grid_right_grid1">
-                                                                        <div className="w3_main_grid_right_grid1_left">
-                                                                            <p>Thursday</p>
-                                                                        </div>
-                                                                        <div className="w3_main_grid_right_grid1_right">
-                                                                            <p>18<i>°c</i><span>Sunny</span></p>
-                                                                        </div>
-                                                                        <div className="clear"> </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="w3_agileits_tabs">
-                                                                    <div className="w3_main_grid_right_grid1">
-                                                                        <div className="w3_main_grid_right_grid1_left">
-                                                                            <p>January</p>
-                                                                        </div>
-                                                                        <div className="w3_main_grid_right_grid1_right">
-                                                                            <p>18<i>°c</i><span>Cloudy</span></p>
-                                                                        </div>
-                                                                        <div className="clear"> </div>
-                                                                    </div>
-                                                                    <div className="w3_main_grid_right_grid1">
-                                                                        <div className="w3_main_grid_right_grid1_left">
-                                                                            <p>February</p>
-                                                                        </div>
-                                                                        <div className="w3_main_grid_right_grid1_right">
-                                                                            <p>14<i>°c</i><span>Clear</span></p>
-                                                                        </div>
-                                                                        <div className="clear"> </div>
-                                                                    </div>
-                                                                    <div className="w3_main_grid_right_grid1">
-                                                                        <div className="w3_main_grid_right_grid1_left">
-                                                                            <p>March</p>
-                                                                        </div>
-                                                                        <div className="w3_main_grid_right_grid1_right">
-                                                                            <p>18<i>°c</i><span>Cear</span></p>
-                                                                        </div>
-                                                                        <div className="clear"> </div>
-                                                                    </div>
-                                                                    <div className="w3_main_grid_right_grid1">
-                                                                        <div className="w3_main_grid_right_grid1_left">
-                                                                            <p>April</p>
-                                                                        </div>
-                                                                        <div className="w3_main_grid_right_grid1_right">
-                                                                            <p>12<i>°c</i><span>Partly Cloudy</span></p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                    <div className="w3_agileits_tabs">
+                                                        <div className="w3_main_grid_right_grid1">
+                                                            <div className="w3_main_grid_right_grid1_left">
+                                                                <p>Monday</p>
+                                                            </div>
+                                                            <div className="w3_main_grid_right_grid1_right">
+                                                                <p>14<i>°c</i><span>Clear</span></p>
+                                                            </div>
+                                                            <div className="clear"> </div>
+                                                        </div>
+                                                        <div className="w3_main_grid_right_grid1">
+                                                            <div className="w3_main_grid_right_grid1_left">
+                                                                <p>Tuesday</p>
+                                                            </div>
+                                                            <div className="w3_main_grid_right_grid1_right">
+                                                                <p>16<i>°c</i><span>Cloudy</span></p>
+                                                            </div>
+                                                            <div className="clear"> </div>
+                                                        </div>
+                                                        <div className="w3_main_grid_right_grid1">
+                                                            <div className="w3_main_grid_right_grid1_left">
+                                                                <p>Wednesday</p>
+                                                            </div>
+                                                            <div className="w3_main_grid_right_grid1_right">
+                                                                <p>11<i>°c</i><span>Rainy</span></p>
+                                                            </div>
+                                                            <div className="clear"> </div>
+                                                        </div>
+                                                        <div className="w3_main_grid_right_grid1">
+                                                            <div className="w3_main_grid_right_grid1_left">
+                                                                <p>Thursday</p>
+                                                            </div>
+                                                            <div className="w3_main_grid_right_grid1_right">
+                                                                <p>18<i>°c</i><span>Sunny</span></p>
+                                                            </div>
+                                                            <div className="clear"> </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="w3_agileits_tabs">
+                                                        <div className="w3_main_grid_right_grid1">
+                                                            <div className="w3_main_grid_right_grid1_left">
+                                                                <p>January</p>
+                                                            </div>
+                                                            <div className="w3_main_grid_right_grid1_right">
+                                                                <p>18<i>°c</i><span>Cloudy</span></p>
+                                                            </div>
+                                                            <div className="clear"> </div>
+                                                        </div>
+                                                        <div className="w3_main_grid_right_grid1">
+                                                            <div className="w3_main_grid_right_grid1_left">
+                                                                <p>February</p>
+                                                            </div>
+                                                            <div className="w3_main_grid_right_grid1_right">
+                                                                <p>14<i>°c</i><span>Clear</span></p>
+                                                            </div>
+                                                            <div className="clear"> </div>
+                                                        </div>
+                                                        <div className="w3_main_grid_right_grid1">
+                                                            <div className="w3_main_grid_right_grid1_left">
+                                                                <p>March</p>
+                                                            </div>
+                                                            <div className="w3_main_grid_right_grid1_right">
+                                                                <p>18<i>°c</i><span>Cear</span></p>
+                                                            </div>
+                                                            <div className="clear"> </div>
+                                                        </div>
+                                                        <div className="w3_main_grid_right_grid1">
+                                                            <div className="w3_main_grid_right_grid1_left">
+                                                                <p>April</p>
+                                                            </div>
+                                                            <div className="w3_main_grid_right_grid1_right">
+                                                                <p>12<i>°c</i><span>Partly Cloudy</span></p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="clear"> </div>
                                             </div>
                                         </div>
                                     </div>
-                                </section>
+                                </div>
                             </div>
-                        </div>
-                        : null
-                }
+                        </section>
+                    </div>
+                </div>
             </React.Fragment>
         )
+    }
+
+    currentWeatherInformationGrid = (name, value, si, icon) => {
+        return <div className="w3ls_main_grid_left_grid1 col-md-6">
+            <div className="w3l_main_grid_left_grid1_left">
+                <h3>{name}</h3>
+                <p>{value} <span>{si}</span></p>
+            </div>
+            {
+                icon ? <div className="w3l_main_grid_left_grid1_right">
+                    <canvas id={icon} width="45" height="45"></canvas>
+                </div> : null
+            }
+            <div className="clear"> </div>
+        </div>
     }
 
 
@@ -229,14 +242,8 @@ export default class Weather extends Component {
 
     componentDidMount = () => {
         setInterval(() => {
-            this.setState({ currentTime: this.startTime() })
+            this.setState({ currentTime: this.startTime() });
         }, 1000);
-        this.iconPlay([
-            "sleet", "clear-night", "partly-cloudy-day",
-            "partly-cloudy-night", "cloudy", "rain", "clear-day", "snow", "wind",
-            "fog"
-        ]);
-
         this.setState({ loading: true });
         BACKEND.get(LOCATION_API_URL).then((locationData) => {
             const payload = {
@@ -250,7 +257,14 @@ export default class Weather extends Component {
                     weatherData: weatherData.data.darksky,
                     currentLocation: locationData.data,
                     loading: false
+                }, () => {
+                    this.iconPlay([
+                        "sleet", "clear-night", "partly-cloudy-day",
+                        "partly-cloudy-night", "cloudy", "rain", "clear-day", "snow", "wind",
+                        "fog"
+                    ]);
                 });
+
             }, (err) => {
                 console.log(err);
                 this.setState({ loading: false, error: { status: true, msg: 'Something went wrong. Please try again.' } });
