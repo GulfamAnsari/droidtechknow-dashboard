@@ -1,5 +1,6 @@
 .content {
     padding: 0 !important;
+
     .__Weather {
         font-size: 100%;
         font-family: "heebo";
@@ -155,6 +156,7 @@
             // margin: 0 auto;
             background: url(../../assets/images/weather/india.jpg) no-repeat 0px 0px;
             background-size: cover;
+            background-repeat: round;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -220,7 +222,7 @@
         }
 
         .agileinfo_main_grid_right_grid {
-            padding: 1.5em;
+            padding: 1.5em 0;
         }
 
         .w3_agileits_main_grid_right {
@@ -259,14 +261,13 @@
         .w3ls_main_grid_left_grid1 {
             margin: 1.5em 0;
             width: 50%;
+
         }
 
-        .w3_main_grid_right_grid1_left {
-            float: left;
-            width: 50%;
+        .w3_main_grid_right_grid1_right {
+            width: 33.33%;
             text-align: center;
         }
-
         .w3_main_grid_right_grid1_left p,
         .w3_main_grid_right_grid1_right p {
             font-size: 1em;
@@ -274,10 +275,6 @@
             font-weight: 600;
         }
 
-        .w3_main_grid_right_grid1_right {
-            float: right;
-            width: 30%;
-        }
 
         .w3_main_grid_right_grid1_right p i {
             font-style: normal;
@@ -289,7 +286,9 @@
         }
 
         .w3_main_grid_right_grid1 {
-            margin-bottom: 1.5em;
+            margin-bottom: 0.8em;
+            display: flex;
+            justify-content: space-evenly;
         }
 
         .w3_main_grid_right_grid1:last-child {
@@ -334,7 +333,7 @@
             }
         }
 
-   
+
 
         @media (max-width: 768px) {
 
@@ -356,7 +355,7 @@
             }
         }
 
-   
+
 
         @media (max-width: 667px) {
             .w3layouts_main_grid {
@@ -526,7 +525,7 @@
             }
 
             .w3_main_grid_right_grid1 {
-                margin-bottom: 1em;
+                margin-bottom: 0.5em;
             }
 
             canvas#sleet {
@@ -570,7 +569,7 @@
             border-color: #911b11;
             background: none !important;
             font-weight: 600;
-            width: 33.33%;
+            width: 50%;
             text-align: center;
         }
 
