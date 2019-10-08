@@ -1,5 +1,3 @@
-import { get } from './backend';
-
 export const getCookie = (cname) => {
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
@@ -57,4 +55,18 @@ export const getBase64 = (file) => {
       reject('Error: ', error);
     };
   })
+}
+
+
+export const getCurrentLongtLati = () => {
+  return new Promise((resolve, reject) => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        resolve(position)
+      });
+    } else {
+      reject('Geolocation is not supported by this browser');
+    }
+  });
+
 }
