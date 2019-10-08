@@ -10,7 +10,7 @@ class AqiController {
     fetchAqiInformation(req, res) {
         return new Promise((resolve, reject) => {
             const { payload } = req.body;
-            const TOKEN = CRED_OBJECTS.AQI.TOKEN;
+            const TOKEN = CRED_OBJECTS.AQI.AQI_TOKEN;
             const LATITUDE = payload.latitude;
             const LONGITUTE = payload.longitude;
             const KEYWORD = payload.keyword;
@@ -38,7 +38,7 @@ class AqiController {
     fetchPollutantsInformation(req, res) {
         return new Promise((resolve, reject) => {
             const { payload } = req.body;
-            const TOKEN = CRED_OBJECTS.AQI.TOKEN;
+            const TOKEN = CRED_OBJECTS.AQI.AQI_TOKEN;
             const STATION_ID = payload.station.uid;
             request.get(
                 `https://api.waqi.info/feed/@${STATION_ID}/?token=${TOKEN}`,
