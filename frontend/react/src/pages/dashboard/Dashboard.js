@@ -27,6 +27,14 @@ export default class Dashboard extends Component {
           tagline: "Chances of rain is higher today."
         },
         {
+          name: "AQI",
+          icon: "cloud-sun-rain",
+          link: "/aqi",
+          taglineIcon: "cloud",
+          cardClass: "card-header-primary",
+          tagline: "Moderate AQI"
+        },
+        {
           name: "Twitter",
           icon: "update",
           link: "/",

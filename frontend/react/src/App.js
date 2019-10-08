@@ -11,6 +11,7 @@ import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Profile from './pages/profile/Profile';
 import Weather from './pages/weather/Weather';
+import Aqi from './pages/aqi/Aqi';
 
 export default class App extends Component {
 
@@ -33,6 +34,7 @@ export default class App extends Component {
                   <Route path="/profile" exact component={Profile} />
                   <Route path="/todos" exact component={Todo} />
                   <Route path="/weather" exact component={Weather} />
+                  <Route path="/aqi" exact component={Aqi} />
                   <Route path="/text-editor" exact component={TextEditor} />
                   <Footer />
                 </div>
