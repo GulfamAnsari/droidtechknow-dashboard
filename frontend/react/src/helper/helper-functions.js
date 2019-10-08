@@ -63,6 +63,8 @@ export const getCurrentLongtLati = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         resolve(position)
+      }, (positionError)=>{
+        reject(positionError);
       });
     } else {
       reject('Geolocation is not supported by this browser');
