@@ -19,6 +19,9 @@ module.exports = CRED_OBJECTS = {
   WEATHER: {
     API_KEY: process.env.WEATHER_API_KEY
   },
+  AQI: {
+    AQI_TOKEN: process.env.AQI_TOKEN
+  },
   SECRET_KEY: process.env.SECRET_KEY
 }
 
