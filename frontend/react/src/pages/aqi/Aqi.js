@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getCurrentLongtLati } from '../../helper/helper-functions';
 import * as BACKEND from '../../helper/backend';
+import { LOCATION_API_URL } from '../../constants';
 
 export default class Aqi extends Component {
     constructor(props) {
@@ -66,7 +67,17 @@ export default class Aqi extends Component {
                 this.setState({ currentAqi: currentAqi.data });
             }, (error) => { });
         }, (error) => {
-            console.log(error);
+            console.log('There is error in fetching geolocation', error);
+            alert('Please enable your real time location to fetch exact AQI');
+            BACKEND.get(LOCATION_API_URL).then((locationData) => {
+                const payload = {
+                    latitude: locationData.data.lat,
+                    longitude: locationData.data.lon
+                }
+                BACKEND.post('/aqi/get-aqi-information', { payload }).then((currentAqi) => {
+                    this.setState({ currentAqi: currentAqi.data });
+                }, (err) => { })
+            }, (err) => { })
         })
     }
 
