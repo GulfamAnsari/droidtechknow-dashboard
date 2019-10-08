@@ -77,33 +77,33 @@ export default class Aqi extends Component {
     }
 
 
-    colorize = (aqi, specie) => {
-        specie = specie || "aqi"
-        if (["pm25", "pm10", "no2", "so2", "co", "o3", "aqi"].indexOf(specie) < 0) return aqi;
+    // colorize = (aqi, specie) => {
+    //     specie = specie || "aqi"
+    //     if (["pm25", "pm10", "no2", "so2", "co", "o3", "aqi"].indexOf(specie) < 0) return aqi;
 
-        var spectrum = [
-            { a: 0, b: "#cccccc", f: "#ffffff" },
-            { a: 50, b: "#009966", f: "#ffffff" },
-            { a: 100, b: "#ffde33", f: "#000000" },
-            { a: 150, b: "#ff9933", f: "#000000" },
-            { a: 200, b: "#cc0033", f: "#ffffff" },
-            { a: 300, b: "#660099", f: "#ffffff" },
-            { a: 500, b: "#7e0023", f: "#ffffff" }
-        ];
+    //     var spectrum = [
+    //         { a: 0, b: "#cccccc", f: "#ffffff" },
+    //         { a: 50, b: "#009966", f: "#ffffff" },
+    //         { a: 100, b: "#ffde33", f: "#000000" },
+    //         { a: 150, b: "#ff9933", f: "#000000" },
+    //         { a: 200, b: "#cc0033", f: "#ffffff" },
+    //         { a: 300, b: "#660099", f: "#ffffff" },
+    //         { a: 500, b: "#7e0023", f: "#ffffff" }
+    //     ];
 
 
-        var i = 0;
-        for (i = 0; i < spectrum.length - 2; i++) {
-            if (aqi == "-" || aqi <= spectrum[i].a) break;
-        };
-        return $("<div/>")
-            .html(aqi)
-            .css("font-size", "120%")
-            .css("min-width", "30px")
-            .css("text-align", "center")
-            .css("background-color", spectrum[i].b)
-            .css("color", spectrum[i].f)
+    //     var i = 0;
+    //     for (i = 0; i < spectrum.length - 2; i++) {
+    //         if (aqi == "-" || aqi <= spectrum[i].a) break;
+    //     };
+    //     return $("<div/>")
+    //         .html(aqi)
+    //         .css("font-size", "120%")
+    //         .css("min-width", "30px")
+    //         .css("text-align", "center")
+    //         .css("background-color", spectrum[i].b)
+    //         .css("color", spectrum[i].f)
 
-    }
+    // }
 
 }
