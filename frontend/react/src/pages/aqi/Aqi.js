@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getCurrentLongtLati } from '../../helper/helper-functions';
 import * as BACKEND from '../../helper/backend';
 import { LOCATION_API_URL } from '../../constants';
+import scss from './Aqi.scss';
 
 export default class Aqi extends Component {
     constructor(props) {
@@ -25,15 +26,38 @@ export default class Aqi extends Component {
         return (
             <div className="content">
                 <div className="container-fluid">
-                    <section className="todo-list-container">
+                    <section className="__AQI">
+
+
                         {
-                            currentAqi.data ? <div>
-                                <p>Last updated: {currentAqi.data.time.s}</p>
-                                <p>AQI: {currentAqi.data.aqi}</p>
-                                <p>Location: {currentAqi.data.city.name}</p>
-                                <p>Dominant: {currentAqi.data.dominentpol}</p>
-                                <p>iaqi</p>
-                            </div> : null
+                            currentAqi.data ?
+                                <div class="card col-md-6">
+                                    <div class="card-header card-header-text card-header-primary">
+                                        <div class="card-text">
+                                            <h4 class="card-title">Air Quality Index</h4>
+                                        </div>
+                                    </div>
+                                    <div class="card-body col-md-6">
+                                        <div className="gauge">
+                                            <div className="slice-colors">
+                                                <div className="st slice-item"></div>
+                                                <div className="st slice-item"></div>
+                                                <div className="st slice-item"></div>
+                                                <div className="st slice-item"></div>
+                                                <div className="st slice-item"></div>
+                                            </div>
+                                            <div className="needle" style={{ transform: `rotate(${currentAqi.data.aqi}deg)` }}></div>
+                                            <div className="gauge-center"><span>{currentAqi.data.aqi}</span></div>
+                                        </div>
+                                        <div>
+                                            <p>Last updated: {currentAqi.data.time.s}</p>
+                                            <p>AQI: {currentAqi.data.aqi}</p>
+                                            <p>Location: {currentAqi.data.city.name}</p>
+                                            <p>Dominant: {currentAqi.data.dominentpol}</p>
+                                            <p>iaqi</p>
+                                        </div>
+                                    </div>
+                                </div> : null
                         }
                         <div>
                             <div><input type="text" onChange={(event) => { this.searchAqi(event) }} /></div>
