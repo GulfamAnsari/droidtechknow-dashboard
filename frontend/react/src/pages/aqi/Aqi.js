@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { getCurrentLongtLati } from '../../helper/helper-functions';
 import * as BACKEND from '../../helper/backend';
 import { LOCATION_API_URL } from '../../constants';
-import scss from './Aqi.scss';
+import './Aqi.scss';
 
 export default class Aqi extends Component {
     constructor(props) {
@@ -21,44 +21,43 @@ export default class Aqi extends Component {
 
     render() {
         const { currentAqi, searchAqi } = this.state;
-        console.log(this.state);
+        const styleClass = {
+            "gauge-container": {
+                "gauge": {
+                    "value": {
+                        stroke: "#b8da65",
+                        "stroke-width": 5
+                    }
+                }
+            }
+        }
 
         return (
             <div className="content">
                 <div className="container-fluid">
                     <section className="__AQI">
-
-
                         {
                             currentAqi.data ?
-                                <div class="card col-md-6">
-                                    <div class="card-header card-header-text card-header-primary">
-                                        <div class="card-text">
-                                            <h4 class="card-title">Air Quality Index</h4>
+                                <div class="card card-chart col-md-4">
+                                    <div class="card-header card-header-primary">
+                                        <h4 class="card-title">{currentAqi.data.city.name} (AQI)</h4>
+                                    </div>
+                                    <div className="card-body">
+                                        <div>
+                                            <div id="gauge" class="gauge-container"></div>
+                                            {this.getAqiGauge(currentAqi.data.aqi, 'gauge')}
+                                            <div className="card-category">
+                                                <p>Dominant: {currentAqi.data.dominentpol}</p>
+                                                <p>iaqi</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="card-body col-md-6">
-                                        <div className="gauge">
-                                            <div className="slice-colors">
-                                                <div className="st slice-item"></div>
-                                                <div className="st slice-item"></div>
-                                                <div className="st slice-item"></div>
-                                                <div className="st slice-item"></div>
-                                                <div className="st slice-item"></div>
-                                            </div>
-                                            <div className="needle" style={{ transform: `rotate(${currentAqi.data.aqi}deg)` }}></div>
-                                            <div className="gauge-center"><span>{currentAqi.data.aqi}</span></div>
-                                        </div>
-                                        <div>
-                                            <p>Last updated: {currentAqi.data.time.s}</p>
-                                            <p>AQI: {currentAqi.data.aqi}</p>
-                                            <p>Location: {currentAqi.data.city.name}</p>
-                                            <p>Dominant: {currentAqi.data.dominentpol}</p>
-                                            <p>iaqi</p>
-                                        </div>
+                                    <div className="card-footer">
+                                        <div className="stats"><i class="material-icons">access_time</i><p>Last updated: {currentAqi.data.time.s}</p></div>
                                     </div>
                                 </div> : null
                         }
+
                         <div>
                             <div><input type="text" onChange={(event) => { this.searchAqi(event) }} /></div>
                             <div>
@@ -103,12 +102,34 @@ export default class Aqi extends Component {
                 }, (err) => { })
             }, (err) => { })
         })
+
     }
 
     searchAqi = (event) => {
         BACKEND.post('/aqi/get-aqi-information', { payload: { keyword: event.target.value } }).then((aqiData) => {
             this.setState({ searchAqi: aqiData.data });
         }, (error) => { });
+    }
+
+
+    getAqiGauge = (value, id) => {
+        setTimeout(() => {
+            window.Gauge(document.getElementById(id), {
+                dialRadius: 40,
+                dialStartAngle: 135,
+                dialEndAngle: 45,
+                value: value,
+                max: 500,
+                min: 0,
+                valueDialClass: "value",
+                valueClass: "value-text",
+                dialClass: "dial",
+                gaugeClass: "gauge",
+                showValue: true,
+                gaugeColor: null,
+                label: function (val) { return Math.round(val); } // returns a string label that will be rendered in the center
+            })
+        }, 0)
     }
 
 

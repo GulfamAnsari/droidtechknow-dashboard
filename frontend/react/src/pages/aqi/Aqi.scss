@@ -1,139 +1,18 @@
-// Colors
-//------------
-$wrapper-card-bg: rgba(21, 34, 46, .25);
-$gauge-shadow: 0 0 0 6px rgba(255, 255, 255, .09),
-0 0 35px 5px rgba(255, 255, 255, .29);
-$gauge-bg: #e7e7e7;
-$gauge-common-color: #15222E;
-$gauge-slice-default-color: #000;
-$gauge-first-slice-color: #009966;
-$gauge-second-slice-color: #ffde33;
-$gauge-third-slice-color: #cc0033;
-$gauge-fourth-slice-color: #660099;
-$gauge-fifth-slice-color: #7e0023;
-$color-white: #fff;
-
-
 .__AQI {
-    .wrapper {
-        height: auto;
+    .gauge-container>.gauge>.dial {
+        stroke: #334455;
+        stroke-width: 5;
     }
 
-    .wrapper-header {
-        font-family: Arial, Helvetica, sans-serif;
-        text-align: center;
-        color: rgba(255, 255, 255, .74);
-        margin: 30px 0 15px;
-        font-weight: normal;
+    .gauge-container>.gauge>.value {
+        stroke: #b8da65;
+        stroke-width: 5;
     }
 
-    .gauge {
-        font-family: Arial, Helvetica, sans-serif;
-        background: $gauge-bg;
-        box-shadow: $gauge-shadow;
-        width: 300px;
-        height: 150px;
-        border-radius: 150px 150px 0 0;
-        position: relative;
-        overflow: hidden;
-
-        /* safari fix */
-        -webkit-transform-style: flat;
-        -webkit-transform: translateZ(0px);
-
-        &.min-scaled {
-            transform: scale(.5);
-        }
-    }
-
-    .gauge-center {
-        content: '';
-        color: $color-white;
-        width: 60%;
-        height: 60%;
-        background: $gauge-common-color;
-        border-radius: 100px 100px 0 0;
-        position: absolute;
-        box-shadow: 0 -13px 15px -10px rgba(0, 0, 0, .28);
-        right: 21%;
-        bottom: 0;
-        color: $color-white;
-
-        span {
-            position: absolute;
-            bottom: 0;
-            right: 40%;
-        }
-    }
-
-    .needle {
-        width: 78px;
-        height: 7px;
-        background: $gauge-common-color;
-        border-bottom-left-radius: 100%;
-        border-bottom-right-radius: 5px;
-        border-top-left-radius: 100%;
-        border-top-right-radius: 5px;
-        position: absolute;
-        bottom: 39px;
-        left: 20%;
-        transform-origin: 100% 4px;
-        box-shadow: 0 2px 2px 1px rgba(0, 0, 0, .38);
-    }
-
-    .slice-colors .st {
-        position: absolute;
-        bottom: 0;
-        width: 100px;
-        height: 0;
-        border-bottom: 80px solid $gauge-slice-default-color;
-        border-left: 12px solid transparent;
-        border-right: 12px solid transparent;
-
-        &.slice-item {
-            &:nth-child(1) {
-                border-bottom-color: $gauge-first-slice-color;
-                left: -2px;
-                border-bottom-width: 122px;
-                border-left-width: 3px;
-                border-right-width: 41px;
-                width: 200px;
-            }
-
-            &:nth-child(2) {
-                border-bottom-color: $gauge-second-slice-color;
-                transform: rotate(135deg);
-                transform-origin: right;
-                top: 37px;
-                left: -36px;
-
-            }
-
-            &:nth-child(3) {
-                border-bottom-color: #c03;
-                transform: rotate(179deg);
-                transform-origin: right;
-                top: 0;
-                left: -29px;
-                border-bottom-width: 100px;
-                border-left-width: 115px;
-            }
-
-            &:nth-child(4) {
-                border-bottom-color: $gauge-fourth-slice-color;
-                transform: rotate(219deg);
-                transform-origin: right;
-                top: -18px;
-                left: 70px;
-            }
-
-            &:nth-child(5) {
-                border-bottom-color: $gauge-fifth-slice-color;
-                transform: rotate(240deg);
-                transform-origin: right;
-                right: 63px;
-                top: 35px;
-            }
-        }
+    .gauge-container>.gauge>.value-text {
+        fill: #b8da65;
+        font-family: 'heebo';
+        font-weight: 500;
+        font-size: 0.6em;
     }
 }
