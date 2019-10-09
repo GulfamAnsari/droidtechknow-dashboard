@@ -28,27 +28,11 @@ export default class Dashboard extends Component {
         },
         {
           name: "AQI",
-          icon: "cloud-sun-rain",
+          icon: "mood",
           link: "/aqi",
-          taglineIcon: "cloud",
-          cardClass: "card-header-primary",
-          tagline: "Moderate AQI"
-        },
-        {
-          name: "Twitter",
-          icon: "update",
-          link: "/",
-          taglineIcon: "list",
-          cardClass: "card-header-danger",
-          tagline: "Last 24 Hours",
-        },
-        {
-          name: "Issues",
-          icon: "info_outline",
-          link: "/",
-          taglineIcon: "update",
-          cardClass: "card-header-info",
-          tagline: "Just Updated",
+          taglineIcon: "mood",
+          cardClass: "card-header-success",
+          tagline: "Moderate Air Quality in your area"
         }
       ]
     };
@@ -72,21 +56,7 @@ export default class Dashboard extends Component {
             })}
           </div>
 
-          {/* Second Row */}
-          <div className="row">
-            <div className="col-md-4">
-              <Card card={{
-                title: "Email Subscriptions",
-                description: "Last Campaign Performance",
-                description_icon: "",
-                stats: "campaign sent 2 days ago",
-                stats_icon: "access_time",
-                cardClass: "card-header-success"
-              }} />
-            </div>
-          </div>
-
-          {/* Third row */}
+          {/* Second row */}
           <div className="row">
             <div className="col-lg-6 col-md-12">
               <Table

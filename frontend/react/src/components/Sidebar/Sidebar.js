@@ -36,7 +36,7 @@ class Sidebar extends Component {
         },
         {
           name: "AQI",
-          icon: "cloud",
+          icon: "mood",
           to: 'aqi',
           path: "/aqi"
         }
