@@ -21,16 +21,6 @@ export default class Aqi extends Component {
 
     render() {
         const { currentAqi, searchAqi } = this.state;
-        const styleClass = {
-            "gauge-container": {
-                "gauge": {
-                    "value": {
-                        stroke: "#b8da65",
-                        "stroke-width": 5
-                    }
-                }
-            }
-        }
 
         return (
             <div className="content">
@@ -38,17 +28,18 @@ export default class Aqi extends Component {
                     <section className="__AQI">
                         {
                             currentAqi.data ?
-                                <div class="card card-chart col-md-4">
+                                <div class="card card-chart">
                                     <div class="card-header card-header-primary">
                                         <h4 class="card-title">{currentAqi.data.city.name} (AQI)</h4>
                                     </div>
                                     <div className="card-body">
-                                        <div>
-                                            <div id="gauge" class="gauge-container"></div>
-                                            {this.getAqiGauge(currentAqi.data.aqi, 'gauge')}
-                                            <div className="card-category">
-                                                <p>Dominant: {currentAqi.data.dominentpol}</p>
-                                                <p>iaqi</p>
+                                        <div className="card-category row">
+                                            <div className="col-md-6">
+                                                <div id="gauge" class="gauge-container"></div>
+                                                {this.getAqiGauge(currentAqi.data.aqi, 'gauge')}
+                                            </div>
+                                            <div className="col-md-6">
+                                                {this.getPollutants(currentAqi.data.iaqi)}
                                             </div>
                                         </div>
                                     </div>
@@ -132,34 +123,21 @@ export default class Aqi extends Component {
         }, 0)
     }
 
-
-    // colorize = (aqi, specie) => {
-    //     specie = specie || "aqi"
-    //     if (["pm25", "pm10", "no2", "so2", "co", "o3", "aqi"].indexOf(specie) < 0) return aqi;
-
-    //     var spectrum = [
-    //         { a: 0, b: "#cccccc", f: "#ffffff" },
-    //         { a: 50, b: "#009966", f: "#ffffff" },
-    //         { a: 100, b: "#ffde33", f: "#000000" },
-    //         { a: 150, b: "#ff9933", f: "#000000" },
-    //         { a: 200, b: "#cc0033", f: "#ffffff" },
-    //         { a: 300, b: "#660099", f: "#ffffff" },
-    //         { a: 500, b: "#7e0023", f: "#ffffff" }
-    //     ];
-
-
-    //     var i = 0;
-    //     for (i = 0; i < spectrum.length - 2; i++) {
-    //         if (aqi == "-" || aqi <= spectrum[i].a) break;
-    //     };
-    //     return $("<div/>")
-    //         .html(aqi)
-    //         .css("font-size", "120%")
-    //         .css("min-width", "30px")
-    //         .css("text-align", "center")
-    //         .css("background-color", spectrum[i].b)
-    //         .css("color", spectrum[i].f)
-
-    // }
+    getPollutants = (species) => {
+        var names = {
+            pm25: "PM",
+            pm10: "PM",
+            o3: "Ozone",
+            no2: "Nitrogen Dioxide",
+            so2: "Sulphur Dioxide",
+            co: "Carbon Monoxyde"
+        }
+        return Object.keys(names).map((s) => {
+            return species[s] ? <div className="__Range">
+                <p>{names[s]} {s === 'pm25' ? <sub>2.5</sub> : s === 'pm10' ? <sub>10</sub> : null}</p>
+                <input type="range" min="0" max="500" value={species[s]['v']} step="0" />
+            </div> : null
+        })
+    }
 
 }
