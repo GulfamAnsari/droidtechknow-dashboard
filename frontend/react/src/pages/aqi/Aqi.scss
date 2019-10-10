@@ -1,5 +1,7 @@
 .__AQI {
 
+    padding: 16px 0;
+
     // Gauge
     .gauge-container>.gauge>.dial {
         stroke: #334455;
@@ -7,12 +9,12 @@
     }
 
     .gauge-container>.gauge>.value {
-        stroke: #b8da65;
+        stroke: #bcdf5b;
         stroke-width: 5;
     }
 
     .gauge-container>.gauge>.value-text {
-        fill: #b8da65;
+        fill: #bcdf5b;
         font-family: 'heebo';
         font-weight: 500;
         font-size: 0.6em;
@@ -24,8 +26,8 @@
     $slider-height: 12px;
     $slider-border-width: 1px !default;
     $slider-border-color: #d5d5d5 !default;
-    $background-slider: #f6f6f6; // right
-    $background-filled-slider: linear-gradient(to right, green , yellow,red); //left
+    $background-slider: #334455; // right
+    $background-filled-slider: linear-gradient(to right, green, yellow, red); //left
     $thumb-width: 28px;
     $thumb-height: 28px;
     $thumb-radius: 50%;
@@ -46,10 +48,19 @@
     }
 
     .__Range {
-        height: 100px;
         display: flex;
         justify-content: space-between;
         align-items: baseline;
+        position: relative;
+
+        .aqiValue {
+            position: absolute;
+            top: 20px;
+            right: 8px;
+            font-size: 12px;
+            color: #d4d0d0;
+            font-weight: 500;
+        }
 
         input {
             appearance: none;

@@ -8,6 +8,7 @@ export default class Aqi extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isSvgMade: false,
             currentAqi: {
                 status: null,
                 data: null
@@ -26,29 +27,7 @@ export default class Aqi extends Component {
             <div className="content">
                 <div className="container-fluid">
                     <section className="__AQI">
-                        {
-                            currentAqi.data ?
-                                <div class="card card-chart">
-                                    <div class="card-header card-header-primary">
-                                        <h4 class="card-title">{currentAqi.data.city.name} (AQI)</h4>
-                                    </div>
-                                    <div className="card-body">
-                                        <div className="card-category row">
-                                            <div className="col-md-6">
-                                                <div id="gauge" class="gauge-container"></div>
-                                                {this.getAqiGauge(currentAqi.data.aqi, 'gauge')}
-                                            </div>
-                                            <div className="col-md-6">
-                                                {this.getPollutants(currentAqi.data.iaqi)}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="card-footer">
-                                        <div className="stats"><i class="material-icons">access_time</i><p>Last updated: {currentAqi.data.time.s}</p></div>
-                                    </div>
-                                </div> : null
-                        }
-
+                        {currentAqi.data ? this.getAqiCard(currentAqi) : null}
                         <div>
                             <div><input type="text" onChange={(event) => { this.searchAqi(event) }} /></div>
                             <div>
@@ -119,8 +98,10 @@ export default class Aqi extends Component {
                 showValue: true,
                 gaugeColor: null,
                 label: function (val) { return Math.round(val); } // returns a string label that will be rendered in the center
-            })
-        }, 0)
+            });
+            this.setState({isSvgMade: true});
+        }
+        , 0)
     }
 
     getPollutants = (species) => {
@@ -134,10 +115,39 @@ export default class Aqi extends Component {
         }
         return Object.keys(names).map((s) => {
             return species[s] ? <div className="__Range">
-                <p>{names[s]} {s === 'pm25' ? <sub>2.5</sub> : s === 'pm10' ? <sub>10</sub> : null}</p>
+                <p style={{width: "30%"}}>{names[s]} {s === 'pm25' ? <sub>2.5</sub> : s === 'pm10' ? <sub>10</sub> : null}</p>
                 <input type="range" min="0" max="500" value={species[s]['v']} step="0" />
+                <span className="aqiValue">{species[s]['v']}</span>
             </div> : null
         })
+    }
+
+    getAqiCard = (currentAqi) => {
+        const { isSvgMade } = this.state;
+        const aqiColor = currentAqi.data.aqi <= 50 ?
+            'success' : currentAqi.data.aqi <= 100 ?
+                'warning' : currentAqi.data.aqi <= 200 ?
+                    'danger' : 'primary';
+        return <div class="card card-chart col-md-8">
+            <div className={`card-header card-header-${aqiColor}`} style={{display: 'flex', justifyContent: 'space-between'}}>
+                <h4 class="card-title">{currentAqi.data.city.name} (AQI)</h4>
+                <span className="material-icons">near_me</span>
+            </div>
+            <div className="card-body">
+                <div className="card-category row">
+                    <div className="col-md-6">
+                        <div id="gauge" class="gauge-container"></div>
+                        {!isSvgMade ? this.getAqiGauge(currentAqi.data.aqi, 'gauge') : null}
+                    </div>
+                    <div className="col-md-6">
+                        {this.getPollutants(currentAqi.data.iaqi)}
+                    </div>
+                </div>
+            </div>
+            <div className="card-footer">
+                <div className="stats"><i class="material-icons">access_time</i><p>Last updated: {currentAqi.data.time.s}</p></div>
+            </div>
+        </div>
     }
 
 }
