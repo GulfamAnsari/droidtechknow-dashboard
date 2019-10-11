@@ -133,18 +133,18 @@ class Aqi extends Component {
             'success' : currentAqi.data.aqi <= 100 ?
                 'warning' : currentAqi.data.aqi <= 200 ?
                     'danger' : 'primary';
-        return <div class="card card-chart col-md-8">
+        return <div className={`card card-chart col-md-5`}>
             <div className={`card-header card-header-${aqiColor}`} style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <h4 class="card-title">{currentAqi.data.city.name} (AQI)</h4>
                 <span className="material-icons">near_me</span>
             </div>
             <div className="card-body">
                 <div className="card-category row">
-                    <div className="col-md-6">
+                    <div className={'col-md-12'}>
                         <div id={id} class="gauge-container"></div>
                         {document.getElementById(id) ? null : this.getAqiGauge(currentAqi.data.aqi, id)}
                     </div>
-                    <div className="col-md-6">
+                    <div className={'col-md-12'}>
                         {this.getPollutants(currentAqi.data.iaqi)}
                     </div>
                 </div>

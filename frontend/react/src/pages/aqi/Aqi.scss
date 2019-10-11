@@ -1,6 +1,9 @@
 .__AQI {
 
     padding: 16px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 
     // Gauge
     .gauge-container>.gauge>.dial {
