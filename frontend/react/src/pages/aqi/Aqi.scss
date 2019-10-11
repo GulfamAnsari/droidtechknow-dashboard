@@ -5,6 +5,16 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
 
+    .aqiCard {
+        width: 48%;
+    }
+
+    @media (max-width: 768px) {
+        .aqiCard {
+            width: 100%;
+        }
+      }
+
     // Gauge
     .gauge-container>.gauge>.dial {
         stroke: #334455;
