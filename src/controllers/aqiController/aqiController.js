@@ -14,11 +14,14 @@ class AqiController {
             const LATITUDE = payload.latitude;
             const LONGITUTE = payload.longitude;
             const KEYWORD = payload.keyword;
+            const UID = payload.uid;
             let URL = '';
             if (LATITUDE && LONGITUTE) {
                 URL = `https://api.waqi.info/feed/geo:${LATITUDE};${LONGITUTE}/?token=${TOKEN}`;
             } else if (KEYWORD) {
                 URL = `https://api.waqi.info/search/?token=${TOKEN}&keyword=${KEYWORD}`;
+            } else if (UID) {
+                URL = `https://api.waqi.info/feed/@${UID}/?token=${TOKEN}`;
             }
             request.get(
                 URL,

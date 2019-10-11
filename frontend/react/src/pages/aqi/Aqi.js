@@ -2,47 +2,29 @@ import React, { Component } from 'react';
 import { getCurrentLongtLati } from '../../helper/helper-functions';
 import * as BACKEND from '../../helper/backend';
 import { LOCATION_API_URL } from '../../constants';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions';
 import './Aqi.scss';
 
-export default class Aqi extends Component {
+class Aqi extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isSvgMade: false,
-            currentAqi: {
-                status: null,
-                data: null
-            },
-            searchAqi: {
-                status: null,
-                data: null
-            }
+            aqiData: []
         }
     }
 
     render() {
-        const { currentAqi, searchAqi } = this.state;
-
+        const { aqiData } = this.state;
         return (
             <div className="content">
                 <div className="container-fluid">
                     <section className="__AQI">
-                        {currentAqi.data ? this.getAqiCard(currentAqi) : null}
-                        <div>
-                            <div><input type="text" onChange={(event) => { this.searchAqi(event) }} /></div>
-                            <div>
-                                {
-                                    searchAqi.data ? searchAqi.data.map((aqiData) => {
-                                        return <div style={{ border: 'solid 1px grey' }}>
-                                            <p>Last updated: {aqiData.time.stime}</p>
-                                            <p>AQI: {aqiData.aqi}</p>
-                                            <p>Location: {aqiData.station.name}, {aqiData.station.country}</p>
-                                            <p>iaqi</p>
-                                        </div>;
-                                    }) : null
-                                }
-                            </div>
-                        </div>
+                        {
+                            aqiData.map((data, index) => {
+                                return this.getAqiCard(data, index)
+                            })
+                        }
                     </section>
                 </div>
             </div>
@@ -57,7 +39,7 @@ export default class Aqi extends Component {
                 longitude: position.coords.longitude
             }
             BACKEND.post('/aqi/get-aqi-information', { payload }).then((currentAqi) => {
-                this.setState({ currentAqi: currentAqi.data });
+                this.setState({ aqiData: [currentAqi.data] });
             }, (error) => { });
         }, (error) => {
             console.log('There is error in fetching geolocation', error);
@@ -68,17 +50,42 @@ export default class Aqi extends Component {
                     longitude: locationData.data.lon
                 }
                 BACKEND.post('/aqi/get-aqi-information', { payload }).then((currentAqi) => {
-                    this.setState({ currentAqi: currentAqi.data });
+                    this.setState({ aqiData: [currentAqi.data] });
                 }, (err) => { })
             }, (err) => { })
-        })
+        });
 
     }
 
-    searchAqi = (event) => {
-        BACKEND.post('/aqi/get-aqi-information', { payload: { keyword: event.target.value } }).then((aqiData) => {
-            this.setState({ searchAqi: aqiData.data });
-        }, (error) => { });
+    componentDidUpdate = (prevProps) => {
+        if (prevProps.searchResult.query !== this.props.searchResult.query) {
+            BACKEND.post('/aqi/get-aqi-information', { payload: { keyword: this.props.searchResult.query } }).then((aqiData) => {
+                const displayData = [];
+                for (const data of aqiData.data.data) {
+                    displayData.push({
+                        name: data.station.name + ' ' + (data.station.country ? data.station.country : ''),
+                        value: data.aqi,
+                        data: {
+                            geo: data.station.geo,
+                            uid: data.uid
+                        }
+                    });
+                }
+                this.props.search({ name: 'result', result: displayData });
+            }, (error) => { });
+        }
+        if (this.props.searchResult.selected) {
+            console.log(this.props.searchResult);
+            this.props.search({ name: 'selected', selected: null });
+            const payload = {
+                uid: this.props.searchResult.selected.data.uid
+            }
+            BACKEND.post('/aqi/get-aqi-information', { payload }).then((currentAqi) => {
+                const { aqiData } = this.state;
+                aqiData.push(currentAqi.data);
+                this.setState({ aqiData });
+            }, (error) => { });
+        }
     }
 
 
@@ -99,9 +106,7 @@ export default class Aqi extends Component {
                 gaugeColor: null,
                 label: function (val) { return Math.round(val); } // returns a string label that will be rendered in the center
             });
-            this.setState({isSvgMade: true});
-        }
-        , 0)
+        }, 0)
     }
 
     getPollutants = (species) => {
@@ -115,29 +120,29 @@ export default class Aqi extends Component {
         }
         return Object.keys(names).map((s) => {
             return species[s] ? <div className="__Range">
-                <p style={{width: "30%"}}>{names[s]} {s === 'pm25' ? <sub>2.5</sub> : s === 'pm10' ? <sub>10</sub> : null}</p>
+                <p style={{ width: "30%" }}>{names[s]} {s === 'pm25' ? <sub>2.5</sub> : s === 'pm10' ? <sub>10</sub> : null}</p>
                 <input type="range" min="0" max="500" value={species[s]['v']} step="0" />
                 <span className="aqiValue">{species[s]['v']}</span>
             </div> : null
         })
     }
 
-    getAqiCard = (currentAqi) => {
-        const { isSvgMade } = this.state;
+    getAqiCard = (currentAqi, index) => {
+        const id = currentAqi.data.city.name + index;
         const aqiColor = currentAqi.data.aqi <= 50 ?
             'success' : currentAqi.data.aqi <= 100 ?
                 'warning' : currentAqi.data.aqi <= 200 ?
                     'danger' : 'primary';
         return <div class="card card-chart col-md-8">
-            <div className={`card-header card-header-${aqiColor}`} style={{display: 'flex', justifyContent: 'space-between'}}>
+            <div className={`card-header card-header-${aqiColor}`} style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <h4 class="card-title">{currentAqi.data.city.name} (AQI)</h4>
                 <span className="material-icons">near_me</span>
             </div>
             <div className="card-body">
                 <div className="card-category row">
                     <div className="col-md-6">
-                        <div id="gauge" class="gauge-container"></div>
-                        {!isSvgMade ? this.getAqiGauge(currentAqi.data.aqi, 'gauge') : null}
+                        <div id={id} class="gauge-container"></div>
+                        {document.getElementById(id) ? null : this.getAqiGauge(currentAqi.data.aqi, id)}
                     </div>
                     <div className="col-md-6">
                         {this.getPollutants(currentAqi.data.iaqi)}
@@ -151,3 +156,21 @@ export default class Aqi extends Component {
     }
 
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+        userInfo: state.Main_Reducer.userInfo,
+        searchResult: state.Main_Reducer.searchResult
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchUserInfo: () => dispatch(actions.fetchUserInfo()),
+        logout: () => dispatch(actions.logout()),
+        search: (value) => dispatch(actions.search(value))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Aqi);

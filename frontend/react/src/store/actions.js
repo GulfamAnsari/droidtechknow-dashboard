@@ -5,6 +5,7 @@ export const LOG_OUT = 'LOG_OUT';
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';
 export const FETCH_USER_INFO = 'FETCH_USER_INFO';
 export const API_ERROR = 'API_ERROR';
+export const SEARCH = 'SEARCH';
 
 export const logout = () => {
   return (dispatch, getState) => {
@@ -58,4 +59,21 @@ export const updateProfile = (value) => {
       });
     });
   }
+}
+
+export const search = (value) => {
+  return (dispatch, getState) => {
+    let data = {
+      type: SEARCH
+    };
+    if (value.name === 'query') {
+      data['value'] = { ...getState()['Main_Reducer']['searchResult'], query: value.query}
+    } else if (value.name === 'result'){
+      data['value'] = { ...getState()['Main_Reducer']['searchResult'], result: value.result }
+    } else if (value.name === 'selected') {
+      data['value'] = { ...getState()['Main_Reducer']['searchResult'], selected: value.selected }
+    }
+    dispatch(data);
+  }
+
 }

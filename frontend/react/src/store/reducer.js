@@ -1,8 +1,13 @@
-import { API_ERROR, FETCH_USER_INFO, UPDATE_PROFILE, LOG_OUT } from './actions';
+import { API_ERROR, FETCH_USER_INFO, UPDATE_PROFILE, LOG_OUT, SEARCH } from './actions';
 
 const initialState = {
   userInfo: null,
-  error: null
+  error: null,
+  searchResult: {
+    query: null,
+    result: [],
+    selected: null
+  }
 }
 
 const Main_Reducer = (state = initialState, action) => {
@@ -28,7 +33,11 @@ const Main_Reducer = (state = initialState, action) => {
         ...state,
         error: action.value.error
       }
-
+    case SEARCH:
+      return {
+        ...state,
+        searchResult: { result: action.value.result, query: action.value.query, selected: action.value.selected }
+      }
     default:
       return state;
   }
