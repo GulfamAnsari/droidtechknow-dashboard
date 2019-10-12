@@ -112,6 +112,7 @@ class Aqi extends Component {
                 gaugeColor: null,
                 label: function (val) { return Math.round(val); } // returns a string label that will be rendered in the center
             });
+            document.getElementById(id).children[0].children[2].style.stroke = this.colorize(value).b;
         }, 0)
     }
 
