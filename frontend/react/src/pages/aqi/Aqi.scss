@@ -9,11 +9,24 @@
         width: 48%;
     }
 
+    .delete {
+        cursor: pointer;
+        height: fit-content;
+        width: fit-content;
+        padding: 8px;
+        border-radius: 50%;
+    }
+
+    .delete:hover {
+        background: #0000008f;
+        transition: background 0.5s;
+    }
+
     @media (max-width: 768px) {
         .aqiCard {
             width: 100%;
         }
-      }
+    }
 
     // Gauge
     .gauge-container>.gauge>.dial {

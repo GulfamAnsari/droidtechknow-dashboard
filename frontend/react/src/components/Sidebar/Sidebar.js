@@ -83,7 +83,7 @@ class Sidebar extends Component {
             <span className="bmd-form-group">
               <div className="input-group no-border">
                 <input type="text" className="form-control" placeholder="Search..." onChange={(event) => { this.props.search({ name: 'query', query: event.target.value }) }} />
-                <div className="searchResult" style={searchResult.result.length > 0 ? { height: '70vh' } : null}>
+                <div className="searchResult" style={searchResult.result.length > 0 ? { 'max-height': '70vh' } : null}>
                   {
                     searchResult.result.map((result) => {
                       return <p style={{ color: this.colorize(result.value).f, background: this.colorize(result.value).b }} onClick={() => { this.props.search({ name: 'selected', selected: result }) }}>{result.name}<span>{result.value}</span></p>

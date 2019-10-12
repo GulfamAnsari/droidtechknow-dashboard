@@ -55,22 +55,6 @@ export default class Dashboard extends Component {
               );
             })}
           </div>
-
-          {/* Second row */}
-          <div className="row">
-            <div className="col-lg-6 col-md-12">
-              <Table
-                tableData={{
-                  title: "Employees Stats",
-                  description: "New employees on 15th September, 2016",
-                  data: [
-                    { name: "gulfam", salary: "$2" },
-                    { name: "ansari", salary: "$2" }
-                  ]
-                }}
-              />
-            </div>
-          </div>
         </div>
       </div>
     );

@@ -155,9 +155,6 @@ export default class Weather extends Component {
                     <p><span>Sunrise: {new Date(info.sunriseTime * 1000).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</span></p>
                     <p><span>Sunset: {new Date(info.sunsetTime * 1000).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</span></p>
                 </div>
-                <div className="w3_main_grid_right_grid1_right">
-                    <canvas id={weatherData.icon} width="45" height="45"></canvas>
-                </div>
                 <div className="clear"> </div>
             </div>
         });
