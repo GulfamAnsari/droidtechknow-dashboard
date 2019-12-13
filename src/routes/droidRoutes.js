@@ -1,6 +1,7 @@
 var express = require('express');
 const path = require('path');
 var nodemailer = require('nodemailer');
+var CRED_OBJECTS = require('../../cred');
 var droidRoutes = express.Router();
 var DatabaseController = require('../controllers/droidDatabaseControllers/databaseController');
 var databaseController = new DatabaseController();
@@ -14,7 +15,7 @@ droidRoutes.route('/article-list').get((req, res) => {
 });
 
 droidRoutes.route('/article-delete').post((req, res) => {
-  if (process.env.USERNAME === req.body.username && process.env.PASSWORD === req.body.password) {
+  if (CRED_OBJECTS.MYSQL.user === req.body.username && CRED_OBJECTS.MYSQL.password === req.body.password) {
     databaseController.deleteArticle(req.body.article).then((success) => {
       res.send(success);
     }, (err) => {
@@ -26,7 +27,7 @@ droidRoutes.route('/article-delete').post((req, res) => {
 });
 
 droidRoutes.route('/article-edit').patch((req, res) => {
-  if (process.env.USERNAME === req.body.username && process.env.PASSWORD === req.body.password) {
+  if (CRED_OBJECTS.MYSQL.user === req.body.username && CRED_OBJECTS.MYSQL.password === req.body.password) {
     databaseController.editArticle(req.body.article).then((success) => {
       res.send(success);
     }, (err) => {
@@ -38,7 +39,7 @@ droidRoutes.route('/article-edit').patch((req, res) => {
 });
 
 droidRoutes.route('/article-add').post((req, res) => {
-  if (process.env.USERNAME === req.body.username && process.env.PASSWORD === req.body.password) {
+  if (CRED_OBJECTS.MYSQL.user === req.body.username && CRED_OBJECTS.MYSQL.password === req.body.password) {
     databaseController.addArticle(req.body.article).then((success) => {
       res.send(success);
     }, (err) => {
