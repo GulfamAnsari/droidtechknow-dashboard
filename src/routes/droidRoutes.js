@@ -27,6 +27,9 @@ droidRoutes.route('/article-delete').post((req, res) => {
 });
 
 droidRoutes.route('/article-edit').patch((req, res) => {
+  console.log('##############');
+  console.log(CRED_OBJECTS.MYSQL);
+  console.log(req.body);
   if (CRED_OBJECTS.MYSQL.user === req.body.username && CRED_OBJECTS.MYSQL.password === req.body.password) {
     databaseController.editArticle(req.body.article).then((success) => {
       res.send(success);
@@ -39,6 +42,9 @@ droidRoutes.route('/article-edit').patch((req, res) => {
 });
 
 droidRoutes.route('/article-add').post((req, res) => {
+  console.log('##############');
+  console.log(CRED_OBJECTS.MYSQL);
+  console.log(req.body);
   if (CRED_OBJECTS.MYSQL.user === req.body.username && CRED_OBJECTS.MYSQL.password === req.body.password) {
     databaseController.addArticle(req.body.article).then((success) => {
       res.send(success);
