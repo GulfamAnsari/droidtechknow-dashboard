@@ -10,7 +10,7 @@ const AxiosInstance = Axios.create({
 if (window.location.hostname === 'localhost') {
   AxiosInstance.defaults.baseURL = 'http://localhost:5000';
 } else {
-  AxiosInstance.defaults.baseURL = 'http://droidtechknow-dashboard.herokuapp.com';
+  AxiosInstance.defaults.baseURL = 'https://droidtechknow-dashboard.herokuapp.com';
 }
 
 // Request interceptor
