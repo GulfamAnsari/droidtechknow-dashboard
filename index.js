@@ -4,7 +4,7 @@ var app = express();
 var cors = require('cors')
 var bodyParser = require("body-parser");
 var router = require('./src/routes/appRoutes');
-var droidRoutes = require('./src/routes/droidRoutes');
+// var droidRoutes = require('./src/routes/droidRoutes');
 var todoRoutes = require('./src/routes/todoRoutes');
 var weatherRoutes = require('./src/routes/weatherRoutes');
 var aqiRoutes = require('./src/routes/aqiRoutes');
@@ -20,7 +20,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Application Routes
-app.use('/droid', droidRoutes);
+// app.use('/droid', droidRoutes);
 app.use('/todo', todoRoutes);
 app.use('/weather', weatherRoutes);
 app.use('/aqi', aqiRoutes);

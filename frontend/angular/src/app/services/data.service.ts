@@ -21,7 +21,7 @@ export class DataService {
   public getArticleList() {
     return new Observable((observer) => {
       console.log(this.helper.getUrl());
-      this.backendService.get(this.helper.getUrl() + 'article-list')
+      this.backendService.get(this.helper.getUrl() + 'api/dashboard_fetch_all_results.php')
         .subscribe((result) => {
           this.allArticles = result;
           observer.next(result);

@@ -8,10 +8,11 @@ export class HelperService {
   constructor() { }
 
   public getUrl() {
-    if(window.location.hostname == "localhost") {
-      return "http://localhost:5000/droid/"
-    } else {
-      return '/droid/';
-    }
+    return 'https://droidtechknow.com/';
+    // if(window.location.hostname == "localhost") {
+    //   return "http://localhost:5000/droid/"
+    // } else {
+    //   return '/droid/';
+    // }
   }
 }
