@@ -21,21 +21,21 @@ export default class App extends Component {
 
   render() {
     return (
-      <BrowserRouter basename={'/admin/react/'}>
+      <BrowserRouter basename="/admin/react/">
         <React.Fragment>
           <Switch>
-            <Route path="/" exact component={Home} />
+            <Route path="/admin/react/" exact component={Home} />
             <div className="dashboard">
               <div className="wrapper ">
-                <Route path="/" component={Sidebar} />
+                <Route path="/admin/react/" component={Sidebar} />
                 <div className="main-panel">
-                  <Route path="/" component={Header} />
-                  <Route path="/dashboard" exact component={Dashboard} />
-                  <Route path="/profile" exact component={Profile} />
-                  <Route path="/todos" exact component={Todo} />
-                  <Route path="/weather" exact component={Weather} />
-                  <Route path="/aqi" exact component={Aqi} />
-                  <Route path="/text-editor" exact component={TextEditor} />
+                  <Route path="/admin/react/" component={Header} />
+                  <Route path="/admin/react/dashboard" exact component={Dashboard} />
+                  <Route path="/admin/react/profile" exact component={Profile} />
+                  <Route path="/admin/react/todos" exact component={Todo} />
+                  <Route path="/admin/react/weather" exact component={Weather} />
+                  <Route path="/admin/react/aqi" exact component={Aqi} />
+                  <Route path="/admin/react/text-editor" exact component={TextEditor} />
                   <Footer />
                 </div>
               </div>
