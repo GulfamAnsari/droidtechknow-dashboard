@@ -24,7 +24,7 @@ export default class App extends Component {
       <BrowserRouter basename="/admin/react/">
         <React.Fragment>
           <Switch>
-            <Route path="/admin/react/" exact component={Home} />
+            <Route path="/" exact component={Home} />
             <div className="dashboard">
               <div className="wrapper ">
                 <Route path="/" component={Sidebar} />
