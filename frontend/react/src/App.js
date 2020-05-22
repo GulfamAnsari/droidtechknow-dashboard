@@ -21,7 +21,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <BrowserRouter basename="/admin/react/">
+      <BrowserRouter>
         <React.Fragment>
           <Switch>
             <Route path="/admin/react/" exact component={Home} />
