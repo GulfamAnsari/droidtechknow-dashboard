@@ -173,8 +173,8 @@ export default class Weather extends Component {
         BACKEND.get(LOCATION_API_URL).then((locationData) => {
             const payload = {
                 city: locationData.data.city + ', ' + locationData.data.country,
-                latitude: locationData.data.lat,
-                longitude: locationData.data.lon
+                latitude: locationData.data.loc.split(",")[0],
+                longitude: locationData.data.loc.split(",")[1]
             }
             BACKEND.post('/weather/get-weather-information', { payload }).then((weatherData) => {
                 console.log(weatherData);

@@ -1,1 +1,1 @@
-export const LOCATION_API_URL = 'https://ip-api.com/json';
+export const LOCATION_API_URL = 'https://ipinfo.io';

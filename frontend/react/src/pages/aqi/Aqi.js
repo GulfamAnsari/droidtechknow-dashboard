@@ -79,8 +79,8 @@ class Aqi extends Component {
             alert('Please enable your real time location to fetch exact AQI');
             BACKEND.get(LOCATION_API_URL).then((locationData) => {
                 const payload = {
-                    latitude: locationData.data.lat,
-                    longitude: locationData.data.lon
+                    latitude: locationData.data.loc.split(",")[0],
+                    longitude: locationData.data.loc.split(",")[1]
                 }
                 this.updateAqiData(payload);
             }, (err) => { })
