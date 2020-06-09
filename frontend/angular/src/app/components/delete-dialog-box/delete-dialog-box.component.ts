@@ -59,7 +59,9 @@ export class DeleteDialogBoxComponent implements OnInit {
   }
 
   public deleteArticle(data, url) {
-    this.controller.doPost({data: JSON.stringify(data)}, url).subscribe((success) => {
+    let formData: FormData = new FormData();
+    formData.append('data', data); 
+    this.controller.doPost(formData, url).subscribe((success) => {
       this.dataService.source.remove(this.dataService.selectedRowData).then(() => {
         this.dialog.closeAll();
         console.log(success);
@@ -71,7 +73,9 @@ export class DeleteDialogBoxComponent implements OnInit {
   }
 
   public addArticle(data, url) {
-    this.controller.doPost({data: JSON.stringify(data)}, url).subscribe((success) => {
+    let formData: FormData = new FormData();
+    formData.append('data', data); 
+    this.controller.doPost(formData, url).subscribe((success) => {
       this.dataService.source.prepend(data['article']).then(() => {
         this.dialog.closeAll();
         console.log(success);
@@ -83,7 +87,9 @@ export class DeleteDialogBoxComponent implements OnInit {
   }
 
   public updateArticle(data, url) {
-    this.controller.doPatch({data: JSON.stringify(data)}, url).subscribe((success) => {
+    let formData: FormData = new FormData();
+    formData.append('data', data); 
+    this.controller.doPatch(formData, url).subscribe((success) => {
       this.dataService.source.update(this.dataService.selectedRowData, this.dataService.updatedRowData).then(() => {
         console.log(success);
         this.dialog.closeAll();
