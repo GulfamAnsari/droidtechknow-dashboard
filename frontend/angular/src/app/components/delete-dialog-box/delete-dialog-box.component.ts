@@ -89,7 +89,7 @@ export class DeleteDialogBoxComponent implements OnInit {
   public updateArticle(data, url) {
     let formData: FormData = new FormData();
     formData.append('data', JSON.stringify(data)); 
-    this.controller.doPatch(formData, url).subscribe((success) => {
+    this.controller.doPost(formData, url).subscribe((success) => {
       this.dataService.source.update(this.dataService.selectedRowData, this.dataService.updatedRowData).then(() => {
         console.log(success);
         this.dialog.closeAll();
