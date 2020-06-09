@@ -35,7 +35,8 @@ export class DeleteDialogBoxComponent implements OnInit {
   }
 
   public ngSubmit(operationType) {
-    this.formData.value['article'] = JSON.parse(JSON.stringify(this.dataService.updatedRowData));
+    
+    this.formData.value['article'] = operationType == 'Delete' ? JSON.parse(JSON.stringify(this.dataService.selectedRowData)) : JSON.parse(JSON.stringify(this.dataService.updatedRowData));
     const urlAppend = {
       'Add': 'admin/api/addArticle.php',
       'Update': 'admin/api/editArticle.php',
