@@ -8,6 +8,7 @@ export default class Table extends Component {
 
   render() {
     const { title, description, icon,  data } = this.props.tableData;
+    console.log(this.props)
     return (
       <div className="card">
         <div className="card-header card-header-primary">

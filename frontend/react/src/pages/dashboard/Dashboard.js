@@ -33,6 +33,14 @@ export default class Dashboard extends Component {
           taglineIcon: "mood",
           cardClass: "card-header-success",
           tagline: "Moderate Air Quality in your area"
+        },
+        {
+          name: "ANALYTICS",
+          icon: "data",
+          link: "/analytics",
+          taglineIcon: "data",
+          cardClass: "card-header-success",
+          tagline: "See your fluctuating data"
         }
       ]
     };
