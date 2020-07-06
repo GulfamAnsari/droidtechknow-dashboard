@@ -61,10 +61,58 @@ export default class Analytics extends Component {
         }
     }
 
-    select = ()=> {
+    select = () => {
         var e = document.getElementById("paginagion");
         var value = e.options[e.selectedIndex].value;
-        this.setState({pageSize: value})
+        this.setState({ pageSize: value })
+    }
+
+    getUserTableData = () => {
+        const { table } = this.state;
+        const organicData = [{ key: "Google", value: 0 }, { key: "Bing", value: 0 }, { key: "DuckDuckGo", value: 0 }, { key: "Yahoo Search", value: 0 }];
+        const socialData = [{ key: "Youtube", value: 0 }, { key: "Facebook", value: 0 }, { key: "Quora", value: 0 }, { key: "Twitter", value: 0 }, { key: "Redit", value: 0 }, { key: "Instagram", value: 0 }]
+        const direct = [{ key: "Droidtechknow", value: 0 }, { key: "Others", value: 0 }];
+        const completeData = [{ Medium: "Organic", Users: 0 }, { Medium: "Social", Users: 0 }, { Medium: "Direct", Users: 0 }];
+        for (let article of table || []) {
+            if (article.referer.includes(".google.")) {
+                organicData[0].value = organicData[0].value + 1;
+                completeData[0].Users = completeData[0].Users + 1;
+            } else if (article.referer.includes("bing.com")) {
+                organicData[1].value = organicData[1].value + 1;
+                completeData[0].Users = completeData[0].Users + 1;
+            } else if (article.referer.includes("duckduckgo.com")) {
+                organicData[2].value = organicData[2].value + 1;
+                completeData[0].Users = completeData[0].Users + 1;
+            } else if (article.referer.includes("search.yahoo.com")) {
+                organicData[3].value = organicData[3].value + 1;
+                completeData[0].Users = completeData[0].Users + 1;
+            } else if (article.referer.includes("droidtechknow.com")) {
+                direct[0].value = direct[0].value + 1;
+                completeData[2].Users = completeData[2].Users + 1;
+            } else if (article.referer.includes("youtube.com")) {
+                socialData[0].value = socialData[0].value + 1;
+                completeData[1].Users = completeData[1].Users + 1;
+            } else if (article.referer.includes("facebook.com")) {
+                socialData[1].value = socialData[1].value + 1;
+                completeData[1].Users = completeData[1].Users + 1;
+            } else if (article.referer.includes("quora.com")) {
+                socialData[2].value = socialData[2].value + 1;
+                completeData[1].Users = completeData[1].Users + 1;
+            } else if (article.referer.includes("t.co")) {
+                socialData[3].value = socialData[3].value + 1;
+                completeData[1].Users = completeData[1].Users + 1;
+            } else if (article.referer.includes("reddit.com")) {
+                socialData[4].value = socialData[4].value + 1;
+                completeData[1].Users = completeData[1].Users + 1;
+            } else if (article.referer.includes("instagram.com")) {
+                socialData[5].value = socialData[5].value + 1;
+                completeData[1].Users = completeData[1].Users + 1;
+            } else {
+                direct[1].value = direct[1].value + 1;
+                completeData[2].Users = completeData[2].Users + 1;
+            }
+        }
+        return { organicData, socialData, direct, completeData };
     }
 
 
@@ -76,26 +124,57 @@ export default class Analytics extends Component {
                 {error.status && !loading ? Notiflix.notify('Failure', error.msg) : ''}
                 <div className="content">
                     <section className="main __Analytics">
-                        <span><stong>Date: {date}</stong></span>
-                        <input type="text" id="inputDate" />
-                        <button type="submit" onClick={() => { this.chnageDate() }} >Change</button>
-                        <select id="paginagion" onChange={()=>{this.select()}}>
-                            <option>10</option>
-                            <option>20</option>
-                            <option>30</option>
-                            <option>50</option>
-                            <option>100</option>
-                            <option>500</option>
-                            <option>1000</option>
-                        </select>
+                        <div class="col-md-3">
+                            <Table tableData={{
+                                title: 'Traffic',
+                                icon: 'fa fa-data',
+                                data: this.getUserTableData().completeData
+                            }} />
+                        </div>
+                        <div class="col-md-3">
+                            <Table tableData={{
+                                title: 'Organic Data',
+                                icon: 'fa fa-google',
+                                data: this.getUserTableData().organicData
+                            }} />
+                        </div>
+                        <div class="col-md-3">
+                            <Table tableData={{
+                                title: 'Social Data',
+                                icon: 'fa fa-facebook',
+                                data: this.getUserTableData().socialData
+                            }} />
+                        </div>
+                        <div class="col-md-3">
+                            <Table tableData={{
+                                title: 'Direct Data',
+                                icon: 'fa fa-direct',
+                                data: this.getUserTableData().direct
+                            }} />
+                        </div>
 
-                        {appData ? <SmartDataTable
+                        <div class="col-md-3">
+                            <span><stong>Date: {date}</stong></span>
+                            <input type="text" id="inputDate" />
+                            <button type="submit" onClick={() => { this.chnageDate() }} >Change</button>
+                            <select id="paginagion" onChange={() => { this.select() }}>
+                                <option>10</option>
+                                <option>20</option>
+                                <option>30</option>
+                                <option>50</option>
+                                <option>100</option>
+                                <option>500</option>
+                                <option>1000</option>
+                            </select>
+                        </div>
+
+                        {appData ? <div class="col-md-12"><SmartDataTable
                             data={table ? table : this.getTableData(date)}
                             name='Droidtechknow analytics table'
                             className='ui compact selectable table'
                             sortable
                             perPage={pageSize}
-                        /> : null}
+                        /></div> : null}
                     </section>
                 </div>
             </React.Fragment>

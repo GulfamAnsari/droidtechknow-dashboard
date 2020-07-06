@@ -36,9 +36,9 @@ export default class Dashboard extends Component {
         },
         {
           name: "ANALYTICS",
-          icon: "data",
+          icon: "analytics",
           link: "/analytics",
-          taglineIcon: "data",
+          taglineIcon: "analytics",
           cardClass: "card-header-success",
           tagline: "See your fluctuating data"
         }
