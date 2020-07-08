@@ -4,7 +4,6 @@ import { LOCATION_API_URL } from '../../constants';
 import './Analytics.scss';
 import * as Notiflix from '../../helper/notiflix';
 import Table from '../../components/Table/Table';
-import SmartDataTable from 'react-smart-data-table';
 
 export default class Analytics extends Component {
     constructor(props) {
@@ -168,12 +167,9 @@ export default class Analytics extends Component {
                             </select>
                         </div>
 
-                        {appData ? <div class="col-md-12"><SmartDataTable
+                        {appData ? <div class="col-md-12"><Table
                             data={table ? table : this.getTableData(date)}
-                            name='Droidtechknow analytics table'
-                            className='ui compact selectable table'
-                            sortable
-                            perPage={pageSize}
+                            Title='Droidtechknow analytics table'
                         /></div> : null}
                     </section>
                 </div>
