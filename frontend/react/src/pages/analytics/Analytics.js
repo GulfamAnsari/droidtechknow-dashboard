@@ -15,7 +15,6 @@ export default class Analytics extends Component {
                 msg: ''
             },
             date: this.convertDate(String(new Date())),
-            pageSize: 10,
             appData: null,
             table: null
         }
@@ -41,8 +40,7 @@ export default class Analytics extends Component {
         }
     }
 
-    chnageDate = () => {
-        var inputDate = document.getElementById('inputDate').value;
+    chnageDate = (inputDate) => {
         if (!this.getTableData(inputDate)) {
             this.setState({
                 error: {
@@ -60,11 +58,12 @@ export default class Analytics extends Component {
         }
     }
 
-    select = () => {
-        var e = document.getElementById("paginagion");
-        var value = e.options[e.selectedIndex].value;
-        this.setState({ pageSize: value })
+    myFunction = (val) => {
+        var val = val.target.value;
+        val = val.split("-").reverse().join("-");
+        this.chnageDate(val);
     }
+
 
     getUserTableData = () => {
         const { table } = this.state;
@@ -116,7 +115,7 @@ export default class Analytics extends Component {
 
 
     render() {
-        const { loading, error, appData, table, date, pageSize } = this.state;
+        const { loading, error, appData, table, date } = this.state;
         return (
             <React.Fragment>
                 {loading ? Notiflix.loading('Loading Analytics. Please wait...') : Notiflix.remove()}
@@ -153,23 +152,13 @@ export default class Analytics extends Component {
                         </div>
 
                         <div class="col-md-3">
-                            <span><stong>Date: {date}</stong></span>
-                            <input type="text" id="inputDate" />
-                            <button type="submit" onClick={() => { this.chnageDate() }} >Change</button>
-                            <select id="paginagion" onChange={() => { this.select() }}>
-                                <option>10</option>
-                                <option>20</option>
-                                <option>30</option>
-                                <option>50</option>
-                                <option>100</option>
-                                <option>500</option>
-                                <option>1000</option>
-                            </select>
+                            <input type="date" className={'datePicker'} name="Date Picker" defaultValue="2020-07-08" min="2020-07-01" id="datePicker" onChange={(value) => { this.myFunction(value) }} />
                         </div>
-
-                        {appData ? <div class="col-md-12"><Table
-                            data={table ? table : this.getTableData(date)}
-                            Title='Droidtechknow analytics table'
+                        {appData ? <div class="col-md-12"><Table tableData={{
+                            title: 'Droidtechknow Website Analytics',
+                            icon: 'fa fa-table',
+                            data: table ? table : this.getTableData(date)
+                        }}
                         /></div> : null}
                     </section>
                 </div>
