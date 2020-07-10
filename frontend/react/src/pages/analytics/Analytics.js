@@ -53,6 +53,7 @@ export default class Analytics extends Component {
                 }, 3000);
             })
         } else {
+            this.setState({ date: inputDate })
             Notiflix.remove();
             Notiflix.notify('Success', 'Your data is updated.');
         }
@@ -63,6 +64,48 @@ export default class Analytics extends Component {
         val = val.split("-").reverse().join("-");
         this.chnageDate(val);
     }
+
+    selectChange = (e) => {
+        const { date } = this.state;
+        var val = e.target.value;
+        const sortBy = fn => {
+            const cmp = (a, b) => -(a < b) || +(a > b);
+            return (a, b) => cmp(fn(a), fn(b));
+        };
+        var newSortedData = this.sortByAttribute(this.getTableData(date), val);
+        this.setState({ table: newSortedData })
+    }
+
+    sortByAttribute = (array, ...attrs) => {
+        // generate an array of predicate-objects contains
+        // property getter, and descending indicator
+        let predicates = attrs.map(pred => {
+            let descending = pred.charAt(0) === '-' ? -1 : 1;
+            pred = pred.replace(/^-/, '');
+            return {
+                getter: o => o[pred],
+                descend: descending
+            };
+        });
+        // schwartzian transform idiom implementation. aka: "decorate-sort-undecorate"
+        return array.map(item => {
+            return {
+                src: item,
+                compareValues: predicates.map(predicate => predicate.getter(item))
+            };
+        })
+            .sort((o1, o2) => {
+                let i = -1, result = 0;
+                while (++i < predicates.length) {
+                    if (o1.compareValues[i] < o2.compareValues[i]) result = -1;
+                    if (o1.compareValues[i] > o2.compareValues[i]) result = 1;
+                    if (result *= predicates[i].descend) break;
+                }
+                return result;
+            })
+            .map(item => item.src);
+    }
+
 
 
     getUserTableData = () => {
@@ -116,6 +159,7 @@ export default class Analytics extends Component {
 
     render() {
         const { loading, error, appData, table, date } = this.state;
+        const sortList = ["ip", "referer", "bot", "city", "country", "date", "postId", "time", "title", "views"]
         return (
             <React.Fragment>
                 {loading ? Notiflix.loading('Loading Analytics. Please wait...') : Notiflix.remove()}
@@ -152,7 +196,15 @@ export default class Analytics extends Component {
                         </div>
 
                         <div class="col-md-3">
-                            <input type="date" className={'datePicker'} name="Date Picker" defaultValue="2020-07-08" min="2020-07-01" id="datePicker" onChange={(value) => { this.myFunction(value) }} />
+                            <input type="date" className={'datePicker'} name="Date Picker" defaultValue={date} min="2020-07-01" id="datePicker" onChange={(value) => { this.myFunction(value) }} />
+                        </div>
+                        <div class="col-md-3">
+                            <select className="selectSort" onChange={(e) => { this.selectChange(e) }}>
+                                <option value="" disabled selected>Sort Using</option>
+                                {
+                                    sortList.map(e => { return <option value={e}>{e}</option> })
+                                }
+                            </select>
                         </div>
                         {appData ? <div class="col-md-12"><Table tableData={{
                             title: 'Droidtechknow Website Analytics',
