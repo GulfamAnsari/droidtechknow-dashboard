@@ -16,7 +16,8 @@ export default class Analytics extends Component {
             },
             date: this.convertDate(String(new Date())),
             appData: null,
-            table: null
+            table: null,
+            mediumTableData: null
         }
     }
 
@@ -106,60 +107,75 @@ export default class Analytics extends Component {
             .map(item => item.src);
     }
 
+    selectMediumData = (e) => {
+        var val = e.target.value;
+        console.log(this.getUserTableData().articlesList)
+        this.setState({ mediumTableData: this.getUserTableData().articlesList[val] })
+    }
 
 
     getUserTableData = () => {
         const { table } = this.state;
-        const organicData = [{ key: "Google", value: 0 }, { key: "Bing", value: 0 }, { key: "DuckDuckGo", value: 0 }, { key: "Yahoo Search", value: 0 }];
-        const socialData = [{ key: "Youtube", value: 0 }, { key: "Facebook", value: 0 }, { key: "Quora", value: 0 }, { key: "Twitter", value: 0 }, { key: "Redit", value: 0 }, { key: "Instagram", value: 0 }]
-        const direct = [{ key: "Droidtechknow", value: 0 }, { key: "Others", value: 0 }];
+        const organicData = [{ Medium: "Google", Users: 0 }];
+        const socialData = [{ Medium: "Social", Users: 0 }];
         const completeData = [{ Medium: "Organic", Users: 0 }, { Medium: "Social", Users: 0 }, { Medium: "Direct", Users: 0 }];
-        for (let article of table || []) {
-            if (article.referer.includes(".google.")) {
-                organicData[0].value = organicData[0].value + 1;
-                completeData[0].Users = completeData[0].Users + 1;
-            } else if (article.referer.includes("bing.com")) {
-                organicData[1].value = organicData[1].value + 1;
-                completeData[0].Users = completeData[0].Users + 1;
-            } else if (article.referer.includes("duckduckgo.com")) {
-                organicData[2].value = organicData[2].value + 1;
-                completeData[0].Users = completeData[0].Users + 1;
-            } else if (article.referer.includes("search.yahoo.com")) {
-                organicData[3].value = organicData[3].value + 1;
-                completeData[0].Users = completeData[0].Users + 1;
-            } else if (article.referer.includes("droidtechknow.com")) {
-                direct[0].value = direct[0].value + 1;
-                completeData[2].Users = completeData[2].Users + 1;
-            } else if (article.referer.includes("youtube.com")) {
-                socialData[0].value = socialData[0].value + 1;
-                completeData[1].Users = completeData[1].Users + 1;
-            } else if (article.referer.includes("facebook.com")) {
-                socialData[1].value = socialData[1].value + 1;
-                completeData[1].Users = completeData[1].Users + 1;
-            } else if (article.referer.includes("quora.com")) {
-                socialData[2].value = socialData[2].value + 1;
-                completeData[1].Users = completeData[1].Users + 1;
-            } else if (article.referer.includes("t.co")) {
-                socialData[3].value = socialData[3].value + 1;
-                completeData[1].Users = completeData[1].Users + 1;
-            } else if (article.referer.includes("reddit.com")) {
-                socialData[4].value = socialData[4].value + 1;
-                completeData[1].Users = completeData[1].Users + 1;
-            } else if (article.referer.includes("instagram.com")) {
-                socialData[5].value = socialData[5].value + 1;
-                completeData[1].Users = completeData[1].Users + 1;
-            } else {
-                direct[1].value = direct[1].value + 1;
-                completeData[2].Users = completeData[2].Users + 1;
+        const direct = [{ key: "Droidtechknow", value: 0 }, { key: "Others", value: 0 }];
+        const allMedium = {
+            organic: {
+                list: ["google.com", "bing.com", "duckduckgo.com", "yahoo.com", "yandex.com", "qwant.com"],
+                medium: ["Google", "Bing", "DuckduckGo", "Yahoo Search", "Yandex", "Qwant"]
+            },
+            social: {
+                list: ["youtube.com", "facebook.com", "t.co", "reddit.com", "instagram.com", "quora.com"],
+                medium: ["Youtube", "Facebook", "Twitter", "Reddit", "Instagram", "Quora"]
             }
         }
-        return { organicData, socialData, direct, completeData };
+
+        var articlesList = {
+            social: [],
+            organic: [],
+            direct: []
+        }
+        for (let article of table || []) {
+            // creating organic list
+            for (let i in allMedium.organic.list) {
+                if (article.referer.includes(allMedium.organic.list[i])) {
+                    organicData[i] = {
+                        Medium: allMedium.organic.medium[i],
+                        Users: organicData[i] && organicData[i].Users ? organicData[i].Users + 1 : 1
+                    }
+                    completeData[0].Users = completeData[0].Users + 1;
+                    articlesList.organic.push(article);
+                }
+            }
+
+            // creating social list
+            for (let i in allMedium.social.list) {
+                if (article.referer.includes(allMedium.social.list[i])) {
+                    socialData[i] = {
+                        Medium: allMedium.organic.medium[i],
+                        Users: socialData[i] && socialData[i].Users ? socialData[i].Users + 1 : 1
+                    }
+                    completeData[1].Users = completeData[1].Users + 1;
+                    articlesList.social.push(article)
+                }
+            }
+
+            if (article.referer.includes('droidtechknow.com')) {
+                direct[0].value = direct[0].value + 1;
+                completeData[2].Users = completeData[2].Users + 1;
+                articlesList.direct.push(article)
+            }
+        }
+        direct[1].value = (table || []).length - (completeData[0].Users + completeData[1].Users + completeData[2].Users);
+        return { organicData, socialData, direct, completeData, articlesList };
     }
 
 
     render() {
-        const { loading, error, appData, table, date } = this.state;
+        const { loading, error, appData, table, date, mediumTableData    } = this.state;
         const sortList = ["ip", "referer", "bot", "city", "country", "date", "postId", "time", "title", "views"]
+        const allMedium = ["social", "organic", "direct"]
         return (
             <React.Fragment>
                 {loading ? Notiflix.loading('Loading Analytics. Please wait...') : Notiflix.remove()}
@@ -206,6 +222,21 @@ export default class Analytics extends Component {
                                 }
                             </select>
                         </div>
+                        <div class="col-md-3">
+                            <select className="selectSort" onChange={(e) => { this.selectMediumData(e) }}>
+                                <option value="" disabled selected>Select Medium</option>
+                                {
+                                    allMedium.map(e => { return <option value={e}>{e}</option> })
+                                }
+                            </select>
+                        </div>
+
+                        {mediumTableData ? <div class="col-md-12"><Table tableData={{
+                            title: 'Organic Social and Direct',
+                            icon: 'fa fa-table',
+                            data: mediumTableData
+                        }}
+                        /></div> : null}
                         {appData ? <div class="col-md-12"><Table tableData={{
                             title: 'Droidtechknow Website Analytics',
                             icon: 'fa fa-table',
