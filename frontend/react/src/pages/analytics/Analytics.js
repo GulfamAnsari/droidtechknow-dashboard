@@ -153,7 +153,7 @@ export default class Analytics extends Component {
             for (let i in allMedium.social.list) {
                 if (article.referer.includes(allMedium.social.list[i])) {
                     socialData[i] = {
-                        Medium: allMedium.organic.medium[i],
+                        Medium: allMedium.social.medium[i],
                         Users: socialData[i] && socialData[i].Users ? socialData[i].Users + 1 : 1
                     }
                     completeData[1].Users = completeData[1].Users + 1;
