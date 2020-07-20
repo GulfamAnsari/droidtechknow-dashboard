@@ -17,7 +17,9 @@ export default class Analytics extends Component {
             date: this.convertDate(String(new Date())),
             appData: null,
             table: null,
-            mediumTableData: null
+            mediumTableData: null,
+            showAllDataTable: true,
+            mediumDataTable: false
         }
     }
 
@@ -74,7 +76,7 @@ export default class Analytics extends Component {
             return (a, b) => cmp(fn(a), fn(b));
         };
         var newSortedData = this.sortByAttribute(this.getTableData(date), val);
-        this.setState({ table: newSortedData })
+        this.setState({ table: newSortedData });
     }
 
     sortByAttribute = (array, ...attrs) => {
@@ -108,9 +110,14 @@ export default class Analytics extends Component {
     }
 
     selectMediumData = (e) => {
+        const { mediumDataTable, showAllDataTable } = this.state;
         var val = e.target.value;
-        console.log(this.getUserTableData().articlesList)
-        this.setState({ mediumTableData: this.getUserTableData().articlesList[val] })
+        if (val === "all") {
+            this.setState({ mediumDataTable: false, showAllDataTable: true })
+        } else {
+            this.setState({ mediumTableData: this.getUserTableData().articlesList[val] })
+            this.setState({ showAllDataTable: false, mediumDataTable: true })
+        }
     }
 
 
@@ -171,11 +178,47 @@ export default class Analytics extends Component {
         return { organicData, socialData, direct, completeData, articlesList };
     }
 
+    plotGraph = () => {
+        const { appData } = this.state;
+        let x = [];
+        let y = [];
+        for (let date of appData || []) {
+            x.push(Object.keys(date)[0]);
+            y.push(Object.values(date)[0].length);
+        }
+        var trace1 = {
+            type: 'scatter',
+            x,
+            y,
+            marker: {
+                color: '#C8A2C8',
+                line: {
+                    width: 1
+                }
+            }
+        };
+
+        var data = [trace1];
+
+        var layout = {
+            title: 'All Data',
+            font: { size: 12 }
+        };
+
+        var config = { responsive: true }
+
+        window.Plotly.newPlot('plotData', data, layout, config);
+    }
+
+    componentDidUpdate = () => {
+        this.plotGraph();
+    }
+
 
     render() {
-        const { loading, error, appData, table, date, mediumTableData    } = this.state;
+        const { loading, mediumDataTable, showAllDataTable, error, appData, table, date, mediumTableData } = this.state;
         const sortList = ["ip", "referer", "bot", "city", "country", "date", "postId", "time", "title", "views"]
-        const allMedium = ["social", "organic", "direct"]
+        const allMedium = ["all", "social", "organic", "direct"]
         return (
             <React.Fragment>
                 {loading ? Notiflix.loading('Loading Analytics. Please wait...') : Notiflix.remove()}
@@ -211,6 +254,8 @@ export default class Analytics extends Component {
                             }} />
                         </div>
 
+                        <div className="col-md-12 plot"><div id="plotData"></div></div>
+
                         <div class="col-md-3">
                             <input type="date" className={'datePicker'} name="Date Picker" defaultValue={date} min="2020-07-01" id="datePicker" onChange={(value) => { this.myFunction(value) }} />
                         </div>
@@ -231,13 +276,18 @@ export default class Analytics extends Component {
                             </select>
                         </div>
 
-                        {mediumTableData ? <div class="col-md-12"><Table tableData={{
+
+                        <div class="col-md-3">
+                            <button className="btn btn-primary" onClick={() => { this.getAPIData() }} type="button">Refresh Data</button>
+                        </div>
+
+                        {mediumTableData && mediumDataTable ? <div id="socialOrganicData" class="col-md-12"><Table tableData={{
                             title: 'Organic Social and Direct',
                             icon: 'fa fa-table',
                             data: mediumTableData
                         }}
                         /></div> : null}
-                        {appData ? <div class="col-md-12"><Table tableData={{
+                        {appData && showAllDataTable ? <div id="allData" class="col-md-12"><Table tableData={{
                             title: 'Droidtechknow Website Analytics',
                             icon: 'fa fa-table',
                             data: table ? table : this.getTableData(date)
@@ -251,6 +301,10 @@ export default class Analytics extends Component {
 
 
     componentDidMount = () => {
+        this.getAPIData();
+    }
+
+    getAPIData = () => {
         this.setState({ loading: true });
         BACKEND.get('https://droidtechknow.com/admin/api/analytics/getAnalytics.php').then((data) => {
             console.log(data);
